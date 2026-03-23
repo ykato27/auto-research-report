@@ -1,0 +1,27 @@
+name: Send AI News Email
+
+on:
+  push:
+    paths:
+      - 'reports/ai_news_*.txt'
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements.txt
+      - run: |
+          FILE=$(git diff-tree --no-commit-id -r --name-only ${{ github.sha }} | grep 'reports/ai_news_')
+          if [ -z "$FILE" ]; then
+            echo "対象ファイルが見つかりません"
+            exit 1
+          fi
+          python send_daily_ai_news.py $FILE
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
