@@ -131,7 +131,9 @@ def send_email(html_body, topic_count, report_type="default"):
     gmail_password = os.environ.get("GMAIL_APP_PASSWORD")
 
     # レポートタイプ別の環境変数を取得
-    if report_type == "talent_mgmt":
+    if report_type == "ai_news":
+        recipient = os.environ.get("RECIPIENT_EMAIL_AI_NEWS") or os.environ.get("RECIPIENT_EMAIL")
+    elif report_type == "talent_mgmt":
         recipient = os.environ.get("RECIPIENT_EMAIL_TALENT_MGMT") or os.environ.get("RECIPIENT_EMAIL")
     else:
         recipient = os.environ.get("RECIPIENT_EMAIL")
