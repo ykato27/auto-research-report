@@ -1,11 +1,11 @@
-name: Send AI News Email
+name: Send Talent Management Weekly Report Email
 
 on:
   push:
     branches:
       - main
     paths:
-      - 'reports/ai_news_*.txt'
+      - 'reports/talent_mgmt_weekly_*.txt'
 
 jobs:
   send-email:
@@ -18,14 +18,14 @@ jobs:
       - run: pip install -r requirements.txt
       - run: |
           TODAY=$(date +%Y%m%d)
-          FILE="reports/ai_news_${TODAY}.txt"
+          FILE="reports/talent_mgmt_weekly_${TODAY}.txt"
 
           if [ ! -f "$FILE" ]; then
-            FILE=$(git diff --name-only HEAD^ HEAD 2>/dev/null | grep 'reports/ai_news_' | head -1)
+            FILE=$(git diff --name-only HEAD^ HEAD 2>/dev/null | grep 'reports/talent_mgmt_weekly_' | head -1)
           fi
 
           if [ -z "$FILE" ] || [ ! -f "$FILE" ]; then
-            echo "❌ AI Newsファイルが見つかりません"
+            echo "❌ タレントマネジメントレポートが見つかりません"
             exit 1
           fi
 
