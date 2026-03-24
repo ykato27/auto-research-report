@@ -90,8 +90,7 @@ python send_daily_ai_news.py /tmp/ai_news_today.txt
   - `・` → 箇条書き段落
 - 件名をファイル名から自動判定して生成
   - `ai_news_*.txt` → 「📰 AIニュース週次まとめ {日付}（{件数}件）」
-  - `skill_mgmt_*.txt` → 「📚 スキルマネジメント週次まとめ {日付}（{件数}件）」
-  - `talent_mgmt_*.txt` → 「👥 タレントマネジメント週次まとめ {日付}（{件数}件）」
+  - `talent_mgmt_*.txt` → 「👥 人材・スキル戦略グローバル動向 {日付}（{件数}件）」
 - `GMAIL_USER` / `GMAIL_APP_PASSWORD` / `RECIPIENT_EMAIL` の環境変数で認証・送信
 
 **依存関係：** Python 標準ライブラリのみ（追加パッケージ不要）
@@ -105,9 +104,8 @@ python send_daily_ai_news.py /tmp/ai_news_today.txt
 | ファイル | テーマ | 対象 | 頻度 | 状態 |
 |---|---|---|---|---|
 | `ai_news_daily.md` | AIニュース日次 | - | 毎日 | 準備中 |
-| `ai_news_weekly.md` | AIニュース週次 | - | 毎週月曜 | ✅ 完成 |
-| `skill_mgmt_weekly.md` | スキルマネジメント | 国内・海外 | 毎週水曜 | ✅ 完成 |
-| `talent_mgmt_weekly.md` | タレントマネジメント・インテリジェンス | 国内・海外 | 毎週月曜 | ✅ 完成 |
+| `ai_news_weekly.md` | AIニュース週次 | グローバル | 毎週月曜 | ✅ 完成 |
+| `talent_mgmt_weekly.md` | 人材・スキル戦略グローバル動向（スキル＋タレント＋インテリジェンス統合） | 国内・海外 | 毎週月曜 | ✅ 完成 |
 
 ### 新しいテーマを追加するには
 

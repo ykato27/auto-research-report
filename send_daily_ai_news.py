@@ -46,8 +46,6 @@ def filepath_to_report_type(filepath):
     filename = filepath.lower()
     if "ai_news" in filename:
         return "ai_news"
-    elif "skill_mgmt" in filename:
-        return "skill_mgmt"
     elif "talent_mgmt" in filename:
         return "talent_mgmt"
     else:
@@ -153,8 +151,7 @@ def send_email(html_body, topic_count, report_type="default"):
     # レポートタイプ別の件名を生成
     report_labels = {
         "ai_news": "📰 AIニュース週次まとめ",
-        "skill_mgmt": "📚 スキルマネジメント週次まとめ",
-        "talent_mgmt": "👥 タレントマネジメント週次まとめ",
+        "talent_mgmt": "👥 人材・スキル戦略グローバル動向",
         "default": "📊 ニュースまとめ"
     }
     label = report_labels.get(report_type, report_labels["default"])
