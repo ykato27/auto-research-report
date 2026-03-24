@@ -239,14 +239,21 @@ cat << 'NEWSEOF' > reports/talent_mgmt_weekly_${TODAY}.txt
 {STEP 4で作成した本文をここに展開}
 NEWSEOF
 
-【手順2：Git push】
+【手順2：mainブランチへのチェックアウト確認（必須）】
+# detached HEAD や誤ったブランチを防ぐため、必ず以下を実行する
+git fetch origin main
+git checkout main || git checkout -b main origin/main
+# mainブランチにいることを確認してから次へ進む
+
+【手順3：Git push（mainブランチ）】
 TODAY=$(date +%Y%m%d)
 git add reports/talent_mgmt_weekly_${TODAY}.txt
 git commit -m "Add talent management weekly report ${TODAY}"
-git push origin HEAD:refs/heads/main
+git push origin main
 
-【手順3：結果確認】
+【手順4：結果確認】
 git push が成功したことを確認する。
+git branch で現在のブランチが main であることを確認する。
 GitHub Actions が自動起動し、メール配信される。
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━

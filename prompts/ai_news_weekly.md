@@ -207,14 +207,21 @@ cat << 'NEWSEOF' > reports/ai_news_weekly_${TODAY}.txt
 {STEP 4で作成した本文をここに展開}
 NEWSEOF
 
-【手順2：Git push（mainブランチ）】
+【手順2：mainブランチへのチェックアウト確認（必須）】
+# detached HEAD や誤ったブランチを防ぐため、必ず以下を実行する
+git fetch origin main
+git checkout main || git checkout -b main origin/main
+# mainブランチにいることを確認してから次へ進む
+
+【手順3：Git push（mainブランチ）】
 TODAY=$(date +%Y%m%d)
 git add reports/ai_news_weekly_${TODAY}.txt
 git commit -m "Add AI weekly news report ${TODAY}"
-git push origin HEAD:refs/heads/main
+git push origin main
 
-【手順3：push結果の確認】
+【手順4：push結果の確認】
 git push が成功したことを確認する。
+git branch で現在のブランチが main であることを確認する。
 エラーが出た場合はエラー内容を報告する。
 GitHub Actions が自動起動し、メールが送信される。
 
