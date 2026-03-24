@@ -42,8 +42,8 @@ def load_news_content(filepath):
 
 
 def extract_topic_count(content):
-    """本文からトピック数を抽出"""
-    match = re.search(r"本日のトピック数：(\d+)件", content)
+    """本文からトピック数を抽出（日次・週次両対応）"""
+    match = re.search(r"トピック数：(\d+)件", content)
     return match.group(1) if match else "?"
 
 
@@ -112,7 +112,7 @@ def text_to_html(content):
     return html
 
 
-def send_email(html_body, topic_count):
+def send_email(html_body, topic_count, is_weekly=False):
     """Gmail SMTP経由でメールを送信"""
     print("📧 メール送信準備中...")
 
@@ -137,7 +137,8 @@ def send_email(html_body, topic_count):
     msg = MIMEMultipart()
     msg["From"] = gmail_user
     msg["To"] = ", ".join(recipients)
-    msg["Subject"] = f"📰 {today} AIニュース日次まとめ（{topic_count}件）"
+    label = "AI週次ニュースまとめ" if is_weekly else "AIニュース日次まとめ"
+    msg["Subject"] = f"📰 {today} {label}（{topic_count}件）"
 
     msg.attach(MIMEText(html_body, "html", "utf-8"))
 
@@ -180,7 +181,8 @@ def main():
     print(f"✓ HTML変換完了")
 
     # 4. メール送信
-    send_email(html_body, topic_count)
+    is_weekly = "weekly" in filepath.lower()
+    send_email(html_body, topic_count, is_weekly)
 
     print("\n" + "=" * 60)
     print("✓ 処理完了")
