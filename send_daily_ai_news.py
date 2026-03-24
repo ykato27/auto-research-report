@@ -41,6 +41,19 @@ def load_news_content(filepath):
     return content
 
 
+def filepath_to_report_type(filepath):
+    """ファイルパスからレポートタイプを判定"""
+    filename = filepath.lower()
+    if "ai_news" in filename:
+        return "ai_news"
+    elif "skill_mgmt" in filename:
+        return "skill_mgmt"
+    elif "talent_mgmt" in filename:
+        return "talent_mgmt"
+    else:
+        return "default"
+
+
 def extract_topic_count(content):
     """本文からトピック数を抽出（日次・週次両対応）"""
     match = re.search(r"トピック数：(\d+)件", content)
@@ -112,7 +125,7 @@ def text_to_html(content):
     return html
 
 
-def send_email(html_body, topic_count, is_weekly=False):
+def send_email(html_body, topic_count, report_type="default"):
     """Gmail SMTP経由でメールを送信"""
     print("📧 メール送信準備中...")
 
@@ -137,8 +150,15 @@ def send_email(html_body, topic_count, is_weekly=False):
     msg = MIMEMultipart()
     msg["From"] = gmail_user
     msg["To"] = ", ".join(recipients)
-    label = "AI週次ニュースまとめ" if is_weekly else "AIニュース日次まとめ"
-    msg["Subject"] = f"📰 {today} {label}（{topic_count}件）"
+    # レポートタイプ別の件名を生成
+    report_labels = {
+        "ai_news": "📰 AIニュース週次まとめ",
+        "skill_mgmt": "📚 スキルマネジメント週次まとめ",
+        "talent_mgmt": "👥 タレントマネジメント週次まとめ",
+        "default": "📊 ニュースまとめ"
+    }
+    label = report_labels.get(report_type, report_labels["default"])
+    msg["Subject"] = f"{label} {today}（{topic_count}件）"
 
     msg.attach(MIMEText(html_body, "html", "utf-8"))
 
@@ -180,9 +200,9 @@ def main():
     html_body = text_to_html(content)
     print(f"✓ HTML変換完了")
 
-    # 4. メール送信
-    is_weekly = "weekly" in filepath.lower()
-    send_email(html_body, topic_count, is_weekly)
+    # 4. メール送信（ファイル名から自動判定）
+    report_type = filepath_to_report_type(filepath)
+    send_email(html_body, topic_count, report_type)
 
     print("\n" + "=" * 60)
     print("✓ 処理完了")

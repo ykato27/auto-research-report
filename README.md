@@ -86,9 +86,12 @@ python send_daily_ai_news.py /tmp/ai_news_today.txt
 - テキスト本文を HTML 形式に自動変換
   - `## ` → `<h2>` 見出し
   - `──────` → `<hr>` 罫線
-  - `→ URL` → クリック可能な `<a href>` リンク
+  - `→ URL` または `（URL: {引用元}）` → クリック可能な `<a href>` リンク
   - `・` → 箇条書き段落
-- 件名を「📰 {日付} AIニュース日次まとめ（{件数}件）」に自動設定
+- 件名をファイル名から自動判定して生成
+  - `ai_news_*.txt` → 「📰 AIニュース週次まとめ {日付}（{件数}件）」
+  - `skill_mgmt_*.txt` → 「📚 スキルマネジメント週次まとめ {日付}（{件数}件）」
+  - `talent_mgmt_*.txt` → 「👥 タレントマネジメント週次まとめ {日付}（{件数}件）」
 - `GMAIL_USER` / `GMAIL_APP_PASSWORD` / `RECIPIENT_EMAIL` の環境変数で認証・送信
 
 **依存関係：** Python 標準ライブラリのみ（追加パッケージ不要）
@@ -99,11 +102,12 @@ python send_daily_ai_news.py /tmp/ai_news_today.txt
 
 各テーマのプロンプトは `prompts/` ディレクトリに格納します。Claude Code Web の定期実行に登録する際は、各ファイル内のプロンプト本文をコピーして使用してください。
 
-| ファイル | テーマ | 頻度 | 状態 |
-|---|---|---|---|
-| `ai_news_daily.md` | AIニュース日次まとめ | 毎日 | 準備中 |
-| `skill_mgmt_weekly.md` | 海外スキルマネジメント動向 | 毎週 | 準備中 |
-| `talent_mgmt_weekly.md` | 国内タレントマネジメント動向 | 毎週 | 準備中 |
+| ファイル | テーマ | 対象 | 頻度 | 状態 |
+|---|---|---|---|---|
+| `ai_news_daily.md` | AIニュース日次 | - | 毎日 | 準備中 |
+| `ai_news_weekly.md` | AIニュース週次 | - | 毎週月曜 | ✅ 完成 |
+| `skill_mgmt_weekly.md` | スキルマネジメント | 国内・海外 | 毎週水曜 | ✅ 完成 |
+| `talent_mgmt_weekly.md` | タレントマネジメント・インテリジェンス | 国内・海外 | 毎週月曜 | ✅ 完成 |
 
 ### 新しいテーマを追加するには
 
