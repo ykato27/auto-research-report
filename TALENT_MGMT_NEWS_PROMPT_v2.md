@@ -15,6 +15,19 @@
 
 ---
 
+## 📧 送信先アドレス確定（2026年3月24日版）
+
+```
+yuki.kato@skillnote.co.jp
+keita.kawase@skillnote.co.jp
+atsuhiko.okita@skillnote.co.jp
+kotaro.kusunoki@skillnote.co.jp
+```
+
+**環境変数**: `RECIPIENT_EMAIL_TALENT_MGMT` に上記4名をカンマ区切りで設定
+
+---
+
 ## STEP 0：事前準備
 
 ```bash

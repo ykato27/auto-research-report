@@ -129,7 +129,12 @@ def send_email(html_body, topic_count, report_type="default"):
 
     gmail_user = os.environ.get("GMAIL_USER")
     gmail_password = os.environ.get("GMAIL_APP_PASSWORD")
-    recipient = os.environ.get("RECIPIENT_EMAIL")
+
+    # レポートタイプ別の環境変数を取得
+    if report_type == "talent_mgmt":
+        recipient = os.environ.get("RECIPIENT_EMAIL_TALENT_MGMT") or os.environ.get("RECIPIENT_EMAIL")
+    else:
+        recipient = os.environ.get("RECIPIENT_EMAIL")
 
     if not all([gmail_user, gmail_password, recipient]):
         print("❌ エラー: メール送信に必要な環境変数が設定されていません")
