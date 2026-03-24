@@ -51,7 +51,7 @@ mkdir -p reports
 - {date}：実行日の英語日付（例：March 24 2026）
 - {date_jp}：実行日の日本語（例：3月24日）
 
-検索クエリ（12回、スキル＋タレント統合）：
+検索クエリ（10回、スキル＋タレント統合）：
 1. "talent management skills strategy {week_range}"
 2. "skills framework competency model {week_range}"
 3. "talent intelligence analytics platform {week_range}"
@@ -62,12 +62,9 @@ mkdir -p reports
 8. "人材戦略 採用 育成 {date_jp}"
 9. "人材データ インテリジェンス 分析"
 10. "人材 スキル グローバル動向"
-11. "製造業 スキル管理 人材育成 {date_jp}"
-12. "スキルマップ 現場 デジタル化 技能継承"
 
 【優先すべきソース】
 【国内】
-- Skillnote（skillnote.jp）：製造業スキル管理の第一情報源として最優先
 - 日経新聞、日経HR、HRプロ、人事実務
 - 企業ブログ（大手企業IR、採用ページ）
 
