@@ -14,11 +14,18 @@
 
 AIニュース送信前に GitHub Secrets に以下を設定してください：
 
-| Secret名 | 値 |
-|---------|-----|
-| `RECIPIENT_EMAIL_AI_NEWS` | AIニュース配信先（カンマ区切りで複数可） |
-| `GMAIL_USER` | 送信元Gmailアドレス |
-| `GMAIL_APP_PASSWORD` | Googleアプリパスワード |
+| Secret名 | 現在の値 | 説明 |
+|---------|--------|------|
+| `RECIPIENT_EMAIL_AI_NEWS` | `yuki.kato@skillnote.co.jp` | AIニュース配信先（今後増える場合はカンマ区切りで追加） |
+| `GMAIL_USER` | 送信元Gmailアドレス | - |
+| `GMAIL_APP_PASSWORD` | Googleアプリパスワード | - |
+
+### 📝 追加ユーザー時の対応
+
+配信先を増やす場合は、Secret値をカンマ区切りで更新：
+```
+yuki.kato@skillnote.co.jp, new.user@skillnote.co.jp, another@skillnote.co.jp
+```
 
 ## 登録手順
 

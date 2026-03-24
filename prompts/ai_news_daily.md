@@ -7,8 +7,25 @@
 | テーマ | AI関連ニュース全般 |
 | 頻度 | 毎日 |
 | 推奨実行時間 | 日本時間 朝 8:00 |
-| 送信先 | yuki.kato@skillnote.co.jp |
+| 送信先 | `RECIPIENT_EMAIL_AI_NEWS` で管理（環境変数） |
 | 送信方法 | send_daily_ai_news.py（SMTP） |
+
+## 前提条件（GitHub Secrets設定）
+
+AIニュース送信前に GitHub Secrets に以下を設定してください：
+
+| Secret名 | 現在の値 | 説明 |
+|---------|--------|------|
+| `RECIPIENT_EMAIL_AI_NEWS` | `yuki.kato@skillnote.co.jp` | AIニュース配信先（今後増える場合はカンマ区切りで追加） |
+| `GMAIL_USER` | 送信元Gmailアドレス | - |
+| `GMAIL_APP_PASSWORD` | Googleアプリパスワード | - |
+
+### 📝 追加ユーザー時の対応
+
+配信先を増やす場合は、Secret値をカンマ区切りで更新：
+```
+yuki.kato@skillnote.co.jp, new.user@skillnote.co.jp, another@skillnote.co.jp
+```
 
 ## 登録手順
 
