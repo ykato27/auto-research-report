@@ -32,4 +32,4 @@ jobs:
           echo "✓ 送信対象ファイル: $FILE"
           python send_report_to_teams.py $FILE
         env:
-          TEAMS_WORKFLOW_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          TEAMS_WORKFLOW_WEBHOOK_URL_TALENT_MGMT: ${{ secrets.TEAMS_WEBHOOK_URL }}
