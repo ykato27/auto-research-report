@@ -142,7 +142,11 @@ def format_for_teams(content):
 
 
 def build_payload(filepath, content, topic_count, report_type):
-    """Teams Workflows webhook に送る JSON を組み立てる"""
+    """Teams Workflows webhook に送る JSON を組み立てる
+
+    Teams Workflows（Power Automate）の標準テンプレートは
+    `text` フィールドをメッセージ本文として使用する。
+    """
     report_date = datetime.now().strftime("%Y/%m/%d")
     source_file = Path(filepath).name
     title = build_report_title(report_type, topic_count, report_date)
@@ -150,11 +154,11 @@ def build_payload(filepath, content, topic_count, report_type):
 
     return {
         "title": title,
+        "text": teams_content,
         "reportType": report_type,
         "reportDate": report_date,
         "topicCount": topic_count,
         "sourceFile": source_file,
-        "content": teams_content,
     }
 
 
