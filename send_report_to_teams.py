@@ -88,11 +88,65 @@ def resolve_webhook_url(report_type):
     return None, None
 
 
+def format_for_teams(content):
+    """Teams投稿向けにテキストを整形する
+
+    主な変換:
+    - 「## 見出し」→「■ 見出し」（Teams では ## がそのまま表示される）
+    - 「──────...」の罫線行 → 空行に置換（冗長な区切りを除去）
+    - 「（URL: https://...）」→「  🔗 https://...」（字下げ＋アイコン付き）
+    - 「このメールは〜」→「このレポートは〜」
+    """
+    import re
+
+    lines = content.splitlines()
+    result = []
+    prev_blank = False
+
+    for line in lines:
+        # 罫線行（── を3文字以上含む行）を空行に変換
+        if re.fullmatch(r"[─\-]{3,}", line.strip()):
+            if not prev_blank:
+                result.append("")
+                prev_blank = True
+            continue
+
+        # Markdown 見出しを「■ 」形式に変換
+        m = re.match(r"^#{1,3}\s+(.+)", line)
+        if m:
+            result.append(f"■ {m.group(1)}")
+            prev_blank = False
+            continue
+
+        # URL を字下げ＋アイコン付きに変換
+        m = re.match(r"^（URL:\s*(https?://\S+?)）\s*$", line)
+        if m:
+            result.append(f"  🔗 {m.group(1)}")
+            prev_blank = False
+            continue
+
+        # フッターのメール文言をTeams向けに変更
+        if "このメールはAIによる自動配信" in line:
+            result.append("このレポートはAIによる自動生成です。")
+            prev_blank = False
+            continue
+
+        result.append(line)
+        prev_blank = (line.strip() == "")
+
+    # 末尾の余分な空行を除去
+    while result and result[-1].strip() == "":
+        result.pop()
+
+    return "\n".join(result)
+
+
 def build_payload(filepath, content, topic_count, report_type):
     """Teams Workflows webhook に送る JSON を組み立てる"""
     report_date = datetime.now().strftime("%Y/%m/%d")
     source_file = Path(filepath).name
     title = build_report_title(report_type, topic_count, report_date)
+    teams_content = format_for_teams(content)
 
     return {
         "title": title,
@@ -100,7 +154,7 @@ def build_payload(filepath, content, topic_count, report_type):
         "reportDate": report_date,
         "topicCount": topic_count,
         "sourceFile": source_file,
-        "content": content,
+        "content": teams_content,
     }
 
 
