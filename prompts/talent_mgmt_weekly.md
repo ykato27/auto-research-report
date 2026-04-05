@@ -8,7 +8,7 @@
 | テーマ | スキルマネジメント・タレントマネジメント・タレントインテリジェンス（統合） |
 | 頻度 | 毎週月曜日 |
 | 推奨実行時間 | 日本時間 月曜 朝 8:00 |
-| 送信先 | yuki.kato@skillnote.co.jp, keita.kawase@skillnote.co.jp, atsuhiko.okita@skillnote.co.jp, kotaro.kusunoki@skillnote.co.jp |
+| 送信先 | `RECIPIENT_EMAIL_TALENT_MGMT` で管理（GitHub Secrets） |
 | 送信方法 | send_daily_ai_news.py（SMTP） |
 | 対象範囲 | 直近7日間（国内・海外英語ソース） |
 | 目標件数 | 25〜35件（タイムアウト対策のため削減） |
@@ -17,7 +17,7 @@
 
 | Secret名 | 値 |
 |---------|-----|
-| `RECIPIENT_EMAIL_TALENT_MGMT` | `yuki.kato@skillnote.co.jp, keita.kawase@skillnote.co.jp, atsuhiko.okita@skillnote.co.jp, kotaro.kusunoki@skillnote.co.jp` |
+| `RECIPIENT_EMAIL_TALENT_MGMT` | 配信先メールアドレス（GitHub Secrets で管理） |
 | `GMAIL_USER` | 送信元Gmailアドレス |
 | `GMAIL_APP_PASSWORD` | Googleアプリパスワード |
 
