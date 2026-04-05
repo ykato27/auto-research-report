@@ -1,15 +1,9 @@
-name: Talent Management Weekly Report (Auto)
+name: Weekly Research Report (Split Phase)
 
 on:
-  schedule:
-    # 毎週月曜 08:00 JST = 日曜 23:00 UTC
-    - cron: '0 23 * * 0'
+  # schedule:
+    # - cron: '0 22 * * 0'
   workflow_dispatch:
-    inputs:
-      dry_run:
-        description: 'dry-run（レポート生成のみ、メール・Teams送信スキップ）'
-        required: false
-        default: 'false'
 
 permissions:
   contents: write
@@ -19,49 +13,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      # ── Phase 1: Python RSS収集（トークン消費ゼロ） ─────────────
-      - name: Phase 1 - RSS news collection (Python)
         run: |
-          python src/collect_news.py --days 7 --output data/raw_news.json
+          pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Check article count
-        id: check
-        run: |
-          COUNT=$(python -c "import json; print(json.load(open('data/raw_news.json'))['total_count'])")
-          echo "count=$COUNT" >> $GITHUB_OUTPUT
-          echo "収集記事数: $COUNT 件"
-          if [ "$COUNT" -eq 0 ]; then
-            echo "記事が0件のため後続ステップをスキップします"
-          fi
-
-      # ── Phase 2+3: Claude Code でレポート生成 ────────────────────
-      - name: Phase 2+3 - Generate report (Claude)
-        if: steps.check.outputs.count != '0'
+      - name: Phase1 Search and Extract Data (research_searcher.py)
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
         run: |
-          claude \
-            --print \
-            --allowedTools "Read,Write,Bash,Glob" \
-            --max-turns 20 \
-            "$(cat prompts/talent_mgmt_phase2.md)"
+          python src/research_searcher.py
 
-      # ── レポートをコミット・プッシュ ─────────────────────────────
+      - name: Phase2 Analyze and Generate Report (research_analyzer.py)
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          python src/research_analyzer.py
+
       - name: Commit and push report
-        if: steps.check.outputs.count != '0'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add reports/talent_mgmt_weekly_*.txt
+          git add reports/
           git pull --rebase --autostash origin main
-          git diff --staged --quiet || git commit -m "Add talent management weekly report $(date +'%Y%m%d') [auto]"
-          git push -u origin main
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Add weekly report $(date +'%Y%m%d')" && git push)
+
+      - name: Send email summary
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+        run: |
+          python email_report.py
