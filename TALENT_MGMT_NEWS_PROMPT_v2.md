@@ -41,23 +41,28 @@ mkdir -p reports
 ### 検索対象期間の設定
 
 - **対象期間**：直近7日間
-- **実行日**：{date}（例：2026年3月24日）
-- **期間表記**：{week_range}（例：March 18-24 2026）
+- **実行日**：{date}（例：2026年4月5日）
+- **after_date**：{after_date}（7日前、YYYY-MM-DD形式、例：2026-03-29）
 
-### 検索クエリ（10回実行）
+> ⚠️ **WebSearchに日付フィルタ機能はない**。以下3つで新着ニュースを引き寄せる：
+> (a) `after:{after_date}` をクエリ末尾に付与（Googleオペレータ）
+> (b) announces / launches / report / survey などニュース性キーワードを含める
+> (c) 一次ニュースソースを `site:` で直接指定（クエリ5・6）
+
+### 検索クエリ（10回・必ず並列実行）
 
 | # | クエリ | 備考 |
 |---|--------|------|
-| 1 | `"talent management skills strategy {week_range}"` | グローバル・スキル戦略 |
-| 2 | `"skills framework competency model {week_range}"` | スキルフレームワーク |
-| 3 | `"talent intelligence analytics platform {week_range}"` | タレント分析プラットフォーム |
-| 4 | `"upskilling reskilling talent retention {week_range}"` | リスキリング・保持 |
-| 5 | `"talent acquisition recruitment {week_range}"` | 採用トレンド |
-| 6 | `"AI skills development learning {week_range}"` | AI活用・学習 |
-| 7 | `"タレントマネジメント スキル {date_jp}"` | 国内トレンド（日本語） |
-| 8 | `"人材戦略 採用 育成 {date_jp}"` | 人材戦略（日本語） |
-| 9 | `"人材データ インテリジェンス 分析"` | 人材データ分析（日本語） |
-| 10 | `"人材 スキル グローバル動向"` | グローバル人材（日本語） |
+| 1 | `talent management skills strategy announces launches report after:{after_date}` | 新着ニュース限定 |
+| 2 | `skills framework competency model new update survey after:{after_date}` | 新発表・調査 |
+| 3 | `talent intelligence analytics platform launches announces after:{after_date}` | 新製品・新機能 |
+| 4 | `upskilling reskilling workforce talent retention report survey after:{after_date}` | 調査・報告 |
+| 5 | `site:hrdive.com OR site:shrm.org OR site:joshbersin.com talent skills 2026` | 一次ニュースソース直撃 |
+| 6 | `site:mckinsey.com OR site:deloitte.com OR site:mercer.com talent workforce skills 2026` | コンサルレポート直撃 |
+| 7 | `タレントマネジメント スキル 2026 発表 調査 事例 after:{after_date}` | 国内新着 |
+| 8 | `人材戦略 採用 育成 スキル 2026 発表 after:{after_date}` | 国内新着 |
+| 9 | `人材データ タレントインテリジェンス 分析 発表 2026` | 国内インテリジェンス |
+| 10 | `人材 スキル 製造業 DX 技能継承 2026 事例 発表` | 製造業特化 |
 
 ### 優先ソース一覧
 
@@ -87,8 +92,12 @@ mkdir -p reports
 | 判定 | 条件 |
 |------|------|
 | ✅ **採用** | 「X hours ago」「1～6 days ago」「1 week ago」「this week」 |
-| ✅ **採用（補助）** | URL内に直近7日の日付が含まれる（例：2026-03-18）|
+| ✅ **採用（補助）** | URL内に直近7日の日付が含まれる（例：2026-03-29）|
+| ✅ **採用（補助）** | タイトル・スニペットに今週の具体的なイベント名・発表日・調査公開日が含まれる |
 | ❌ **除外** | 「2 weeks ago」以上、age不明かつURL判定不可 |
+| ❌ **除外（常緑コンテンツ）** | 「〇〇とは」「完全ガイド」「How to Build」「Best Practices」系で日付根拠なし |
+
+> 💡 **常緑コンテンツの見分け方**：タイトルにガイド・解説・まとめ感があり、スニペットに今週の出来事への言及がない場合は除外する。
 
 ---
 

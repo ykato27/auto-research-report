@@ -51,21 +51,27 @@ mkdir -p reports
 ⚠️ 以下の10クエリを「1つのメッセージ内で10個のWeb Search呼び出しとして同時実行」する。
   絶対に順番に1件ずつ実行してはならない。並列実行することでタイムアウトを防ぐ。
 
+【重要：日付フィルタの考え方】
+WebSearchに日付フィルタ機能はないため、以下3つで新着ニュースを引き寄せる。
+(a) `after:{after_date}` Googleオペレータ（例: after:2026-03-29）をクエリ末尾に付与
+(b) announces/launches/report/survey/new などニュース性キーワードを含める
+(c) 一次ニュースソースを site: 指定（クエリ5・6で実施）
+
 【日付変数】
-- {week_range}：直近7日間の英語日付範囲（例：March 22-29 2026）
-- {date_jp}：実行日の日本語（例：3月29日）
+- {after_date}：7日前の日付（YYYY-MM-DD形式、例：2026-03-29）
+- {date_jp}：実行日の日本語（例：4月5日）
 
 検索クエリ（10件・同時実行）：
-1. "talent management skills strategy {week_range}"
-2. "skills framework competency model {week_range}"
-3. "talent intelligence analytics platform {week_range}"
-4. "upskilling reskilling talent retention {week_range}"
-5. "talent acquisition recruitment {week_range}"
-6. "AI skills development learning {week_range}"
-7. "タレントマネジメント スキル {date_jp} 2026"
-8. "人材戦略 採用 育成 {date_jp} 2026"
-9. "人材データ インテリジェンス 分析 2026"
-10. "人材 スキル グローバル動向 製造業 2026"
+1. talent management skills strategy announces launches report after:{after_date}
+2. skills framework competency model new update survey after:{after_date}
+3. talent intelligence analytics platform launches announces after:{after_date}
+4. upskilling reskilling workforce talent retention report survey after:{after_date}
+5. site:hrdive.com OR site:shrm.org OR site:joshbersin.com talent skills 2026
+6. site:mckinsey.com OR site:deloitte.com OR site:mercer.com talent workforce skills 2026
+7. タレントマネジメント スキル 2026 発表 調査 事例 after:{after_date}
+8. 人材戦略 採用 育成 スキル 2026 発表 after:{after_date}
+9. 人材データ タレントインテリジェンス 分析 発表 2026
+10. 人材 スキル 製造業 DX 技能継承 2026 事例 発表
 
 blocked_domains: ["crescendo.ai", "insightfulpost.com"]
 
@@ -76,8 +82,8 @@ blocked_domains: ["crescendo.ai", "insightfulpost.com"]
 ■ STEP 2：公開日検証
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 採用：「X hours ago」「1〜6 days ago」「1 week ago」「this week」
-採用（補助）：URLに直近7日の日付を含む
-除外：「2 weeks ago」以上、age不明かつURL日付判定不可
+採用（補助）：URLに直近7日の日付を含む / タイトル・スニペットに今週の日付・イベント名を含む
+除外：「2 weeks ago」以上、age不明かつURL日付判定不可、タイトルに年次ガイド感のある常緑コンテンツ（例:「完全ガイド」「〇〇とは」「How to Build」系で日付根拠なし）
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ■ STEP 3：分類・選定（25〜35件、1カテゴリ最大5件）
