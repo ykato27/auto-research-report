@@ -70,6 +70,15 @@ def build_report_title(report_type, topic_count, report_date):
     return f"{label} {report_date}（{topic_count}件）"
 
 
+def resolve_report_date(filepath):
+    """ファイル名の日付を Teams 投稿日として使う。"""
+    filename = Path(filepath).name
+    match = re.search(r"_(\d{8})(?:\D|$)", filename)
+    if match:
+        return datetime.strptime(match.group(1), "%Y%m%d").strftime("%Y/%m/%d")
+    return datetime.now().strftime("%Y/%m/%d")
+
+
 def resolve_webhook_url(report_type):
     """レポートタイプに応じた webhook URL を取得する"""
     candidates = []
@@ -221,13 +230,14 @@ def build_payload(filepath, content, topic_count, report_type):
     Teams Workflows の「Webhook アラートをチャネルに送信する」
     テンプレートで扱いやすい MessageCard 形式で送る。
     """
-    report_date = datetime.now().strftime("%Y/%m/%d")
+    report_date = resolve_report_date(filepath)
     source_file = Path(filepath).name
     title = build_report_title(report_type, topic_count, report_date)
 
     return {
         "@type": "MessageCard",
         "@context": "https://schema.org/extensions",
+        "subject": title,
         "summary": title,
         "themeColor": "0076D7",
         "title": title,

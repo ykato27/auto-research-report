@@ -135,6 +135,7 @@ python send_report_to_teams.py <テキストファイルパス> --dry-run
 {
   "@type": "MessageCard",
   "@context": "https://schema.org/extensions",
+  "subject": "AIニュース週次まとめ 2026/04/01（25件）",
   "summary": "AIニュース週次まとめ 2026/04/01（25件）",
   "themeColor": "0076D7",
   "title": "AIニュース週次まとめ 2026/04/01（25件）",
@@ -159,7 +160,7 @@ python send_report_to_teams.py <テキストファイルパス> --dry-run
 2. 上記 JSON を受けるスキーマを定義
 3. 後続アクションで Teams のチャネル投稿や Adaptive Card 投稿を実行
 
-Teams Workflows の「Webhook アラートをチャネルに送信する」テンプレートで扱いやすい MessageCard 形式で送ります。このスクリプトは Markdown 見出しや URL 行を Teams 投稿向けに軽く整形してから送信します。
+Teams Workflows の「Webhook アラートをチャネルに送信する」テンプレートで扱いやすい MessageCard 形式で送ります。このスクリプトは Markdown 見出しや URL 行を Teams 投稿向けに軽く整形してから送信します。Teams 投稿の件名には `subject` を使えます。日付は `talent_mgmt_weekly_YYYYMMDD.txt` のファイル名から自動判定します。
 
 GitHub Actions で `HTTP 202` が出る場合、webhook の受信までは成功しています。Teams に投稿されない場合は Power Automate の実行履歴を開き、チャネル投稿アクションの失敗理由を確認してください。
 
