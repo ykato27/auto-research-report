@@ -89,56 +89,130 @@ def resolve_webhook_url(report_type):
 
 
 def format_for_teams(content):
-    """Teams投稿向けにテキストを整形する
+    """Teams投稿向けにテキストを整形する"""
+    return "\n\n".join(_format_section_lines(content.splitlines()))
 
-    主な変換:
-    - 「## 見出し」→「■ 見出し」（Teams では ## がそのまま表示される）
-    - 「──────...」の罫線行 → 空行に置換（冗長な区切りを除去）
-    - 「（URL: https://...）」→「  🔗 https://...」（字下げ＋アイコン付き）
-    - 「このメールは〜」→「このレポートは〜」
-    """
-    import re
 
-    lines = content.splitlines()
+def _is_rule_line(line):
+    return re.fullmatch(r"[─\-]{3,}", line.strip()) is not None
+
+
+def _format_section_lines(lines):
+    """本文断片を Teams の Markdown 向けに整える。"""
     result = []
-    prev_blank = False
 
-    for line in lines:
-        # 罫線行（── を3文字以上含む行）を空行に変換
-        if re.fullmatch(r"[─\-]{3,}", line.strip()):
-            if not prev_blank:
-                result.append("")
-                prev_blank = True
+    for raw_line in lines:
+        line = raw_line.strip()
+        if not line or _is_rule_line(line):
             continue
 
-        # Markdown 見出しを「■ 」形式に変換
-        m = re.match(r"^#{1,3}\s+(.+)", line)
-        if m:
-            result.append(f"■ {m.group(1)}")
-            prev_blank = False
-            continue
-
-        # URL を字下げ＋アイコン付きに変換
-        m = re.match(r"^（URL:\s*(https?://\S+?)）\s*$", line)
-        if m:
-            result.append(f"  🔗 {m.group(1)}")
-            prev_blank = False
-            continue
-
-        # フッターのメール文言をTeams向けに変更
         if "このメールはAIによる自動配信" in line:
             result.append("このレポートはAIによる自動生成です。")
-            prev_blank = False
+            continue
+
+        heading = re.match(r"^#{1,3}\s+(.+)", line)
+        if heading:
+            result.append(f"**{heading.group(1)}**")
+            continue
+
+        url = re.match(r"^（URL:\s*(https?://\S+?)）\s*$", line)
+        if url:
+            if result and result[-1].startswith("- "):
+                result[-1] = f"{result[-1]}  [出典]({url.group(1)})"
+            else:
+                result.append(f"[出典]({url.group(1)})")
+            continue
+
+        if line.startswith("・"):
+            result.append(f"- {line[1:].strip()}")
             continue
 
         result.append(line)
-        prev_blank = (line.strip() == "")
 
-    # 末尾の余分な空行を除去
-    while result and result[-1].strip() == "":
-        result.pop()
+    return result
 
-    return "\n".join(result)
+
+def build_teams_sections(content):
+    """長いレポートを MessageCard の複数 section に分割する。"""
+    sections = []
+
+    current_title = None
+    current_lines = []
+    summary_lines = []
+    in_summary = False
+
+    def flush_current():
+        if not current_title:
+            return
+        text = "\n\n".join(_format_section_lines(current_lines))
+        if text:
+            sections.append(
+                {
+                    "activityTitle": current_title,
+                    "text": text,
+                    "markdown": True,
+                }
+            )
+
+    for raw_line in content.splitlines():
+        line = raw_line.strip()
+
+        if re.match(r"^##\s+今週のサマリ", line):
+            flush_current()
+            current_title = None
+            current_lines = []
+            in_summary = True
+            continue
+
+        category = re.match(r"^【(.+)】$", line)
+        if category:
+            if in_summary and summary_lines:
+                sections.append(
+                    {
+                        "activityTitle": "今週のサマリ",
+                        "text": "\n\n".join(_format_section_lines(summary_lines)),
+                        "markdown": True,
+                    }
+                )
+                summary_lines = []
+                in_summary = False
+            flush_current()
+            current_title = category.group(1)
+            current_lines = []
+            continue
+
+        if line.startswith("今週のトピック数"):
+            if in_summary and summary_lines:
+                sections.append(
+                    {
+                        "activityTitle": "今週のサマリ",
+                        "text": "\n\n".join(_format_section_lines(summary_lines)),
+                        "markdown": True,
+                    }
+                )
+                summary_lines = []
+                in_summary = False
+            flush_current()
+            current_title = None
+            current_lines = []
+            continue
+
+        if in_summary:
+            summary_lines.append(raw_line)
+        elif current_title:
+            current_lines.append(raw_line)
+
+    if in_summary and summary_lines:
+        sections.append(
+            {
+                "activityTitle": "今週のサマリ",
+                "text": "\n\n".join(_format_section_lines(summary_lines)),
+                "markdown": True,
+            }
+        )
+    flush_current()
+
+    return sections
 
 
 def build_payload(filepath, content, topic_count, report_type):
@@ -150,7 +224,6 @@ def build_payload(filepath, content, topic_count, report_type):
     report_date = datetime.now().strftime("%Y/%m/%d")
     source_file = Path(filepath).name
     title = build_report_title(report_type, topic_count, report_date)
-    teams_content = format_for_teams(content)
 
     return {
         "@type": "MessageCard",
@@ -158,18 +231,8 @@ def build_payload(filepath, content, topic_count, report_type):
         "summary": title,
         "themeColor": "0076D7",
         "title": title,
-        "text": teams_content,
-        "sections": [
-            {
-                "facts": [
-                    {"name": "Report type", "value": report_type},
-                    {"name": "Report date", "value": report_date},
-                    {"name": "Topic count", "value": str(topic_count)},
-                    {"name": "Source file", "value": source_file},
-                ],
-                "markdown": True,
-            }
-        ],
+        "text": f"Source: {source_file}\n\n各セクションを展開して確認してください。",
+        "sections": build_teams_sections(content),
     }
 
 
