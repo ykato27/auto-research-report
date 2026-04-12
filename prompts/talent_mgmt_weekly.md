@@ -9,7 +9,7 @@
 | 頻度 | 毎週月曜日 |
 | 推奨実行時間 | 日本時間 月曜 朝 8:00 |
 | 送信先 | `RECIPIENT_EMAIL_TALENT_MGMT` で管理（GitHub Secrets） |
-| 送信方法 | send_daily_ai_news.py（SMTP） |
+| 送信方法 | send_talent_mgmt_email.py（SMTP） |
 | 対象範囲 | 直近7日間（国内・海外英語ソース） |
 | 目標件数 | 25〜35件（タイムアウト対策のため削減） |
 

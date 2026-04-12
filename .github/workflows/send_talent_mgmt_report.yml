@@ -30,7 +30,7 @@ jobs:
           fi
 
           echo "✓ 送信対象ファイル: $FILE"
-          python send_daily_ai_news.py $FILE
+          python send_talent_mgmt_email.py $FILE
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}

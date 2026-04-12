@@ -1,9 +1,2 @@
-# LangChain & AI
-langchain-google-genai
-langchain-tavily
-langgraph
-python-dotenv
-PyYAML>=6.0
-
-# Phase 1: RSS収集
-feedparser>=6.0
+# No third-party Python dependencies are required for the current
+# talent management report delivery workflows.

@@ -1,13 +1,11 @@
 """
-AIニュース日次まとめ メール送信スクリプト
+人材・スキル戦略レポート メール送信スクリプト
 
-Claude Code Webの定期実行で生成されたニュース本文（テキストファイル）を読み込み、
+Claude Code Webの定期実行で生成されたレポート本文（テキストファイル）を読み込み、
 HTML形式に変換してGmail SMTP経由で送信する。
 
-既存の email_report.py とは独立して動作する。
-
 使い方:
-    python send_daily_ai_news.py <テキストファイルパス>
+    python send_talent_mgmt_email.py <テキストファイルパス>
 
 環境変数（必須）:
     GMAIL_USER          - 送信元Gmailアドレス
@@ -44,12 +42,9 @@ def load_news_content(filepath):
 def filepath_to_report_type(filepath):
     """ファイルパスからレポートタイプを判定"""
     filename = filepath.lower()
-    if "ai_news" in filename:
-        return "ai_news"
-    elif "talent_mgmt" in filename:
+    if "talent_mgmt" in filename:
         return "talent_mgmt"
-    else:
-        return "default"
+    return "default"
 
 
 def extract_topic_count(content):
@@ -131,9 +126,7 @@ def send_email(html_body, topic_count, report_type="default"):
     gmail_password = os.environ.get("GMAIL_APP_PASSWORD")
 
     # レポートタイプ別の環境変数を取得
-    if report_type == "ai_news":
-        recipient = os.environ.get("RECIPIENT_EMAIL_AI_NEWS") or os.environ.get("RECIPIENT_EMAIL")
-    elif report_type == "talent_mgmt":
+    if report_type == "talent_mgmt":
         recipient = os.environ.get("RECIPIENT_EMAIL_TALENT_MGMT") or os.environ.get("RECIPIENT_EMAIL")
     else:
         recipient = os.environ.get("RECIPIENT_EMAIL")
@@ -157,7 +150,6 @@ def send_email(html_body, topic_count, report_type="default"):
     msg["To"] = ", ".join(recipients)
     # レポートタイプ別の件名を生成
     report_labels = {
-        "ai_news": "📰 AIニュース週次まとめ",
         "talent_mgmt": "👥 人材・スキル戦略グローバル動向",
         "default": "📊 ニュースまとめ"
     }
@@ -183,13 +175,13 @@ def send_email(html_body, topic_count, report_type="default"):
 def main():
     """メイン処理"""
     print("=" * 60)
-    print("📰 AIニュース日次まとめ メール送信")
+    print("📧 人材・スキル戦略レポート メール送信")
     print("=" * 60 + "\n")
 
     # 引数チェック
     if len(sys.argv) < 2:
-        print("使い方: python send_daily_ai_news.py <ニュース本文ファイルパス>")
-        print("例: python send_daily_ai_news.py /tmp/ai_news_today.txt")
+        print("使い方: python send_talent_mgmt_email.py <レポート本文ファイルパス>")
+        print("例: python send_talent_mgmt_email.py reports/talent_mgmt_weekly_20260412.txt")
         sys.exit(1)
 
     filepath = sys.argv[1]

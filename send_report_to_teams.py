@@ -12,7 +12,6 @@ Microsoft Teams Workflows の webhook に JSON で送信する。
 
 環境変数:
     TEAMS_WORKFLOW_WEBHOOK_URL                 - 既定の Teams Workflows webhook URL
-    TEAMS_WORKFLOW_WEBHOOK_URL_AI_NEWS         - AI ニュース専用 webhook URL（任意）
     TEAMS_WORKFLOW_WEBHOOK_URL_TALENT_MGMT     - タレントマネジメント専用 webhook URL（任意）
     TEAMS_WORKFLOW_TIMEOUT_SECONDS             - HTTP タイムアウト秒数（任意、既定 30）
 """
@@ -46,8 +45,6 @@ def load_news_content(filepath):
 def filepath_to_report_type(filepath):
     """ファイルパスからレポートタイプを判定"""
     filename = str(filepath).lower()
-    if "ai_news" in filename:
-        return "ai_news"
     if "talent_mgmt" in filename:
         return "talent_mgmt"
     return "default"
@@ -62,7 +59,6 @@ def extract_topic_count(content):
 def build_report_title(report_type, topic_count, report_date):
     """Teams 投稿用のタイトルを作成する"""
     report_labels = {
-        "ai_news": "AIニュース週次まとめ",
         "talent_mgmt": "人材・スキル戦略グローバル動向",
         "default": "ニュースまとめ",
     }
@@ -82,9 +78,7 @@ def resolve_report_date(filepath):
 def resolve_webhook_url(report_type):
     """レポートタイプに応じた webhook URL を取得する"""
     candidates = []
-    if report_type == "ai_news":
-        candidates.append("TEAMS_WORKFLOW_WEBHOOK_URL_AI_NEWS")
-    elif report_type == "talent_mgmt":
+    if report_type == "talent_mgmt":
         candidates.append("TEAMS_WORKFLOW_WEBHOOK_URL_TALENT_MGMT")
 
     candidates.append("TEAMS_WORKFLOW_WEBHOOK_URL")
@@ -378,7 +372,6 @@ def main():
         print("ERROR: Teams Workflows webhook URL が設定されていません")
         print("  以下のいずれかを設定してください:")
         print("  - TEAMS_WORKFLOW_WEBHOOK_URL")
-        print("  - TEAMS_WORKFLOW_WEBHOOK_URL_AI_NEWS")
         print("  - TEAMS_WORKFLOW_WEBHOOK_URL_TALENT_MGMT")
         sys.exit(1)
 
