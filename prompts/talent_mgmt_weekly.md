@@ -49,6 +49,7 @@ reports/ へ保存して Git push してください。
 計算式：
 - TODAY        = 実行日（システム日付）
 - after_date   = TODAY - 7日（YYYY-MM-DD形式）
+- before_date  = TODAY + 1日（YYYY-MM-DD形式、検索上限用）
 - week_range   = 英語表記（例: March 29 - April 5 2026）
 - date_jp      = 実行日の日本語（例: 4月5日）
 - 週の日付範囲 = after_date〜TODAY（YYYY/MM/DD〜YYYY/MM/DD形式）
@@ -62,26 +63,27 @@ reports/ へ保存して Git push してください。
   絶対に順番に1件ずつ実行してはならない。並列実行することでタイムアウトを防ぐ。
 
 【重要：日付フィルタの考え方】
-WebSearchに日付フィルタ機能はないため、以下3つで新着ニュースを引き寄せる。
-(a) `after:{after_date}` Googleオペレータ（例: after:2026-03-29）をクエリ末尾に付与
+WebSearchに日付フィルタ機能はないため、以下3つで新着ニュースを引き寄せる。ただし、検索結果に出たことは採用条件ではない。STEP 2で公開日を必ず検証する。
+(a) `after:{after_date} before:{before_date}` Googleオペレータ（例: after:2026-03-29 before:2026-04-06）を全クエリ末尾に付与
 (b) announces/launches/report/survey/new などニュース性キーワードを含める
 (c) 一次ニュースソースを site: 指定（クエリ5・6で実施）
 
 【日付変数】
 - {after_date}：7日前の日付（YYYY-MM-DD形式、例：2026-03-29）
+- {before_date}：実行日の翌日（YYYY-MM-DD形式、例：2026-04-06）
 - {date_jp}：実行日の日本語（例：4月5日）
 
 検索クエリ（10件・同時実行）：
-1. talent management skills strategy announces launches report after:{after_date}
-2. skills framework competency model new update survey after:{after_date}
-3. talent intelligence analytics platform launches announces after:{after_date}
-4. upskilling reskilling workforce talent retention report survey after:{after_date}
-5. site:hrdive.com OR site:shrm.org OR site:joshbersin.com talent skills 2026
-6. site:mckinsey.com OR site:deloitte.com OR site:mercer.com talent workforce skills 2026
-7. タレントマネジメント スキル 2026 発表 調査 事例 after:{after_date}
-8. 人材戦略 採用 育成 スキル 2026 発表 after:{after_date}
-9. 人材データ タレントインテリジェンス 分析 発表 2026
-10. 人材 スキル 製造業 DX 技能継承 2026 事例 発表
+1. talent management skills strategy announces launches report after:{after_date} before:{before_date}
+2. skills framework competency model new update survey after:{after_date} before:{before_date}
+3. talent intelligence analytics platform launches announces after:{after_date} before:{before_date}
+4. upskilling reskilling workforce talent retention report survey after:{after_date} before:{before_date}
+5. (site:hrdive.com OR site:shrm.org OR site:joshbersin.com) talent skills announces report after:{after_date} before:{before_date}
+6. (site:mckinsey.com OR site:deloitte.com OR site:mercer.com) talent workforce skills report after:{after_date} before:{before_date}
+7. タレントマネジメント スキル 2026 発表 調査 事例 after:{after_date} before:{before_date}
+8. 人材戦略 採用 育成 スキル 2026 発表 after:{after_date} before:{before_date}
+9. 人材データ タレントインテリジェンス 分析 発表 after:{after_date} before:{before_date}
+10. 人材 スキル 製造業 DX 技能継承 事例 発表 after:{after_date} before:{before_date}
 
 blocked_domains: ["crescendo.ai", "insightfulpost.com"]
 
@@ -91,9 +93,22 @@ blocked_domains: ["crescendo.ai", "insightfulpost.com"]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ■ STEP 2：公開日検証
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-採用：「X hours ago」「1〜6 days ago」「1 week ago」「this week」
-採用（補助）：URLに直近7日の日付を含む / タイトル・スニペットに今週の日付・イベント名を含む
-除外：「2 weeks ago」以上、age不明かつURL日付判定不可、タイトルに年次ガイド感のある常緑コンテンツ（例:「完全ガイド」「〇〇とは」「How to Build」系で日付根拠なし）
+候補記事ごとに必ず記事ページを開き、公開日を検証する。検索結果の順位やタイトルだけで採用してはならない。
+
+採用条件：
+- 公開日（published / datePublished / プレスリリース日 / 記事本文の日付）が after_date 以上、TODAY 以下で明確に確認できる
+- Search結果の age 表示を使う場合も、実行日から逆算して after_date〜TODAY に入るものだけ採用する
+- 「1 week ago」は曖昧なため、記事ページで日付が確認できる場合のみ採用する
+
+除外条件：
+- 公開日が after_date より前、または TODAY より後
+- 公開日不明、age不明、URL日付も不明
+- タイトル・スニペットに今週のイベント名があっても、記事ページで公開日を確認できない
+- 2026年の年次レポート、調査ランディングページ、常時更新ページで、ページ公開日が直近7日内と確認できない
+- URLに直近7日より古い日付が含まれる（例: /2025/10/21/、/2026/02/12/ など）
+- 「完全ガイド」「〇〇とは」「How to Build」「Best Practices」系で、直近7日内の公開日根拠がない
+
+内部チェック用に、採用候補ごとに title / url / source / published_date / date_evidence / category を整理してからSTEP 3へ進む。published_date が空の候補は採用禁止。
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ■ STEP 3：分類・選定（25〜35件、1カテゴリ最大5件）
@@ -131,9 +146,11 @@ blocked_domains: ["crescendo.ai", "insightfulpost.com"]
 {週間トレンドを1〜2行で記述}
 
 ・{ニュース概要1〜2行：戦略・施策＋背景}
+（公開日: YYYY/MM/DD）
 （URL: {引用元}）
 
 ・{ニュース概要1〜2行}
+（公開日: YYYY/MM/DD）
 （URL: {引用元}）
 
 （以下、各カテゴリ同様。2〜5件。該当なしは「該当ニュースなし」）
@@ -143,6 +160,7 @@ blocked_domains: ["crescendo.ai", "insightfulpost.com"]
 {週間トレンドを1〜2行で記述}
 
 ・{ニュース概要1〜2行}
+（公開日: YYYY/MM/DD）
 （URL: {引用元}）
 
 【🎓 学習支援・採用・オンボーディング】
@@ -150,6 +168,7 @@ blocked_domains: ["crescendo.ai", "insightfulpost.com"]
 {週間トレンドを1〜2行で記述}
 
 ・{ニュース概要1〜2行}
+（公開日: YYYY/MM/DD）
 （URL: {引用元}）
 
 【🔬 AI活用・スキル開発】
@@ -157,6 +176,7 @@ blocked_domains: ["crescendo.ai", "insightfulpost.com"]
 {週間トレンドを1〜2行で記述}
 
 ・{ニュース概要1〜2行}
+（公開日: YYYY/MM/DD）
 （URL: {引用元}）
 
 【📈 従業員エンゲージメント・配置・保持】
@@ -164,6 +184,7 @@ blocked_domains: ["crescendo.ai", "insightfulpost.com"]
 {週間トレンドを1〜2行で記述}
 
 ・{ニュース概要1〜2行}
+（公開日: YYYY/MM/DD）
 （URL: {引用元}）
 
 【💰 報酬・キャリアパス】
@@ -171,6 +192,7 @@ blocked_domains: ["crescendo.ai", "insightfulpost.com"]
 {週間トレンドを1〜2行で記述}
 
 ・{ニュース概要1〜2行}
+（公開日: YYYY/MM/DD）
 （URL: {引用元}）
 
 【🌍 グローバル・ダイバーシティ・DEI】
@@ -178,6 +200,7 @@ blocked_domains: ["crescendo.ai", "insightfulpost.com"]
 {週間トレンドを1〜2行で記述}
 
 ・{ニュース概要1〜2行}
+（公開日: YYYY/MM/DD）
 （URL: {引用元}）
 
 【💼 企業導入事例・ベストプラクティス】
@@ -185,6 +208,7 @@ blocked_domains: ["crescendo.ai", "insightfulpost.com"]
 {週間トレンドを1〜2行で記述}
 
 ・{ニュース概要1〜2行}
+（公開日: YYYY/MM/DD）
 （URL: {引用元}）
 
 ──────────────────────────────
@@ -231,11 +255,13 @@ push成功後、GitHub Actions が自動起動してメール配信される。
 ■ 品質保証ルール（簡略版）
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 1. Web Searchのみ使用・10クエリは必ず並列実行
-2. 直近7日間のニュースのみ採用（検証済みのもの限定）
+2. 直近7日間のニュースのみ採用（published_date が after_date〜TODAY の範囲で検証済みのもの限定）
 3. 25件未満でも検証済みニュースのみで構成してよい
 4. 全文8000文字以内（厳守）
-5. URLは「（URL: {引用元}）」形式で同じ行に記載
+5. URLは「（URL: {引用元}）」形式で記載
 6. 重複・類似は最重要1件に集約
 7. Skillnote示唆は3点のみ・今週収集ニュースに根拠を持つこと（創作禁止）
 8. Skillnote示唆には「製造業」「現場」「スキル管理」「技能継承」の視点を含める
+9. 各ニュースには必ず「（公開日: YYYY/MM/DD）」をURLの直前に記載する
+10. 最終出力前に、公開日が範囲外・不明のニュースが1件もないことを自己検査し、該当があれば削除する
 ```

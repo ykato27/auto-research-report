@@ -43,9 +43,10 @@ mkdir -p reports
 - **対象期間**：直近7日間
 - **実行日**：{date}（例：2026年4月5日）
 - **after_date**：{after_date}（7日前、YYYY-MM-DD形式、例：2026-03-29）
+- **before_date**：{before_date}（実行日の翌日、YYYY-MM-DD形式、例：2026-04-06）
 
-> ⚠️ **WebSearchに日付フィルタ機能はない**。以下3つで新着ニュースを引き寄せる：
-> (a) `after:{after_date}` をクエリ末尾に付与（Googleオペレータ）
+> ⚠️ **WebSearchに日付フィルタ機能はない**。以下3つで新着ニュースを引き寄せる。ただし検索結果に出たことは採用条件ではない。必ずSTEP 2で記事ページ上の公開日を検証する：
+> (a) `after:{after_date} before:{before_date}` を全クエリ末尾に付与（Googleオペレータ）
 > (b) announces / launches / report / survey などニュース性キーワードを含める
 > (c) 一次ニュースソースを `site:` で直接指定（クエリ5・6）
 
@@ -53,16 +54,16 @@ mkdir -p reports
 
 | # | クエリ | 備考 |
 |---|--------|------|
-| 1 | `talent management skills strategy announces launches report after:{after_date}` | 新着ニュース限定 |
-| 2 | `skills framework competency model new update survey after:{after_date}` | 新発表・調査 |
-| 3 | `talent intelligence analytics platform launches announces after:{after_date}` | 新製品・新機能 |
-| 4 | `upskilling reskilling workforce talent retention report survey after:{after_date}` | 調査・報告 |
-| 5 | `site:hrdive.com OR site:shrm.org OR site:joshbersin.com talent skills 2026` | 一次ニュースソース直撃 |
-| 6 | `site:mckinsey.com OR site:deloitte.com OR site:mercer.com talent workforce skills 2026` | コンサルレポート直撃 |
-| 7 | `タレントマネジメント スキル 2026 発表 調査 事例 after:{after_date}` | 国内新着 |
-| 8 | `人材戦略 採用 育成 スキル 2026 発表 after:{after_date}` | 国内新着 |
-| 9 | `人材データ タレントインテリジェンス 分析 発表 2026` | 国内インテリジェンス |
-| 10 | `人材 スキル 製造業 DX 技能継承 2026 事例 発表` | 製造業特化 |
+| 1 | `talent management skills strategy announces launches report after:{after_date} before:{before_date}` | 新着ニュース限定 |
+| 2 | `skills framework competency model new update survey after:{after_date} before:{before_date}` | 新発表・調査 |
+| 3 | `talent intelligence analytics platform launches announces after:{after_date} before:{before_date}` | 新製品・新機能 |
+| 4 | `upskilling reskilling workforce talent retention report survey after:{after_date} before:{before_date}` | 調査・報告 |
+| 5 | `(site:hrdive.com OR site:shrm.org OR site:joshbersin.com) talent skills announces report after:{after_date} before:{before_date}` | 一次ニュースソース直撃 |
+| 6 | `(site:mckinsey.com OR site:deloitte.com OR site:mercer.com) talent workforce skills report after:{after_date} before:{before_date}` | コンサルレポート直撃 |
+| 7 | `タレントマネジメント スキル 2026 発表 調査 事例 after:{after_date} before:{before_date}` | 国内新着 |
+| 8 | `人材戦略 採用 育成 スキル 2026 発表 after:{after_date} before:{before_date}` | 国内新着 |
+| 9 | `人材データ タレントインテリジェンス 分析 発表 after:{after_date} before:{before_date}` | 国内インテリジェンス |
+| 10 | `人材 スキル 製造業 DX 技能継承 事例 発表 after:{after_date} before:{before_date}` | 製造業特化 |
 
 ### 優先ソース一覧
 
@@ -89,15 +90,20 @@ mkdir -p reports
 
 ### 採用判定基準（週次版）
 
+候補記事ごとに必ず記事ページを開き、公開日を検証する。検索結果の順位、タイトル、スニペットだけで採用してはならない。
+
 | 判定 | 条件 |
 |------|------|
-| ✅ **採用** | 「X hours ago」「1～6 days ago」「1 week ago」「this week」 |
-| ✅ **採用（補助）** | URL内に直近7日の日付が含まれる（例：2026-03-29）|
-| ✅ **採用（補助）** | タイトル・スニペットに今週の具体的なイベント名・発表日・調査公開日が含まれる |
-| ❌ **除外** | 「2 weeks ago」以上、age不明かつURL判定不可 |
-| ❌ **除外（常緑コンテンツ）** | 「〇〇とは」「完全ガイド」「How to Build」「Best Practices」系で日付根拠なし |
+| ✅ **採用** | 公開日（published / datePublished / プレスリリース日 / 記事本文の日付）が after_date 以上、実行日以下で明確に確認できる |
+| ✅ **採用** | Search結果の age 表示を使う場合も、実行日から逆算して after_date〜実行日に入る |
+| ⚠️ **要ページ確認** | 「1 week ago」「this week」は曖昧なため、記事ページで日付を確認できる場合のみ採用 |
+| ❌ **除外** | 公開日が after_date より前、実行日より後、不明、または記事ページで確認できない |
+| ❌ **除外** | URLに直近7日より古い日付が含まれる（例：/2025/10/21/、/2026/02/12/ など） |
+| ❌ **除外** | タイトル・スニペットに今週のイベント名があっても、記事ページで公開日を確認できない |
+| ❌ **除外** | 2026年の年次レポート、調査ランディングページ、常時更新ページで、ページ公開日が直近7日内と確認できない |
+| ❌ **除外（常緑コンテンツ）** | 「〇〇とは」「完全ガイド」「How to Build」「Best Practices」系で、直近7日内の公開日根拠がない |
 
-> 💡 **常緑コンテンツの見分け方**：タイトルにガイド・解説・まとめ感があり、スニペットに今週の出来事への言及がない場合は除外する。
+内部チェック用に、採用候補ごとに title / url / source / published_date / date_evidence / category を整理してからSTEP 3へ進む。published_date が空の候補は採用禁止。
 
 ---
 
@@ -174,6 +180,7 @@ mkdir -p reports
 
 ```
 ・{企業/組織名：具体的なアクション・発表}。{背景・業界への含意}
+（公開日: YYYY/MM/DD）
 （URL: {引用元}）
 ```
 
@@ -181,6 +188,7 @@ mkdir -p reports
 ```
 ・Talent Connects（300社以上が利用）がFusemachinesの Interview Agent を統合(3/18)。
 AIによる構造化面接データ取得で、スキル客観評価と採用品質向上を実現。
+（公開日: YYYY/MM/DD）
 （URL: https://www.globenewswire.com/news-release/2026/03/18/...）
 ```
 
@@ -264,15 +272,15 @@ git log --oneline -3
 |----|--------|------|
 | 1 | Web Search機能のみ使用する | ✓ |
 | 2 | 国内・海外英語ソースを対象 | ✓ |
-| 3 | 直近7日間以内のニュースのみ対象 | ✓ |
+| 3 | 直近7日間以内の公開日を記事ページで検証済みのニュースのみ対象 | ✓ |
 | 4 | 信頼性の高い公式・報道ソースを優先 | ✓ |
-| 5 | 各ニュースは固有名詞・日付・数値を明示 | ✓ |
+| 5 | 各ニュースは固有名詞・公開日・数値を明示 | ✓ |
 | 6 | 重複や類似内容を排除 | ✓ |
 | 7 | 全文は10,000文字以内 | ✓ |
 | 8 | 日本語で記述 | ✓ |
-| 9 | URLは「（URL: {引用元}）」形式で同じ行に記載 | ✓ |
+| 9 | URLは「（URL: {引用元}）」形式で記載 | ✓ |
 | 10 | 「常時更新型まとめページ」のURLは使わない | ✓ |
-| 11 | 40件に満たなくても検証済みのニュースだけで構成 | ✓ |
+| 11 | 40件に満たなくても公開日検証済みのニュースだけで構成 | ✓ |
 | 12 | 各記事要約は2行で「動き」「含意」を含める | ✓ |
 | 13 | カテゴリサマリは3行で週間トレンドを記述 | ✓ |
 | 14 | 同一週内の関連記事は最も重要な1件にまとめる | ✓ |
@@ -308,7 +316,8 @@ git push origin HEAD:refs/heads/${TARGET_BRANCH}
 
 **確認方法**：
 - WebSearchのage情報で「2 weeks ago」以上を除外
-- URL内の日付パターンで検証（例：2026-03-17以前は除外）
+- 記事ページの公開日を必ず確認し、after_date〜実行日外なら除外
+- URL内の日付パターンが古い場合は除外（例：2026-03-17以前は除外）
 
 ---
 
