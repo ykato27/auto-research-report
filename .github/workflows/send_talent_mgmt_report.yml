@@ -30,6 +30,7 @@ jobs:
           fi
 
           echo "✓ 送信対象ファイル: $FILE"
+          python validate_talent_mgmt_report.py "$FILE"
           python send_talent_mgmt_email.py $FILE
         env:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}

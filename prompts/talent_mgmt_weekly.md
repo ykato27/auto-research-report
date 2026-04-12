@@ -1,5 +1,5 @@
 # 人材・スキル戦略 グローバル動向 週次ニュースまとめ
-─ Claude Code Web 定期実行プロンプト v3（タイムアウト対策版）
+─ Claude Code Web 定期実行プロンプト v4（市場把握・検証強化版）
 
 ## 概要
 
@@ -38,7 +38,7 @@ reports/ へ保存して Git push してください。
 - 各ニュースの要約は1〜2行に厳守
 - カテゴリトレンド説明は1〜2行に厳守
 - Skillnote示唆は3点のみ記述
-- Git操作は確認ステップを省略し3コマンドで完了させる
+- 保存後に検証スクリプトを必ず実行し、失敗した場合は修正してから commit/push する
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ■ STEP 0：日付変数の自動計算（必ずここから開始）
@@ -125,6 +125,20 @@ blocked_domains: ["crescendo.ai", "insightfulpost.com", "gitnux.org", "worldmetr
 8. 💼 企業導入事例・ベストプラクティス
 
 同一週の関連記事は最重要1件に集約する。
+
+【市場把握の優先順位】
+1. 市場の変化を示す一次情報（調査、公式発表、資金調達、製品リリース、政策、規制、企業導入事例）
+2. Skillnoteの顧客・競合・製品課題に接続できる情報
+3. 製造業、現場スキル管理、技能継承、スキル可視化、タレントインテリジェンスに関係する情報
+
+【内部候補表の必須項目】
+最終本文には表を出さなくてよいが、選定前に各候補を以下の観点で評価する。
+- source_type: `official_release` / `research_report` / `industry_media` / `government` / `company_blog`
+- signal_type: `競合動向` / `顧客課題` / `技術・AI` / `規制・政策` / `採用・育成市場` / `製造業DX`
+- relevance: `High` / `Medium` / `Low`
+- product_issue_hypothesis: Skillnoteのプロダクト課題に接続できる仮説。接続できない場合は空でよい。
+
+relevance が Low の候補は、件数不足を埋める目的では採用しない。
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ■ STEP 4：フォーマット整形（8000文字以内）
@@ -217,7 +231,8 @@ blocked_domains: ["crescendo.ai", "insightfulpost.com", "gitnux.org", "worldmetr
 
 【🔍 Skillnote 注目点・示唆】
 
-{以下の視点から3点のみ記述。各示唆は「根拠トレンド→Skillnoteとの関連性→具体的アクション」の構造で2〜3行に収める。
+{市場ニュースから読み取れる示唆を3点のみ記述。各示唆は「根拠ニュース→市場で起きている変化→Skillnoteが注視すべきプロダクト課題仮説」の構造で2〜3行に収める。
+断定的なロードマップ提案や未検証の機能追加案は書かず、「検証すべき論点」として表現する。
 視点：製造業・現場スキル管理 / 競合・市場機会 / AI機能拡張 / 顧客課題・セールストーク / 政策・規制動向}
 
 ・{示唆1}
@@ -234,9 +249,9 @@ blocked_domains: ["crescendo.ai", "insightfulpost.com", "gitnux.org", "worldmetr
 --- フォーマット終了 ---
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■ STEP 5：ファイル保存 & Git push（3コマンドで完了）
+■ STEP 5：ファイル保存・検証・Git push
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-以下を順に実行する。確認ステップは省略してよい。
+以下を順に実行する。validate_talent_mgmt_report.py が失敗した場合は、エラー箇所を修正して再実行し、成功するまで commit/push してはならない。
 
 【コマンド1：ファイル保存】
 TODAY=$(date +%Y%m%d)
@@ -244,11 +259,14 @@ cat << 'NEWSEOF' > reports/talent_mgmt_weekly_${TODAY}.txt
 {STEP 4で作成した本文}
 NEWSEOF
 
-【コマンド2：コミット】
+【コマンド2：検証】
+python validate_talent_mgmt_report.py reports/talent_mgmt_weekly_${TODAY}.txt
+
+【コマンド3：コミット】
 git add reports/talent_mgmt_weekly_${TODAY}.txt
 git commit -m "Add talent management weekly report ${TODAY}"
 
-【コマンド3：push（mainブランチへ）】
+【コマンド4：push（mainブランチへ）】
 git push -u origin main
 
 push成功後、GitHub Actions が自動起動してメール配信される。
@@ -263,8 +281,10 @@ push成功後、GitHub Actions が自動起動してメール配信される。
 5. URLは「（URL: {引用元}）」形式で記載
 6. 重複・類似は最重要1件に集約
 7. Skillnote示唆は3点のみ・今週収集ニュースに根拠を持つこと（創作禁止）
-8. Skillnote示唆には「製造業」「現場」「スキル管理」「技能継承」の視点を含める
+8. Skillnote示唆はプロダクト課題仮説として書き、未検証の機能追加やロードマップを断定しない
 9. 各ニュースには必ず「（公開日: YYYY/MM/DD）」をURLの直前に記載する
 10. Search結果の age 表示だけで採用しない。記事ページ上の公開日根拠を必ず持つ
-11. 最終出力前に、公開日が範囲外・不明のニュースが1件もないことを自己検査し、該当があれば削除する
+11. source_type / signal_type / relevance / product_issue_hypothesis を内部評価してから本文を作る
+12. 最終出力前に、公開日が範囲外・不明のニュースが1件もないことを自己検査し、該当があれば削除する
+13. 保存後に validate_talent_mgmt_report.py を実行し、成功したレポートのみ commit/push する
 ```
