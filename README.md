@@ -25,9 +25,9 @@ auto-research-report/
 ├── send_daily_ai_news.py       # メール送信スクリプト（全テーマ共通）
 ├── send_report_to_teams.py     # Teams Workflows webhook 送信スクリプト
 ├── prompts/                     # テーマ別プロンプト
-│   ├── ai_news_daily.md         # AIニュース日次まとめ（予定）
-│   ├── skill_mgmt_weekly.md     # 海外スキルマネジメント週次（予定）
-│   └── talent_mgmt_weekly.md    # 国内タレントマネジメント週次（予定）
+│   ├── ai_news_daily.md         # AIニュース日次まとめ
+│   ├── ai_news_weekly.md        # AIニュース週次まとめ
+│   └── talent_mgmt_weekly.md    # 人材・スキル戦略週次まとめ
 ├── .github/
 │   └── workflows/               # GitHub Actions（将来拡張用）
 ├── .gitignore
