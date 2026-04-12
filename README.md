@@ -133,12 +133,23 @@ python send_report_to_teams.py <テキストファイルパス> --dry-run
 
 ```json
 {
+  "@type": "MessageCard",
+  "@context": "https://schema.org/extensions",
+  "summary": "AIニュース週次まとめ 2026/04/01（25件）",
+  "themeColor": "0076D7",
   "title": "AIニュース週次まとめ 2026/04/01（25件）",
   "text": "Teams投稿向けに整形したレポート本文全体",
-  "reportType": "ai_news",
-  "reportDate": "2026/04/01",
-  "topicCount": "25",
-  "sourceFile": "ai_news_weekly_20260401.txt"
+  "sections": [
+    {
+      "facts": [
+        {"name": "Report type", "value": "ai_news"},
+        {"name": "Report date", "value": "2026/04/01"},
+        {"name": "Topic count", "value": "25"},
+        {"name": "Source file", "value": "ai_news_weekly_20260401.txt"}
+      ],
+      "markdown": true
+    }
+  ]
 }
 ```
 
@@ -148,7 +159,9 @@ python send_report_to_teams.py <テキストファイルパス> --dry-run
 2. 上記 JSON を受けるスキーマを定義
 3. 後続アクションで Teams のチャネル投稿や Adaptive Card 投稿を実行
 
-Power Automate 側では `text` を投稿本文として使います。このスクリプトは Markdown 見出しや URL 行を Teams 投稿向けに軽く整形してから送信します。
+Teams Workflows の「Webhook アラートをチャネルに送信する」テンプレートで扱いやすい MessageCard 形式で送ります。このスクリプトは Markdown 見出しや URL 行を Teams 投稿向けに軽く整形してから送信します。
+
+GitHub Actions で `HTTP 202` が出る場合、webhook の受信までは成功しています。Teams に投稿されない場合は Power Automate の実行履歴を開き、チャネル投稿アクションの失敗理由を確認してください。
 
 `HTTP 401 DirectApiAuthorizationRequired` が出る場合、設定されている URL は匿名 POST を受け付けていません。Teams/Graph 直接 API、廃止済み Office 365 Connector webhook、または Power Automate 側で OAuth 認証必須になっているトリガー URL の可能性があります。Teams Workflows で匿名 HTTP POST を受け付ける webhook URL を作り直し、GitHub Secret `TEAMS_WORKFLOW_WEBHOOK_URL_TALENT_MGMT` に設定してください。
 

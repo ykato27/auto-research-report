@@ -144,8 +144,8 @@ def format_for_teams(content):
 def build_payload(filepath, content, topic_count, report_type):
     """Teams Workflows webhook に送る JSON を組み立てる
 
-    Teams Workflows（Power Automate）の標準テンプレートは
-    `text` フィールドをメッセージ本文として使用する。
+    Teams Workflows の「Webhook アラートをチャネルに送信する」
+    テンプレートで扱いやすい MessageCard 形式で送る。
     """
     report_date = datetime.now().strftime("%Y/%m/%d")
     source_file = Path(filepath).name
@@ -153,12 +153,23 @@ def build_payload(filepath, content, topic_count, report_type):
     teams_content = format_for_teams(content)
 
     return {
+        "@type": "MessageCard",
+        "@context": "https://schema.org/extensions",
+        "summary": title,
+        "themeColor": "0076D7",
         "title": title,
         "text": teams_content,
-        "reportType": report_type,
-        "reportDate": report_date,
-        "topicCount": topic_count,
-        "sourceFile": source_file,
+        "sections": [
+            {
+                "facts": [
+                    {"name": "Report type", "value": report_type},
+                    {"name": "Report date", "value": report_date},
+                    {"name": "Topic count", "value": str(topic_count)},
+                    {"name": "Source file", "value": source_file},
+                ],
+                "markdown": True,
+            }
+        ],
     }
 
 
