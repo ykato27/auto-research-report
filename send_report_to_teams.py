@@ -24,7 +24,7 @@ import re
 import sys
 from datetime import datetime
 from pathlib import Path
-from urllib import error, request
+from urllib import error, parse, request
 
 
 def load_news_content(filepath):
@@ -169,18 +169,29 @@ def validate_webhook_url(webhook_url, env_name):
     Microsoft Graph API URL は 401 DirectApiAuthorizationRequired を返すため、
     事前に検出して分かりやすいエラーメッセージを出す。
     """
+    parsed = parse.urlparse(webhook_url)
+    host = (parsed.netloc or "").lower()
+    normalized_url = webhook_url.lower()
+
+    if parsed.scheme != "https" or not host:
+        print(f"ERROR: {env_name} に設定された URL が不正です。")
+        print("  Power Automate Workflow が発行した https の webhook URL を設定してください。")
+        sys.exit(1)
+
     deprecated_patterns = [
         "outlook.office.com/webhook",
         "outlook.office365.com/webhook",
         ".webhook.office.com/webhookb2",
+        "webhook.office.com/webhookb2",
     ]
     graph_patterns = [
         "graph.microsoft.com",
         "api.teams.microsoft.com",
+        "teams.microsoft.com",
     ]
 
     for pattern in deprecated_patterns:
-        if pattern in webhook_url:
+        if pattern in normalized_url:
             print(
                 f"ERROR: {env_name} に設定された URL は廃止済みの Office 365 Connector webhook です。"
             )
@@ -193,13 +204,15 @@ def validate_webhook_url(webhook_url, env_name):
             sys.exit(1)
 
     for pattern in graph_patterns:
-        if pattern in webhook_url:
+        if pattern in host:
             print(
                 f"ERROR: {env_name} に設定された URL は Microsoft Graph/Teams 直接 API の URL です。"
             )
             print("  この URL は OAuth 認証が必要なため webhook としては使用できません。")
-            print("  【対処法】Power Automate Workflow の webhook URL（logic.azure.com など）を設定してください。")
+            print("  【対処法】Power Automate Workflow が発行した匿名 webhook URL を設定してください。")
             sys.exit(1)
+
+    print(f"OK: webhook host: {host}")
 
 
 def send_to_teams_workflow(webhook_url, payload, timeout_seconds):
@@ -226,13 +239,15 @@ def send_to_teams_workflow(webhook_url, payload, timeout_seconds):
             print(detail.strip())
         if exc.code == 401 and "DirectApiAuthorizationRequired" in detail:
             print()
-            print("  【原因】設定された webhook URL は OAuth 認証が必要な Teams 直接 API または")
-            print("          廃止済み Connector webhook です。")
-            print("  【対処法】以下の手順で Power Automate Workflow の webhook URL を取得してください:")
+            print("  【原因】設定された webhook URL は匿名 POST を受け付けていません。")
+            print("          Teams/Graph 直接 API、廃止済み Connector webhook、または")
+            print("          Power Automate 側で OAuth 認証必須になっているトリガー URL の可能性があります。")
+            print("  【対処法】以下の手順で匿名 webhook URL を取得・設定してください:")
             print("  1. Teams のチャンネルを開く")
             print("  2. チャンネル名の右の「…」→「ワークフロー」をクリック")
-            print("  3. 「チャネルへの投稿」テンプレートを選択して webhook URL を取得")
-            print("  4. GitHub Secrets の TEAMS_WEBHOOK_URL を新しい URL に更新")
+            print("  3. webhook request を受信してチャネル投稿するワークフローを作成")
+            print("  4. トリガーが匿名 HTTP POST を許可する設定になっていることを確認")
+            print("  5. GitHub Secrets の TEAMS_WORKFLOW_WEBHOOK_URL_TALENT_MGMT を新しい URL に更新")
         sys.exit(1)
     except error.URLError as exc:
         print(f"ERROR: Teams webhook 接続エラー: {exc.reason}")

@@ -6,6 +6,12 @@ on:
       - main
     paths:
       - 'reports/talent_mgmt_weekly_*.txt'
+  workflow_dispatch:
+    inputs:
+      report_file:
+        description: '送信するレポートファイル（空なら当日または直近push差分から自動判定）'
+        required: false
+        type: string
 
 jobs:
   send-teams:
@@ -17,11 +23,19 @@ jobs:
           python-version: '3.11'
       - run: pip install -r requirements.txt
       - run: |
-          TODAY=$(date +%Y%m%d)
-          FILE="reports/talent_mgmt_weekly_${TODAY}.txt"
+          set -euo pipefail
+
+          REQUESTED_FILE="${{ github.event.inputs.report_file }}"
+
+          if [ -n "$REQUESTED_FILE" ]; then
+            FILE="$REQUESTED_FILE"
+          else
+            TODAY=$(date +%Y%m%d)
+            FILE="reports/talent_mgmt_weekly_${TODAY}.txt"
+          fi
 
           if [ ! -f "$FILE" ]; then
-            FILE=$(git diff --name-only HEAD^ HEAD 2>/dev/null | grep 'reports/talent_mgmt_weekly_' | head -1)
+            FILE=$(git diff --name-only HEAD^ HEAD 2>/dev/null | grep 'reports/talent_mgmt_weekly_' | head -1 || true)
           fi
 
           if [ -z "$FILE" ] || [ ! -f "$FILE" ]; then
@@ -29,7 +43,23 @@ jobs:
             exit 1
           fi
 
+          case "$FILE" in
+            reports/talent_mgmt_weekly_*.txt) ;;
+            *)
+              echo "❌ 送信対象外のファイルです: $FILE"
+              echo "reports/talent_mgmt_weekly_*.txt を指定してください"
+              exit 1
+              ;;
+          esac
+
+          if [ -z "${TEAMS_WORKFLOW_WEBHOOK_URL_TALENT_MGMT:-}" ] && [ -z "${TEAMS_WORKFLOW_WEBHOOK_URL:-}" ]; then
+            echo "❌ Teams webhook secret が設定されていません"
+            echo "TEAMS_WORKFLOW_WEBHOOK_URL_TALENT_MGMT または TEAMS_WEBHOOK_URL を GitHub Actions secrets に設定してください"
+            exit 1
+          fi
+
           echo "✓ 送信対象ファイル: $FILE"
-          python send_report_to_teams.py $FILE
+          python send_report_to_teams.py "$FILE"
         env:
-          TEAMS_WORKFLOW_WEBHOOK_URL_TALENT_MGMT: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          TEAMS_WORKFLOW_WEBHOOK_URL_TALENT_MGMT: ${{ secrets.TEAMS_WORKFLOW_WEBHOOK_URL_TALENT_MGMT || secrets.TEAMS_WEBHOOK_URL }}
+          TEAMS_WORKFLOW_WEBHOOK_URL: ${{ secrets.TEAMS_WORKFLOW_WEBHOOK_URL }}
