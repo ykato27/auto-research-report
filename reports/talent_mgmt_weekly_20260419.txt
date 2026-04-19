@@ -1,0 +1,78 @@
+──────────────────────────────
+👥 人材・スキル戦略グローバル動向 週次ニュースまとめ（2026/04/12〜2026/04/19）
+──────────────────────────────
+
+## 今週のサマリ
+
+経産省・IPAがデジタルスキル標準ver.2.0を公開しデータマネジメント類型を新設。SAPが1H 2026リリースでスキルガバナンス機能を強化し、SHRMが1,908名調査でHR部門のAI活用実態を公表。人材調査各社は「AIより判断力・マネジメント力が重要」という知見を相次いで発表し、スキル定義が技術要件から人間的複合スキルへシフトしていることを示した。
+
+──────────────────────────────
+
+【🏆 スキルフレームワーク・タレント戦略】
+
+・経産省・IPAが「デジタルスキル標準ver.2.0」を公開。データマネジメント類型（データスチュワード・エンジニア・アーキテクト）を新設し、全ビジネスパーソン向けスキル指針を刷新した。
+（公開日: 2026/04/16）
+（URL: https://www.ipa.go.jp/pressrelease/2026/press20260416.html）
+
+・クライス＆カンパニーがハイクラス人材スキル調査を発表。AI代替されにくいスキルは「事業・戦略を描く力（26%）」「課題把握力（24.4%）」「組織マネジメント力（17.6%）」で、技術より高次思考力が重視された。
+（公開日: 2026/04/15）
+（URL: https://prtimes.jp/main/html/rd/p/000000072.000086162.html）
+
+【📊 スキル分析・タレントインテリジェンス】
+
+・SAPがSuccessFactors 1H 2026リリースを発表。タレントインテリジェンスハブにスキルガバナンス機能を追加、エージェントAIも全スイートへ拡張した。
+（公開日: 2026/04/13）
+（URL: https://news.sap.com/2026/04/sap-successfactors-1h-2026-release/）
+
+・Indeed Hiring Labが労働市場分析を公開。失業率4.3%（35カ月連続上昇）、HR・ソフトウェア開発求人はパンデミック前を下回る一方、事業運用スキルは全求人の75%に要件として登場した。
+（公開日: 2026/04/13）
+（URL: https://www.hiringlab.org/2026/04/13/how-the-labor-market-is-emerging-from-the-long-shadow-of-the-pandemic/）
+
+【🎓 学習支援・採用・オンボーディング】
+
+・Robert HalfがClass of 2026向け調査（1,300名超）を発表。36%がAIツール知識実証を期待、71%が時間管理、約80%がコミュニケーション・責任感を早期キャリア成功の鍵に挙げた。
+（公開日: 2026/04/16）
+（URL: https://press.roberthalf.com/2026-04-16-Robert-Half-survey-Todays-professionals-share-what-early-career-workers-need-to-succeed-beyond-AI-skills）
+
+【🔬 AI活用・スキル開発】
+
+・SHRMが「State of AI in HR 2026」を公開。1,908名調査でHR部門のAI導入率は39%、採用担当者の73%がクリティカルシンキングをAI技術スキルより重要な優先スキルに位置づけた。
+（公開日: 2026/04/14）
+（URL: https://www.shrm.org/topics-tools/research/state-of-ai-hr-2026）
+
+・Infragisticsの「Reveal 2026 IT Talent Survey」（250社調査）が公開。AIスキル採用優先率が91%へ上昇、50%が採用・維持困難を報告、48%がAI導入により新職種を創出したと回答した。
+（公開日: 2026/04/16）
+（URL: https://www.globenewswire.com/news-release/2026/04/16/3275381/0/en/Reveal-Survey-Identifies-the-Most-In-Demand-Technology-Jobs-and-Skills.html）
+
+【📈 従業員エンゲージメント・配置・保持】
+
+・GlobeNewswireが「Global Employee Recognition Programs 2026」を発表。勤続年数表彰がグローバル企業のワークフォース戦略の中核として、エンゲージメント向上・離職抑制効果が示された。
+（公開日: 2026/04/17）
+（URL: https://www.manilatimes.net/2026/04/17/tmt-newswire/globenewswire/global-employee-recognition-programs-in-2026-why-service-year-recognition-is-becoming-the-core-of-workforce-strategy/2322348）
+
+【🌍 グローバル・ダイバーシティ・DEI】
+
+・Mercerの南アフリカ調査（500名・50名C-suite）が公開。83%がAI活用で生産性向上を実感、53%がスキル陳腐化を懸念、65%が給与増よりAI・デジタルスキル研修機会を優先した。
+（公開日: 2026/04/15）
+（URL: https://it-online.co.za/2026/04/15/talent-paradox-as-ai-integration-and-skills-scarcity-converge/）
+
+【💼 企業導入事例・ベストプラクティス】
+
+・東京海上日動がMyTalent Platformを導入しアルムナイ採用を推進。リファラル・アルムナイ採用・採用CRMをAI自動化と一体化し、2024年度80名→2025年度200名へキャリア採用を拡大した。
+（公開日: 2026/04/13）
+（URL: https://minkabu.jp/news/4486963）
+
+──────────────────────────────
+
+【🔍 Skillnote 注目点・示唆】
+
+・デジタルスキル標準ver.2.0の更新で企業のスキルフレームワーク見直しサイクルが短縮化する可能性がある。Skillnoteのスキル定義機能が国家標準への準拠・更新を容易にする設計かを検証すべき論点。
+
+・SAPがスキルガバナンス機能を明示搭載し、スキルデータの品質管理が大手HCMの競合軸として浮上した。多工場・多職種環境でのスキルデータ一貫性確保（承認フロー・重複排除）のレベルを顧客視点で評価すべき論点。
+
+・ハイクラス人材調査でAI代替されにくいスキルが「戦略構想力・課題把握力・組織マネジメント力」と判明。技術スキルに留まらずソフトスキル・マネジメントスキルの記録・可視化需要が顧客側に生じているかをヒアリングで検証すべき論点。
+
+──────────────────────────────
+今週のトピック数：10件
+──────────────────────────────
+このメールはAIによる自動配信です。
