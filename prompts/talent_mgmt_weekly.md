@@ -1,5 +1,5 @@
 # 人材・スキル戦略 グローバル動向 週次ニュースまとめ
-─ Claude Code Web 定期実行プロンプト v5
+─ Claude Code Web 定期実行プロンプト v6
 
 ## 概要
 
@@ -24,8 +24,8 @@
 - STEP 1 の Web Search は全10クエリを「1メッセージで並列実行」する（順番実行禁止）
 - 各ニュース要約は1〜2行、カテゴリトレンドは1〜2行、Skillnote示唆は3点のみ
 - レポートは 8,000バイト以内
-- 検証スクリプト成功後のみ commit/push する
-- push先は必ず main ブランチ（PRは作成しない）
+- 検証スクリプト成功後のみ push する
+- push は git コマンドではなく mcp__github__push_files で main へ直接書き込む（PR は作成しない）
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ■ STEP 0：日付変数の自動計算
@@ -151,18 +151,28 @@ blocked_domains: crescendo.ai, insightfulpost.com, gitnux.org, worldmetrics.org,
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 TODAY=$(date +%Y%m%d)
 
-【保存】
+【1. ローカル保存】
 cat << 'NEWSEOF' > reports/talent_mgmt_weekly_${TODAY}.txt
 {STEP 4 の本文}
 NEWSEOF
 
-【検証】
+【2. 検証】
 python validate_talent_mgmt_report.py reports/talent_mgmt_weekly_${TODAY}.txt
 
-【commit & push（main へ直接 push・PR は作成しない）】
-git add reports/talent_mgmt_weekly_${TODAY}.txt
-git commit -m "Add talent management weekly report ${TODAY}"
-git push -u origin main
+検証が失敗した場合はエラー箇所を修正して再実行し、成功するまで push しない。
+
+【3. main へ直接 push（mcp__github__push_files を使用）】
+git push は使わない。以下の MCP ツールを呼び出してファイルを main ブランチへ直接書き込む。
+ファイル内容はローカルに保存したファイルをそのまま渡す。
+
+mcp__github__push_files を以下のパラメータで呼び出す:
+  owner   : "ykato27"
+  repo    : "auto-research-report"
+  branch  : "main"
+  message : "Add talent management weekly report {TODAY}"
+  files   :
+    - path    : "reports/talent_mgmt_weekly_{TODAY}.txt"
+      content : {ローカルに保存したファイルの全文をそのまま}
 
 push 成功後、GitHub Actions が自動起動してメール・Teams 配信される。
 ```
