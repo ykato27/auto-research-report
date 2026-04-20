@@ -1,6 +1,12 @@
 theme: talent_mgmt
 timezone: Asia/Tokyo
 retention_days: 180
+collection_window_hours: 24
+storage_window_hours: 24
+pubmed:
+  tool: auto-research-report
+  email: yuki.kato@skillnote.co.jp
+  retmax: 50
 
 include_keywords:
   - skill management
@@ -19,6 +25,13 @@ include_keywords:
   - learning and development
   - HR technology
   - human capital
+  - medical education
+  - simulation training
+  - competency-based education
+  - interprofessional education
+  - clinical competency
+  - continuing education
+  - occupational health workforce
   - people analytics
   - workforce analytics
   - AI in HR
@@ -38,8 +51,16 @@ exclude_keywords:
   - webinar only
   - sponsored webinar
   - job opening
+  - job in
+  - manager job
+  - careers
+  - job details
+  - apply now
+  - hiring now
   - hiring event
   - 求人
+  - 採用情報
+  - 募集要項
   - 採用イベント
   - セミナー申込
   - PR TIMES
@@ -116,6 +137,15 @@ categories:
       - 人的資本開示
       - 労働政策
       - 政策
+  pubmed_research:
+    keywords:
+      - competency-based education
+      - clinical competency
+      - medical education
+      - simulation training
+      - workforce training
+      - continuing education
+      - interprofessional education
 
 sources:
   - name: 日本の人事部 最新記事
@@ -214,3 +244,10 @@ sources:
     language: ja
     source_type: google_news_rss
     weight: 3
+  - name: PubMed - workforce and competency training
+    source_type: pubmed
+    country: Global
+    language: en
+    weight: 4
+    retmax: 50
+    query: (workforce training OR competency-based education OR clinical competency OR simulation training OR interprofessional education OR continuing education OR skill acquisition OR occupational health workforce)
