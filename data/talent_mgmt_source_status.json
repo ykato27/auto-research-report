@@ -1,0 +1,140 @@
+{
+  "failed_sources": 0,
+  "fetched_at": "2026-04-20T15:21:47.998262+09:00",
+  "incoming_items": 91,
+  "new_items": 90,
+  "ok_sources": 16,
+  "retained_items": 90,
+  "sources": [
+    {
+      "error": null,
+      "item_count": 0,
+      "name": "日本の人事部 最新記事",
+      "new_count": 0,
+      "ok": true,
+      "url": "https://jinjibu.jp/rss/?mode=atcl"
+    },
+    {
+      "error": null,
+      "item_count": 0,
+      "name": "日本の人事部 企業人事ニュース",
+      "new_count": 0,
+      "ok": true,
+      "url": "https://jinjibu.jp/rss/?mode=news&type=1"
+    },
+    {
+      "error": null,
+      "item_count": 1,
+      "name": "日本の人事部 人事サービスニュース",
+      "new_count": 1,
+      "ok": true,
+      "url": "https://jinjibu.jp/rss/?mode=news&type=2"
+    },
+    {
+      "error": null,
+      "item_count": 0,
+      "name": "日本の人事部プロネット 企業人事ニュース",
+      "new_count": 0,
+      "ok": true,
+      "url": "https://service.jinjibu.jp/rss/?mode=news&type=1"
+    },
+    {
+      "error": null,
+      "item_count": 0,
+      "name": "HR Dive",
+      "new_count": 0,
+      "ok": true,
+      "url": "https://www.hrdive.com/feeds/news/"
+    },
+    {
+      "error": null,
+      "item_count": 6,
+      "name": "Josh Bersin",
+      "new_count": 6,
+      "ok": true,
+      "url": "https://joshbersin.com/feed/"
+    },
+    {
+      "error": null,
+      "item_count": 6,
+      "name": "AIHR Blog",
+      "new_count": 6,
+      "ok": true,
+      "url": "https://www.aihr.com/blog/feed/"
+    },
+    {
+      "error": null,
+      "item_count": 1,
+      "name": "HR Tech Feed",
+      "new_count": 1,
+      "ok": true,
+      "url": "https://hrtechfeed.com/feed/"
+    },
+    {
+      "error": null,
+      "item_count": 2,
+      "name": "Google News - Workday skills talent",
+      "new_count": 2,
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=site%3Aworkday.com%20%28skills%20OR%20talent%20OR%20workforce%29&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "error": null,
+      "item_count": 2,
+      "name": "Google News - Mercer workforce talent",
+      "new_count": 2,
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=site%3Amercer.com%20%28skills%20OR%20talent%20OR%20workforce%20OR%20human%20capital%29&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "error": null,
+      "item_count": 43,
+      "name": "Google News - Deloitte human capital",
+      "new_count": 43,
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=site%3Adeloitte.com%20%28human%20capital%20OR%20talent%20OR%20workforce%20OR%20skills%29&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "error": null,
+      "item_count": 6,
+      "name": "Google News - SHRM talent skills",
+      "new_count": 6,
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=site%3Ashrm.org%20%28talent%20OR%20skills%20OR%20workforce%20OR%20HR%20technology%29&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "error": null,
+      "item_count": 1,
+      "name": "Google News - People Matters talent management",
+      "new_count": 1,
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=site%3Apeoplemattersglobal.com%20%28talent%20management%20OR%20skills%20OR%20workforce%20OR%20HR%20technology%29&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "error": null,
+      "item_count": 1,
+      "name": "Google News - リクルートワークス研究所",
+      "new_count": 1,
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=site%3Aworks-i.com%20%28%E3%82%BF%E3%83%AC%E3%83%B3%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88%20OR%20%E4%BA%BA%E6%9D%90%20OR%20%E3%82%B9%E3%82%AD%E3%83%AB%20OR%20%E7%B5%84%E7%B9%94%29&hl=ja&gl=JP&ceid=JP:ja"
+    },
+    {
+      "error": null,
+      "item_count": 2,
+      "name": "Google News - JILPT 人材育成",
+      "new_count": 2,
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=site%3Ajil.go.jp%20%28%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%20OR%20%E8%83%BD%E5%8A%9B%E9%96%8B%E7%99%BA%20OR%20%E3%82%B9%E3%82%AD%E3%83%AB%20OR%20%E5%8A%B4%E5%83%8D%E6%94%BF%E7%AD%96%29&hl=ja&gl=JP&ceid=JP:ja"
+    },
+    {
+      "error": null,
+      "item_count": 20,
+      "name": "Google News - 製造業 スキル管理",
+      "new_count": 20,
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=%28%E8%A3%BD%E9%80%A0%E6%A5%AD%20OR%20%E3%82%82%E3%81%AE%E3%81%A5%E3%81%8F%E3%82%8A%29%20%28%E3%82%B9%E3%82%AD%E3%83%AB%E7%AE%A1%E7%90%86%20OR%20%E6%8A%80%E8%83%BD%E7%B6%99%E6%89%BF%20OR%20%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%29&hl=ja&gl=JP&ceid=JP:ja"
+    }
+  ],
+  "theme": "talent_mgmt",
+  "total_sources": 16
+}

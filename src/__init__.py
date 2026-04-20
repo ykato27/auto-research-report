@@ -1,0 +1,1 @@
+"""Auto research report helpers."""

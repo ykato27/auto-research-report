@@ -1,0 +1,216 @@
+theme: talent_mgmt
+timezone: Asia/Tokyo
+retention_days: 180
+
+include_keywords:
+  - skill management
+  - skills management
+  - skills-based
+  - skill-based
+  - skills framework
+  - competency
+  - competency model
+  - talent management
+  - talent intelligence
+  - workforce planning
+  - internal mobility
+  - reskilling
+  - upskilling
+  - learning and development
+  - HR technology
+  - human capital
+  - people analytics
+  - workforce analytics
+  - AI in HR
+  - タレントマネジメント
+  - スキルマネジメント
+  - スキル管理
+  - 人材育成
+  - 人的資本
+  - リスキリング
+  - アップスキリング
+  - 人材データ
+  - 人材戦略
+  - 技能継承
+  - ものづくり人材
+
+exclude_keywords:
+  - webinar only
+  - sponsored webinar
+  - job opening
+  - hiring event
+  - 求人
+  - 採用イベント
+  - セミナー申込
+  - PR TIMES
+
+categories:
+  skills_management:
+    keywords:
+      - skill management
+      - skills management
+      - skills framework
+      - competency
+      - competency model
+      - スキルマネジメント
+      - スキル管理
+      - 技能
+  talent_management:
+    keywords:
+      - talent management
+      - performance management
+      - succession
+      - career path
+      - タレントマネジメント
+      - 人材戦略
+      - 適材適所
+  talent_intelligence:
+    keywords:
+      - talent intelligence
+      - people analytics
+      - workforce analytics
+      - talent analytics
+      - 人材データ
+      - ピープルアナリティクス
+  learning_reskilling:
+    keywords:
+      - learning and development
+      - L&D
+      - reskilling
+      - upskilling
+      - workforce development
+      - 人材育成
+      - リスキリング
+      - アップスキリング
+  workforce_planning:
+    keywords:
+      - workforce planning
+      - workforce strategy
+      - internal mobility
+      - workforce agility
+      - 人員計画
+      - 配置
+      - 労働市場
+  hr_ai:
+    keywords:
+      - AI in HR
+      - HR AI
+      - generative AI
+      - AI skills
+      - AI活用
+      - 生成AI
+  manufacturing_skills:
+    keywords:
+      - manufacturing skills
+      - skilled trades
+      - frontline workforce
+      - ものづくり人材
+      - 製造業
+      - 技能継承
+      - 現場
+  policy_research:
+    keywords:
+      - human capital disclosure
+      - labor policy
+      - workforce policy
+      - 人的資本開示
+      - 労働政策
+      - 政策
+
+sources:
+  - name: 日本の人事部 最新記事
+    url: https://jinjibu.jp/rss/?mode=atcl
+    country: JP
+    language: ja
+    source_type: rss
+    weight: 4
+  - name: 日本の人事部 企業人事ニュース
+    url: https://jinjibu.jp/rss/?mode=news&type=1
+    country: JP
+    language: ja
+    source_type: rss
+    weight: 3
+  - name: 日本の人事部 人事サービスニュース
+    url: https://jinjibu.jp/rss/?mode=news&type=2
+    country: JP
+    language: ja
+    source_type: rss
+    weight: 2
+  - name: 日本の人事部プロネット 企業人事ニュース
+    url: https://service.jinjibu.jp/rss/?mode=news&type=1
+    country: JP
+    language: ja
+    source_type: rss
+    weight: 3
+  - name: HR Dive
+    url: https://www.hrdive.com/feeds/news/
+    country: US
+    language: en
+    source_type: rss
+    weight: 4
+  - name: Josh Bersin
+    url: https://joshbersin.com/feed/
+    country: US
+    language: en
+    source_type: rss
+    weight: 5
+  - name: AIHR Blog
+    url: https://www.aihr.com/blog/feed/
+    country: Global
+    language: en
+    source_type: rss
+    weight: 4
+  - name: HR Tech Feed
+    url: https://hrtechfeed.com/feed/
+    country: US
+    language: en
+    source_type: rss
+    weight: 3
+  - name: Google News - Workday skills talent
+    url: https://news.google.com/rss/search?q=site%3Aworkday.com%20%28skills%20OR%20talent%20OR%20workforce%29&hl=en-US&gl=US&ceid=US:en
+    country: US
+    language: en
+    source_type: google_news_rss
+    weight: 4
+  - name: Google News - Mercer workforce talent
+    url: https://news.google.com/rss/search?q=site%3Amercer.com%20%28skills%20OR%20talent%20OR%20workforce%20OR%20human%20capital%29&hl=en-US&gl=US&ceid=US:en
+    country: Global
+    language: en
+    source_type: google_news_rss
+    weight: 4
+  - name: Google News - Deloitte human capital
+    url: https://news.google.com/rss/search?q=site%3Adeloitte.com%20%28human%20capital%20OR%20talent%20OR%20workforce%20OR%20skills%29&hl=en-US&gl=US&ceid=US:en
+    country: Global
+    language: en
+    source_type: google_news_rss
+    weight: 4
+  - name: Google News - SHRM talent skills
+    url: https://news.google.com/rss/search?q=site%3Ashrm.org%20%28talent%20OR%20skills%20OR%20workforce%20OR%20HR%20technology%29&hl=en-US&gl=US&ceid=US:en
+    country: US
+    language: en
+    source_type: google_news_rss
+    weight: 4
+  - name: Google News - People Matters talent management
+    url: https://news.google.com/rss/search?q=site%3Apeoplemattersglobal.com%20%28talent%20management%20OR%20skills%20OR%20workforce%20OR%20HR%20technology%29&hl=en-US&gl=US&ceid=US:en
+    country: Global
+    language: en
+    source_type: google_news_rss
+    weight: 4
+  - name: Google News - リクルートワークス研究所
+    url: https://news.google.com/rss/search?q=site%3Aworks-i.com%20%28%E3%82%BF%E3%83%AC%E3%83%B3%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88%20OR%20%E4%BA%BA%E6%9D%90%20OR%20%E3%82%B9%E3%82%AD%E3%83%AB%20OR%20%E7%B5%84%E7%B9%94%29&hl=ja&gl=JP&ceid=JP:ja
+    country: JP
+    language: ja
+    source_type: google_news_rss
+    weight: 5
+  - name: Google News - JILPT 人材育成
+    url: https://news.google.com/rss/search?q=site%3Ajil.go.jp%20%28%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%20OR%20%E8%83%BD%E5%8A%9B%E9%96%8B%E7%99%BA%20OR%20%E3%82%B9%E3%82%AD%E3%83%AB%20OR%20%E5%8A%B4%E5%83%8D%E6%94%BF%E7%AD%96%29&hl=ja&gl=JP&ceid=JP:ja
+    country: JP
+    language: ja
+    source_type: google_news_rss
+    weight: 4
+  - name: Google News - 製造業 スキル管理
+    url: https://news.google.com/rss/search?q=%28%E8%A3%BD%E9%80%A0%E6%A5%AD%20OR%20%E3%82%82%E3%81%AE%E3%81%A5%E3%81%8F%E3%82%8A%29%20%28%E3%82%B9%E3%82%AD%E3%83%AB%E7%AE%A1%E7%90%86%20OR%20%E6%8A%80%E8%83%BD%E7%B6%99%E6%89%BF%20OR%20%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%29&hl=ja&gl=JP&ceid=JP:ja
+    country: JP
+    language: ja
+    source_type: google_news_rss
+    weight: 3
