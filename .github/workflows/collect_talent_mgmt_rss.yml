@@ -1,0 +1,45 @@
+name: Collect Talent Management RSS
+
+on:
+  schedule:
+    - cron: '0 22 * * *' # 07:00 JST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Collect RSS items
+        run: |
+          python src/collect_talent_mgmt_rss.py \
+            --config feeds/talent_mgmt.yaml \
+            --store data/talent_mgmt_items.jsonl \
+            --status data/talent_mgmt_source_status.json
+
+      - name: Commit RSS data
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/talent_mgmt_items.jsonl data/talent_mgmt_source_status.json
+          if git diff --cached --quiet; then
+            echo "No RSS data changes to commit."
+            exit 0
+          fi
+          git pull --rebase --autostash origin main
+          git add data/talent_mgmt_items.jsonl data/talent_mgmt_source_status.json
+          git commit -m "Collect talent management RSS $(date +'%Y%m%d')"
+          git push

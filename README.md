@@ -26,6 +26,13 @@ auto-research-report/
 ├── send_talent_mgmt_email.py   # 人材・スキル戦略レポート メール送信スクリプト
 ├── send_report_to_teams.py     # Teams Workflows webhook 送信スクリプト
 ├── validate_talent_mgmt_report.py # 人材・スキル戦略レポート検証スクリプト
+├── feeds/                       # RSS / Google News RSS ソース設定
+│   └── talent_mgmt.yaml         # タレントマネジメント日次収集ソース
+├── src/                         # RSS収集・候補生成スクリプト
+│   ├── collect_talent_mgmt_rss.py
+│   ├── build_talent_mgmt_candidates.py
+│   └── talent_mgmt_rss.py
+├── data/                        # 日次収集した候補データ（GitHub Actionsが更新）
 ├── prompts/
 │   └── talent_mgmt_weekly.md    # 人材・スキル戦略週次まとめ
 ├── .github/
@@ -128,6 +135,49 @@ python validate_talent_mgmt_report.py reports/talent_mgmt_weekly_20260412.txt
 - SEO統計まとめ等のblocked domainを含む場合は失敗
 - フッターの `今週のトピック数：N件` とカテゴリ内ニュース項目数が一致しない場合は失敗
 - 25件未満は警告扱い。古い記事で水増ししないため、検証済みニュースのみを優先します。
+
+---
+
+## 🗞️ タレントマネジメント RSS 日次収集
+
+`feeds/talent_mgmt.yaml` に定義した国内・海外の信頼ソースから、スキルマネジメント、タレントマネジメント、タレントインテリジェンス関連の候補記事を毎日収集します。
+
+毎日の収集結果は通知せず、`data/talent_mgmt_items.jsonl` に蓄積します。週次レポートの作成方法は別途検討できるよう、候補Markdown生成までをPythonで行います。
+
+**日次収集：**
+
+```bash
+python src/collect_talent_mgmt_rss.py \
+  --config feeds/talent_mgmt.yaml \
+  --store data/talent_mgmt_items.jsonl \
+  --status data/talent_mgmt_source_status.json
+```
+
+**保存前の確認：**
+
+```bash
+python src/collect_talent_mgmt_rss.py --dry-run
+```
+
+**週次候補Markdownの生成：**
+
+```bash
+python src/build_talent_mgmt_candidates.py --since-days 7 --limit 80
+```
+
+**処理内容：**
+
+- RSS / Google News RSS の取得
+- 公開日・更新日のJST正規化
+- URL正規化とトラッキングパラメータ除去
+- `id` / `guid` / URL による重複排除
+- キーワード一致、カテゴリ仮分類、ソース信頼度、鮮度によるスコアリング
+- 180日を超えた古い候補の整理
+- ソース別の成功/失敗状況を `data/talent_mgmt_source_status.json` に保存
+
+**GitHub Actions：**
+
+`.github/workflows/collect_talent_mgmt_rss.yml` が毎日 7:00 JST に実行され、`data/` の差分がある場合のみ自動コミットします。`reports/` は更新しないため、既存の週次メール送信 workflow は起動しません。
 
 ---
 
