@@ -11,12 +11,14 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
+from urllib import request
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 import feedparser
 import yaml
 
 JST = timezone(timedelta(hours=9))
+PUBMED_BASE_URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
 TRACKING_PARAM_PREFIXES = ("utm_",)
 TRACKING_PARAMS = {
     "fbclid",
@@ -92,6 +94,20 @@ def parse_entry_datetime(entry: Any) -> tuple[datetime | None, str]:
     return None, "missing"
 
 
+def parse_pubmed_date(value: str | None) -> datetime | None:
+    if not value:
+        return None
+
+    cleaned = value.strip()
+    for fmt in ("%Y %b %d", "%Y %b", "%Y/%m/%d", "%Y/%m", "%Y"):
+        try:
+            parsed = datetime.strptime(cleaned, fmt)
+            return parsed.replace(tzinfo=JST)
+        except ValueError:
+            continue
+    return None
+
+
 def strip_markup(value: str) -> str:
     text = re.sub(r"<[^>]+>", " ", value or "")
     text = html.unescape(text)
@@ -112,6 +128,127 @@ def entry_tags(entry: Any) -> list[str]:
         if isinstance(tag, dict) and tag.get("term"):
             tags.append(str(tag["term"]))
     return tags
+
+
+def http_json(url: str, timeout_seconds: int = 30) -> dict[str, Any]:
+    with request.urlopen(url, timeout=timeout_seconds) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
+def pubmed_url(endpoint: str, params: dict[str, Any]) -> str:
+    return f"{PUBMED_BASE_URL}/{endpoint}?{urlencode(params)}"
+
+
+def pubmed_date_range(start: datetime, end: datetime) -> str:
+    start_text = start.astimezone(JST).strftime("%Y/%m/%d")
+    end_text = end.astimezone(JST).strftime("%Y/%m/%d")
+    return f'("{start_text}"[Date - Publication] : "{end_text}"[Date - Publication])'
+
+
+def collect_pubmed_source(
+    source: dict[str, Any],
+    config: dict[str, Any],
+    fetched_at: datetime,
+) -> tuple[list[dict[str, Any]], SourceResult]:
+    source_name = source["name"]
+    pubmed_config = config.get("pubmed", {})
+    collection_window_hours = int(
+        config.get("collection_window_hours")
+        or int(config.get("retention_days", 180)) * 24
+    )
+    cutoff = fetched_at.astimezone(JST) - timedelta(hours=collection_window_hours)
+    query = source.get("query", "")
+    full_query = f"({query}) AND {pubmed_date_range(cutoff, fetched_at)}"
+    retmax = int(source.get("retmax") or pubmed_config.get("retmax", 50))
+
+    base_params = {
+        "db": "pubmed",
+        "retmode": "json",
+        "tool": pubmed_config.get("tool", "auto-research-report"),
+        "email": pubmed_config.get("email", ""),
+    }
+    search_params = {
+        **base_params,
+        "term": full_query,
+        "retmax": retmax,
+        "sort": "pub date",
+    }
+    search_data = http_json(pubmed_url("esearch.fcgi", search_params))
+    pmids = search_data.get("esearchresult", {}).get("idlist", [])
+    if not pmids:
+        return [], SourceResult(source_name, "pubmed", ok=True, item_count=0)
+
+    summary_params = {
+        **base_params,
+        "id": ",".join(pmids),
+    }
+    summary_data = http_json(pubmed_url("esummary.fcgi", summary_params))
+    result = summary_data.get("result", {})
+    include_keywords = source.get("include_keywords") or config.get("include_keywords", [])
+    exclude_keywords = source.get("exclude_keywords") or config.get("exclude_keywords", [])
+    categories = config.get("categories", {})
+
+    items = []
+    for pmid in pmids:
+        record = result.get(pmid)
+        if not record:
+            continue
+
+        published_at = parse_pubmed_date(record.get("pubdate") or record.get("epubdate"))
+        if not published_at or published_at < cutoff:
+            continue
+
+        article_ids = record.get("articleids", []) or []
+        doi = next((item.get("value") for item in article_ids if item.get("idtype") == "doi"), "")
+        tags = [pubtype for pubtype in record.get("pubtype", []) if pubtype]
+        title = strip_markup(record.get("title", ""))
+        journal = strip_markup(record.get("fulljournalname") or record.get("source", ""))
+        authors = ", ".join(
+            author.get("name", "")
+            for author in (record.get("authors", []) or [])[:5]
+            if author.get("name")
+        )
+        summary = f"{journal}. {authors}".strip()
+        if doi:
+            summary = f"{summary} DOI: {doi}".strip()
+        text = " ".join([title, summary, " ".join(tags)])
+        keep, matched, _reason = should_keep_item(text, include_keywords, exclude_keywords)
+        if not keep:
+            continue
+
+        canonical_url = f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/"
+        category = category_guess(text, categories)
+        if category == "uncategorized":
+            category = "pubmed_research"
+        score, score_reasons = score_item(source, matched, category, published_at, fetched_at)
+        score_reasons.append("source_type=pubmed")
+        item = {
+            "id": f"pubmed:{pmid}",
+            "canonical_url": canonical_url,
+            "raw_link": canonical_url,
+            "title": title,
+            "summary": summary,
+            "source_name": source_name,
+            "source_url": "pubmed",
+            "source_type": "pubmed",
+            "country": source.get("country", "Global"),
+            "language": source.get("language", "en"),
+            "published_at": published_at.isoformat(),
+            "updated_at": published_at.isoformat(),
+            "fetched_at": fetched_at.astimezone(JST).isoformat(),
+            "date_confidence": "pubmed_pubdate",
+            "tags": tags,
+            "matched_keywords": matched,
+            "category_guess": category,
+            "score": score,
+            "score_reasons": score_reasons,
+            "pmid": pmid,
+            "doi": doi,
+            "journal": journal,
+        }
+        items.append(item)
+
+    return items, SourceResult(source_name, "pubmed", ok=True, item_count=len(items))
 
 
 def keyword_hits(text: str, keywords: list[str]) -> list[str]:
@@ -219,6 +356,22 @@ def prune_rows(
     return kept
 
 
+def prune_rows_by_hours(
+    rows: list[dict[str, Any]],
+    retention_hours: int,
+    now: datetime,
+) -> list[dict[str, Any]]:
+    cutoff = now.astimezone(JST) - timedelta(hours=retention_hours)
+    kept = []
+    for row in rows:
+        published = parse_iso_datetime(row.get("published_at"))
+        fetched = parse_iso_datetime(row.get("fetched_at"))
+        comparable = published or fetched
+        if comparable and comparable >= cutoff:
+            kept.append(row)
+    return kept
+
+
 def parse_iso_datetime(value: str | None) -> datetime | None:
     if not value:
         return None
@@ -234,6 +387,9 @@ def collect_source(
     fetched_at: datetime,
 ) -> tuple[list[dict[str, Any]], SourceResult]:
     source_name = source["name"]
+    if source.get("source_type") == "pubmed":
+        return collect_pubmed_source(source, config, fetched_at)
+
     source_url = source["url"]
     parsed_feed = feedparser.parse(source_url)
 
@@ -245,7 +401,8 @@ def collect_source(
     exclude_keywords = source.get("exclude_keywords") or config.get("exclude_keywords", [])
     categories = config.get("categories", {})
     retention_days = int(config.get("retention_days", 180))
-    cutoff = fetched_at.astimezone(JST) - timedelta(days=retention_days)
+    collection_window_hours = int(config.get("collection_window_hours", retention_days * 24))
+    cutoff = fetched_at.astimezone(JST) - timedelta(hours=collection_window_hours)
 
     items = []
     for entry in parsed_feed.entries:
@@ -327,11 +484,12 @@ def collect_all(
     now: datetime | None = None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     fetched_at = now or utc_now()
-    retained_rows = prune_rows(
-        existing_rows,
-        int(config.get("retention_days", 180)),
-        fetched_at,
+    storage_window_hours = int(
+        config.get("storage_window_hours")
+        or config.get("collection_window_hours")
+        or int(config.get("retention_days", 180)) * 24
     )
+    retained_rows = prune_rows_by_hours(existing_rows, storage_window_hours, fetched_at)
 
     all_incoming = []
     source_results = []
@@ -367,6 +525,8 @@ def collect_all(
     status = {
         "fetched_at": fetched_at.astimezone(JST).isoformat(),
         "theme": config.get("theme", "talent_mgmt"),
+        "collection_window_hours": int(config.get("collection_window_hours", 0)),
+        "storage_window_hours": storage_window_hours,
         "total_sources": len(source_results),
         "ok_sources": len(ok_sources),
         "failed_sources": len(failed_sources),

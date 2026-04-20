@@ -140,9 +140,9 @@ python validate_talent_mgmt_report.py reports/talent_mgmt_weekly_20260412.txt
 
 ## 🗞️ タレントマネジメント RSS 日次収集
 
-`feeds/talent_mgmt.yaml` に定義した国内・海外の信頼ソースから、スキルマネジメント、タレントマネジメント、タレントインテリジェンス関連の候補記事を毎日収集します。
+`feeds/talent_mgmt.yaml` に定義した国内・海外の信頼ソースから、スキルマネジメント、タレントマネジメント、タレントインテリジェンス関連の候補記事を毎日収集します。PubMed は NCBI E-utilities をAPIキーなしで利用し、学術寄りの人材育成・コンピテンシー・トレーニング研究を補助的に取得します。
 
-毎日の収集結果は通知せず、`data/talent_mgmt_items.jsonl` に蓄積します。週次レポートの作成方法は別途検討できるよう、候補Markdown生成までをPythonで行います。
+毎日の収集結果は通知せず、`data/talent_mgmt_items.jsonl` に保存します。このファイルは実行時点から24時間以内に公開・更新された候補だけを保持する日次スナップショットです。週次レポートの作成方法は別途検討できるよう、候補Markdown生成までをPythonで行います。
 
 **日次収集：**
 
@@ -167,12 +167,13 @@ python src/build_talent_mgmt_candidates.py --since-days 7 --limit 80
 
 **処理内容：**
 
-- RSS / Google News RSS の取得
+- RSS / Google News RSS / PubMed E-utilities の取得
+- 実行時点から24時間以内に公開・更新された候補のみ抽出
 - 公開日・更新日のJST正規化
 - URL正規化とトラッキングパラメータ除去
 - `id` / `guid` / URL による重複排除
 - キーワード一致、カテゴリ仮分類、ソース信頼度、鮮度によるスコアリング
-- 180日を超えた古い候補の整理
+- 実行時点から24時間を超えた保存済み候補の整理
 - ソース別の成功/失敗状況を `data/talent_mgmt_source_status.json` に保存
 
 **GitHub Actions：**
