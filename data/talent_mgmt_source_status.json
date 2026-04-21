@@ -1,11 +1,11 @@
 {
   "collection_window_hours": 24,
   "failed_sources": 0,
-  "fetched_at": "2026-04-21T07:54:18.499690+09:00",
-  "incoming_items": 4,
-  "new_items": 4,
+  "fetched_at": "2026-04-22T07:47:48.612847+09:00",
+  "incoming_items": 1,
+  "new_items": 1,
   "ok_sources": 17,
-  "retained_items": 4,
+  "retained_items": 1,
   "sources": [
     {
       "error": null,
@@ -25,9 +25,9 @@
     },
     {
       "error": null,
-      "item_count": 1,
+      "item_count": 0,
       "name": "日本の人事部 人事サービスニュース",
-      "new_count": 1,
+      "new_count": 0,
       "ok": true,
       "url": "https://jinjibu.jp/rss/?mode=news&type=2"
     },
@@ -41,9 +41,9 @@
     },
     {
       "error": null,
-      "item_count": 1,
+      "item_count": 0,
       "name": "HR Dive",
-      "new_count": 1,
+      "new_count": 0,
       "ok": true,
       "url": "https://www.hrdive.com/feeds/news/"
     },
@@ -97,9 +97,9 @@
     },
     {
       "error": null,
-      "item_count": 1,
+      "item_count": 0,
       "name": "Google News - SHRM talent skills",
-      "new_count": 1,
+      "new_count": 0,
       "ok": true,
       "url": "https://news.google.com/rss/search?q=site%3Ashrm.org%20%28talent%20OR%20skills%20OR%20workforce%20OR%20HR%20technology%29&hl=en-US&gl=US&ceid=US:en"
     },
