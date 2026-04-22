@@ -1,11 +1,11 @@
 {
   "collection_window_hours": 24,
   "failed_sources": 0,
-  "fetched_at": "2026-04-22T07:47:48.612847+09:00",
-  "incoming_items": 1,
-  "new_items": 1,
+  "fetched_at": "2026-04-23T07:54:59.336097+09:00",
+  "incoming_items": 3,
+  "new_items": 3,
   "ok_sources": 17,
-  "retained_items": 1,
+  "retained_items": 3,
   "sources": [
     {
       "error": null,
@@ -25,9 +25,9 @@
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "日本の人事部 人事サービスニュース",
-      "new_count": 0,
+      "new_count": 1,
       "ok": true,
       "url": "https://jinjibu.jp/rss/?mode=news&type=2"
     },
@@ -57,9 +57,9 @@
     },
     {
       "error": null,
-      "item_count": 1,
+      "item_count": 0,
       "name": "AIHR Blog",
-      "new_count": 1,
+      "new_count": 0,
       "ok": true,
       "url": "https://www.aihr.com/blog/feed/"
     },
@@ -129,17 +129,17 @@
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "Google News - 製造業 スキル管理",
-      "new_count": 0,
+      "new_count": 1,
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%28%E8%A3%BD%E9%80%A0%E6%A5%AD%20OR%20%E3%82%82%E3%81%AE%E3%81%A5%E3%81%8F%E3%82%8A%29%20%28%E3%82%B9%E3%82%AD%E3%83%AB%E7%AE%A1%E7%90%86%20OR%20%E6%8A%80%E8%83%BD%E7%B6%99%E6%89%BF%20OR%20%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%29&hl=ja&gl=JP&ceid=JP:ja"
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "PubMed - workforce and competency training",
-      "new_count": 0,
+      "new_count": 1,
       "ok": true,
       "url": "pubmed"
     }
