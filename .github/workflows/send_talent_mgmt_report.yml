@@ -33,6 +33,6 @@ jobs:
           python validate_talent_mgmt_report.py "$FILE"
           python send_talent_mgmt_email.py $FILE
         env:
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          OUTLOOK_USER: ${{ secrets.OUTLOOK_USER }}
+          OUTLOOK_PASSWORD: ${{ secrets.OUTLOOK_PASSWORD }}
           RECIPIENT_EMAIL_TALENT_MGMT: ${{ secrets.RECIPIENT_EMAIL_TALENT_MGMT }}

@@ -2,15 +2,15 @@
 人材・スキル戦略レポート メール送信スクリプト
 
 Claude Code Webの定期実行で生成されたレポート本文（テキストファイル）を読み込み、
-HTML形式に変換してGmail SMTP経由で送信する。
+HTML形式に変換してOutlook (Office 365) SMTP経由で送信する。
 
 使い方:
     python send_talent_mgmt_email.py <テキストファイルパス>
 
 環境変数（必須）:
-    GMAIL_USER          - 送信元Gmailアドレス
-    GMAIL_APP_PASSWORD  - Googleアプリパスワード
-    RECIPIENT_EMAIL     - 送信先メールアドレス（カンマ区切りで複数可）
+    OUTLOOK_USER     - 送信元Outlookアドレス
+    OUTLOOK_PASSWORD - Outlookのパスワード（MFA有効時はアプリパスワード）
+    RECIPIENT_EMAIL  - 送信先メールアドレス（カンマ区切りで複数可）
 """
 
 import os
@@ -118,12 +118,12 @@ def text_to_html(content):
     return html
 
 
-def send_email(html_body, topic_count, report_type="default"):
-    """Gmail SMTP経由でメールを送信"""
+def send_email(html_body: str, topic_count: str, report_type: str = "default") -> None:
+    """Outlook (Office 365) SMTP経由でメールを送信"""
     print("📧 メール送信準備中...")
 
-    gmail_user = os.environ.get("GMAIL_USER")
-    gmail_password = os.environ.get("GMAIL_APP_PASSWORD")
+    outlook_user = os.environ.get("OUTLOOK_USER")
+    outlook_password = os.environ.get("OUTLOOK_PASSWORD")
 
     # レポートタイプ別の環境変数を取得
     if report_type == "talent_mgmt":
@@ -131,11 +131,11 @@ def send_email(html_body, topic_count, report_type="default"):
     else:
         recipient = os.environ.get("RECIPIENT_EMAIL")
 
-    if not all([gmail_user, gmail_password, recipient]):
+    if not all([outlook_user, outlook_password, recipient]):
         print("❌ エラー: メール送信に必要な環境変数が設定されていません")
-        print(f"  GMAIL_USER:         {'✓' if gmail_user else '✗ 未設定'}")
-        print(f"  GMAIL_APP_PASSWORD: {'✓' if gmail_password else '✗ 未設定'}")
-        print(f"  RECIPIENT_EMAIL:    {'✓' if recipient else '✗ 未設定'}")
+        print(f"  OUTLOOK_USER:     {'✓' if outlook_user else '✗ 未設定'}")
+        print(f"  OUTLOOK_PASSWORD: {'✓' if outlook_password else '✗ 未設定'}")
+        print(f"  RECIPIENT_EMAIL:  {'✓' if recipient else '✗ 未設定'}")
         sys.exit(1)
 
     # カンマ区切りで複数の受信者に対応
@@ -146,7 +146,7 @@ def send_email(html_body, topic_count, report_type="default"):
 
     # メール作成
     msg = MIMEMultipart()
-    msg["From"] = gmail_user
+    msg["From"] = outlook_user
     msg["To"] = ", ".join(recipients)
     # レポートタイプ別の件名を生成
     report_labels = {
@@ -158,11 +158,12 @@ def send_email(html_body, topic_count, report_type="default"):
 
     msg.attach(MIMEText(html_body, "html", "utf-8"))
 
-    # Gmail SMTP経由で送信
+    # Outlook (Office 365) SMTP経由で送信（STARTTLS、ポート587）
     try:
         print("📤 メール送信中...")
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
-            server.login(gmail_user, gmail_password)
+        with smtplib.SMTP("smtp.office365.com", 587) as server:
+            server.starttls()
+            server.login(outlook_user, outlook_password)
             server.send_message(msg)
         print("✓ メール送信完了")
         print(f"  送信先: {', '.join(recipients)}")
