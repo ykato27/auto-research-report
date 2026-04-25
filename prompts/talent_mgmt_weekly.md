@@ -144,7 +144,7 @@ blocked_domains: crescendo.ai, insightfulpost.com, gitnux.org, worldmetrics.org,
 ──────────────────────────────
 今週のトピック数：{合計}件
 ──────────────────────────────
-このメールはAIによる自動配信です。
+このレポートはAIによる自動配信です。
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ■ STEP 5：保存・検証・push
@@ -174,5 +174,5 @@ mcp__github__push_files を以下のパラメータで呼び出す:
     - path    : "reports/talent_mgmt_weekly_{TODAY}.txt"
       content : {ローカルに保存したファイルの全文をそのまま}
 
-push 成功後、GitHub Actions が自動起動してメール・Teams 配信される。
+push 成功後、GitHub Actions が自動起動して Teams 配信される。
 ```
