@@ -1,11 +1,11 @@
 {
   "collection_window_hours": 24,
   "failed_sources": 0,
-  "fetched_at": "2026-04-25T07:49:42.278334+09:00",
-  "incoming_items": 2,
-  "new_items": 2,
+  "fetched_at": "2026-04-26T07:47:48.067282+09:00",
+  "incoming_items": 0,
+  "new_items": 0,
   "ok_sources": 17,
-  "retained_items": 3,
+  "retained_items": 1,
   "sources": [
     {
       "error": null,
@@ -89,17 +89,17 @@
     },
     {
       "error": null,
-      "item_count": 1,
+      "item_count": 0,
       "name": "Google News - Deloitte human capital",
-      "new_count": 1,
+      "new_count": 0,
       "ok": true,
       "url": "https://news.google.com/rss/search?q=site%3Adeloitte.com%20%28human%20capital%20OR%20talent%20OR%20workforce%20OR%20skills%29&hl=en-US&gl=US&ceid=US:en"
     },
     {
       "error": null,
-      "item_count": 1,
+      "item_count": 0,
       "name": "Google News - SHRM talent skills",
-      "new_count": 1,
+      "new_count": 0,
       "ok": true,
       "url": "https://news.google.com/rss/search?q=site%3Ashrm.org%20%28talent%20OR%20skills%20OR%20workforce%20OR%20HR%20technology%29&hl=en-US&gl=US&ceid=US:en"
     },
