@@ -1,0 +1,105 @@
+👥 人材・スキル戦略グローバル動向 週次ニュースまとめ（2026/04/19〜2026/04/26）
+──────────────────────────────
+
+## 今週のサマリ
+
+Docebo が4/21にスキルインテリジェンス×エージェンティックAI統合「AgentHub」を発表しLMSの定義を刷新。SHRM Talent 2026（ダラス、4/19-22）でスキルベース採用が主流化し、HR Tech Europe（アムステルダム、4/22-23）でも同潮流が欧州に拡大。TalentLMSの調査で管理職と従業員のスキル認識乖離（90% vs 69%）が実証され、スキル可視性ギャップの深刻さが数値化。日本では経産省が中小企業白書（4/24閣議決定）で労働生産性向上を政策の柱に据えた。
+
+──────────────────────────────
+
+【🏆 スキルフレームワーク・タレント戦略】
+
+スキルベース採用の主流化と日本の中小企業政策が同時進行し、タレント戦略の転換点となった週。
+
+・SHRM Talent 2026「Precision Over Scale」開幕：AIを活用したスキル主導採用の全ライフサイクル埋め込みを主テーマに1,268名のHRプロが議論し、精度重視採用への移行が鮮明化。
+（公開日: 2026/04/21）
+（URL: https://www.shrm.org/topics-tools/news/talent-acquisition/talent-acquisition-management-trends-2026）
+
+・2026年版中小企業白書・小規模企業白書が閣議決定：「稼ぐ力」強化に向けた労働生産性向上と経営リテラシー強化を柱に分析。中小企業の人材育成に政策的推進力が加わった。
+（公開日: 2026/04/24）
+（URL: https://www.meti.go.jp/press/2026/04/20260424005/20260424005.html）
+
+──────────────────────────────
+
+【📊 スキル分析・タレントインテリジェンス】
+
+スキルの「見えない化」が外部採用コスト増大の根本要因として実証データで示され、行動インテリジェンス型の新プラットフォームが登場した週。
+
+・TalentLMS Skills Visibility Report：管理職の90% vs 従業員69%のスキル認識乖離が判明。50%の企業が既存社内スキルを見落として外部採用を実施しており、スキル可視化ツールの緊急性が数値で証明された。
+（公開日: 2026/04/22）
+（URL: https://www.prnewswire.com/news-releases/companies-are-sitting-on-talent-they-cant-see-or-unlock-talentlms-finds-302750131.html）
+
+・Dandelion Civilization「Human Intelligence Platform」をHR Tech Europe 2026で発表：行動インテリジェンスを核にタレントリスクを採用前に可視化し、ミスマッチコストを低減する新アプローチ。
+（公開日: 2026/04/22）
+（URL: https://finance.yahoo.com/sectors/technology/articles/dandelion-civilization-launches-human-intelligence-070000305.html）
+
+──────────────────────────────
+
+【🎓 学習支援・採用・オンボーディング】
+
+スキルベース採用の実装フレームワーク化と採用品質の定量評価がSHRM Talent 2026の主要議論に。
+
+・SHRM Talent 2026「Fixing the Talent Disconnect with Skills-Based Hiring」：SHRM CEOとWGU学長が共同発表。学位要件廃止から「実際に何ができるか」への転換を実装フレームワーク付きで提示。
+（公開日: 2026/04/21）
+（URL: https://www.shrm.org/topics-tools/news/fixing-the-talent-disconnect-with-skills-based-hiring）
+
+・SHRM Talent 2026「Tying Quality of Hire to Real Business Results」：採用品質を事業成果に結びつける構造化評価フレームワークを発表。定性から定量への採用評価転換を促進。
+（公開日: 2026/04/21）
+（URL: https://www.shrm.org/topics-tools/news/talent-acquisition/shrm-talent-2026-session-preview-quality-of-hire）
+
+──────────────────────────────
+
+【🔬 AI活用・スキル開発】
+
+DoceboがスキルインテリジェンスとエージェンティックAIを統合した新世代LMSを発表。SAPの調査でAIが新人育成モデルを根本から変えていることが判明した週。
+
+・Docebo AgentHub発表（Inspire 2026）：スキルインテリジェンス（365Talents統合）・エンタープライズナレッジ・ノーコードAIエージェントを単一LMSに統合。Claude・Copilot・ChatGPTとのMCPサーバー連携も公開ベータ開始。
+（公開日: 2026/04/21）
+（URL: https://www.businesswire.com/news/home/20260421016608/en/Docebo-Launches-Docebo-AgentHub-and-Unites-Skills-Intelligence-Enterprise-Knowledge-and-Agentic-AI-in-a-Single-Platform）
+
+・SAP調査「AIによる早期キャリア人材の加速的即戦力化」：CHROの88%が「AIで新人の即戦力化スピードが向上」、79%が「入社1ヶ月以内にAIツール提供」と回答。従来の育成バッファが急速に消失。
+（公開日: 2026/04/22）
+（URL: https://news.sap.com/2026/04/ai-causing-entry-level-roles-to-evolve-not-vanish/）
+
+・HR Tech Europe 2026（アムステルダム、4/22-23）開催：AIレディネス・スキルインテリジェンス・ワークフォースアナリティクスを主要議題に欧州最大HRテクカンファレンスが開幕。Josh Bersinら登壇。
+（公開日: 2026/04/22）
+（URL: https://www.hrtechnologyeurope.com/）
+
+──────────────────────────────
+
+【📈 従業員エンゲージメント・配置・保持】
+
+・該当ニュースなし
+
+──────────────────────────────
+
+【💰 報酬・キャリアパス】
+
+・該当ニュースなし
+
+──────────────────────────────
+
+【🌍 グローバル・ダイバーシティ・DEI】
+
+・該当ニュースなし
+
+──────────────────────────────
+
+【💼 企業導入事例・ベストプラクティス】
+
+・該当ニュースなし
+
+──────────────────────────────
+
+【🔍 Skillnote 注目点・示唆】
+
+・TalentLMSの調査が示す管理職vs従業員のスキル認識乖離（90% vs 69%）は、Skillnoteが現場スキル管理で解決すべき核心課題と直結する。管理者・従業員双方のスキル申告・評価データを突合して乖離を可視化するフィードバックループを強化すれば、無駄な外部採用コストの削減を定量的に提案できる競争優位が生まれる。
+
+・DoceboのAgentHub（スキル検出→学習パス自動生成→バリデーションの三段ループ）は製造業スキル管理への転用可能性を示す競合動向。Skillnoteが現場OJT・技能継承データを軸に類似ループを実装し「実技評価→育成課題特定→OJT設計」の自動化を実現すれば、汎用LMSに対する製造業特化の差異化が明確になる。
+
+・SHRM Talent 2026でスキルベース採用が主流化したことで、スキルデータを「採用→配置→育成→評価」に一気通貫活用するニーズが製造業顧客でも拡大すると予測。Skillnoteのスキルデータを経営レイヤーの人材意思決定の一次情報として提供するダッシュボード機能強化が、人的資本経営の訴求で急務になる。
+
+──────────────────────────────
+今週のトピック数：9件
+──────────────────────────────
+このレポートはAIによる自動配信です。
