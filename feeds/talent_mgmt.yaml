@@ -1,6 +1,5 @@
 theme: talent_mgmt
 timezone: Asia/Tokyo
-retention_days: 180
 collection_window_hours: 24
 pubmed:
   tool: auto-research-report

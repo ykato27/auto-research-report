@@ -500,11 +500,17 @@ def collect_all(
     now: datetime | None = None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     fetched_at = now or utc_now()
-    storage_window_hours = int(
-        config.get("storage_window_hours")
-        or int(config.get("retention_days", 180)) * 24
-    )
-    retained_rows = prune_rows_by_hours(existing_rows, storage_window_hours, fetched_at)
+
+    # Prune only when retention_days is explicitly set; omit the key to keep all data.
+    retention_days = config.get("retention_days")
+    if retention_days:
+        storage_window_hours = int(
+            config.get("storage_window_hours") or int(retention_days) * 24
+        )
+        retained_rows = prune_rows_by_hours(existing_rows, storage_window_hours, fetched_at)
+    else:
+        storage_window_hours = None
+        retained_rows = list(existing_rows)
 
     all_incoming = []
     source_results = []
@@ -541,7 +547,7 @@ def collect_all(
         "fetched_at": fetched_at.astimezone(JST).isoformat(),
         "theme": config.get("theme", "talent_mgmt"),
         "collection_window_hours": int(config.get("collection_window_hours", 0)),
-        "storage_window_hours": storage_window_hours,
+        "storage_window_hours": storage_window_hours,  # None = unlimited
         "total_sources": len(source_results),
         "ok_sources": len(ok_sources),
         "failed_sources": len(failed_sources),
