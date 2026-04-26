@@ -1,11 +1,11 @@
 {
   "collection_window_hours": 24,
-  "failed_sources": 0,
-  "fetched_at": "2026-04-26T07:47:48.067282+09:00",
+  "failed_sources": 2,
+  "fetched_at": "2026-04-27T07:49:52.482765+09:00",
   "incoming_items": 0,
   "new_items": 0,
-  "ok_sources": 17,
-  "retained_items": 1,
+  "ok_sources": 22,
+  "retained_items": 0,
   "sources": [
     {
       "error": null,
@@ -40,6 +40,22 @@
       "url": "https://service.jinjibu.jp/rss/?mode=news&type=1"
     },
     {
+      "error": "text/html; charset=iso-8859-1 is not an XML media type",
+      "item_count": 0,
+      "name": "HRプロ ニュース",
+      "new_count": 0,
+      "ok": false,
+      "url": "https://www.hrpro.co.jp/rss/news.php"
+    },
+    {
+      "error": null,
+      "item_count": 0,
+      "name": "HR Note",
+      "new_count": 0,
+      "ok": true,
+      "url": "https://hrnote.jp/feed/"
+    },
+    {
       "error": null,
       "item_count": 0,
       "name": "HR Dive",
@@ -72,28 +88,52 @@
       "url": "https://hrtechfeed.com/feed/"
     },
     {
-      "error": null,
+      "error": "<unknown>:104:43: not well-formed (invalid token)",
       "item_count": 0,
-      "name": "Google News - Workday skills talent",
+      "name": "SHRM News",
       "new_count": 0,
-      "ok": true,
-      "url": "https://news.google.com/rss/search?q=site%3Aworkday.com%20%28skills%20OR%20talent%20OR%20workforce%29&hl=en-US&gl=US&ceid=US:en"
+      "ok": false,
+      "url": "https://www.shrm.org/rss"
     },
     {
       "error": null,
       "item_count": 0,
-      "name": "Google News - Mercer workforce talent",
+      "name": "GlobeNewswire Human Resources",
       "new_count": 0,
       "ok": true,
-      "url": "https://news.google.com/rss/search?q=site%3Amercer.com%20%28skills%20OR%20talent%20OR%20workforce%20OR%20human%20capital%29&hl=en-US&gl=US&ceid=US:en"
+      "url": "https://www.globenewswire.com/RssFeed/subjectcode/8-Human-Resources"
     },
     {
       "error": null,
       "item_count": 0,
-      "name": "Google News - Deloitte human capital",
+      "name": "BusinessWire HR & Business",
       "new_count": 0,
       "ok": true,
-      "url": "https://news.google.com/rss/search?q=site%3Adeloitte.com%20%28human%20capital%20OR%20talent%20OR%20workforce%20OR%20skills%29&hl=en-US&gl=US&ceid=US:en"
+      "url": "https://feed.businesswire.com/rss/home/?rss=G22"
+    },
+    {
+      "error": null,
+      "item_count": 0,
+      "name": "Google News - talent management skills announcement",
+      "new_count": 0,
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=%22talent+management%22+%22skills%22+%28announces+OR+launches+OR+report+OR+survey%29&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "error": null,
+      "item_count": 0,
+      "name": "Google News - skills-based HR workforce",
+      "new_count": 0,
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=%22skills-based%22+%28HR+OR+hiring+OR+workforce%29+%28report+OR+survey+OR+announces%29&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "error": null,
+      "item_count": 0,
+      "name": "Google News - Mercer McKinsey Deloitte talent",
+      "new_count": 0,
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=%28site%3Amercer.com+OR+site%3Amckinsey.com+OR+site%3Adeloitte.com%29+%28talent+OR+workforce+OR+skills%29&hl=en-US&gl=US&ceid=US:en"
     },
     {
       "error": null,
@@ -101,15 +141,31 @@
       "name": "Google News - SHRM talent skills",
       "new_count": 0,
       "ok": true,
-      "url": "https://news.google.com/rss/search?q=site%3Ashrm.org%20%28talent%20OR%20skills%20OR%20workforce%20OR%20HR%20technology%29&hl=en-US&gl=US&ceid=US:en"
+      "url": "https://news.google.com/rss/search?q=site%3Ashrm.org+%28talent+OR+skills+OR+workforce%29&hl=en-US&gl=US&ceid=US:en"
     },
     {
       "error": null,
       "item_count": 0,
-      "name": "Google News - People Matters talent management",
+      "name": "Google News - upskilling reskilling workforce report",
       "new_count": 0,
       "ok": true,
-      "url": "https://news.google.com/rss/search?q=site%3Apeoplemattersglobal.com%20%28talent%20management%20OR%20skills%20OR%20workforce%20OR%20HR%20technology%29&hl=en-US&gl=US&ceid=US:en"
+      "url": "https://news.google.com/rss/search?q=%28upskilling+OR+reskilling%29+%22workforce%22+%28report+OR+survey+OR+announces%29&hl=en-US&gl=US&ceid=US:en"
+    },
+    {
+      "error": null,
+      "item_count": 0,
+      "name": "Google News - タレントマネジメント スキル 発表",
+      "new_count": 0,
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=%28%E3%82%BF%E3%83%AC%E3%83%B3%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88+OR+%E3%82%B9%E3%82%AD%E3%83%AB%E7%AE%A1%E7%90%86+OR+%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%29+%28%E7%99%BA%E8%A1%A8+OR+%E8%AA%BF%E6%9F%BB+OR+%E4%BA%8B%E4%BE%8B%29&hl=ja&gl=JP&ceid=JP:ja"
+    },
+    {
+      "error": null,
+      "item_count": 0,
+      "name": "Google News - 人的資本 リスキリング 政策",
+      "new_count": 0,
+      "ok": true,
+      "url": "https://news.google.com/rss/search?q=%28%E4%BA%BA%E7%9A%84%E8%B3%87%E6%9C%AC+OR+%E3%83%AA%E3%82%B9%E3%82%AD%E3%83%AA%E3%83%B3%E3%82%B0%29+%28%E9%96%8B%E7%A4%BA+OR+%E6%94%BF%E7%AD%96+OR+%E7%99%BD%E6%9B%B8+OR+%E7%99%BA%E8%A1%A8%29&hl=ja&gl=JP&ceid=JP:ja"
     },
     {
       "error": null,
@@ -117,7 +173,7 @@
       "name": "Google News - リクルートワークス研究所",
       "new_count": 0,
       "ok": true,
-      "url": "https://news.google.com/rss/search?q=site%3Aworks-i.com%20%28%E3%82%BF%E3%83%AC%E3%83%B3%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88%20OR%20%E4%BA%BA%E6%9D%90%20OR%20%E3%82%B9%E3%82%AD%E3%83%AB%20OR%20%E7%B5%84%E7%B9%94%29&hl=ja&gl=JP&ceid=JP:ja"
+      "url": "https://news.google.com/rss/search?q=site%3Aworks-i.com+%28%E3%82%BF%E3%83%AC%E3%83%B3%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88+OR+%E4%BA%BA%E6%9D%90+OR+%E3%82%B9%E3%82%AD%E3%83%AB+OR+%E7%B5%84%E7%B9%94%29&hl=ja&gl=JP&ceid=JP:ja"
     },
     {
       "error": null,
@@ -125,7 +181,7 @@
       "name": "Google News - JILPT 人材育成",
       "new_count": 0,
       "ok": true,
-      "url": "https://news.google.com/rss/search?q=site%3Ajil.go.jp%20%28%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%20OR%20%E8%83%BD%E5%8A%9B%E9%96%8B%E7%99%BA%20OR%20%E3%82%B9%E3%82%AD%E3%83%AB%20OR%20%E5%8A%B4%E5%83%8D%E6%94%BF%E7%AD%96%29&hl=ja&gl=JP&ceid=JP:ja"
+      "url": "https://news.google.com/rss/search?q=site%3Ajil.go.jp+%28%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90+OR+%E8%83%BD%E5%8A%9B%E9%96%8B%E7%99%BA+OR+%E3%82%B9%E3%82%AD%E3%83%AB+OR+%E5%8A%B4%E5%83%8D%E6%94%BF%E7%AD%96%29&hl=ja&gl=JP&ceid=JP:ja"
     },
     {
       "error": null,
@@ -133,18 +189,19 @@
       "name": "Google News - 製造業 スキル管理",
       "new_count": 0,
       "ok": true,
-      "url": "https://news.google.com/rss/search?q=%28%E8%A3%BD%E9%80%A0%E6%A5%AD%20OR%20%E3%82%82%E3%81%AE%E3%81%A5%E3%81%8F%E3%82%8A%29%20%28%E3%82%B9%E3%82%AD%E3%83%AB%E7%AE%A1%E7%90%86%20OR%20%E6%8A%80%E8%83%BD%E7%B6%99%E6%89%BF%20OR%20%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%29&hl=ja&gl=JP&ceid=JP:ja"
+      "url": "https://news.google.com/rss/search?q=%28%E8%A3%BD%E9%80%A0%E6%A5%AD+OR+%E3%82%82%E3%81%AE%E3%81%A5%E3%81%8F%E3%82%8A%29+%28%E3%82%B9%E3%82%AD%E3%83%AB%E7%AE%A1%E7%90%86+OR+%E6%8A%80%E8%83%BD%E7%B6%99%E6%89%BF+OR+%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%29&hl=ja&gl=JP&ceid=JP:ja"
     },
     {
       "error": null,
       "item_count": 0,
-      "name": "PubMed - workforce and competency training",
+      "name": "PubMed - talent and workforce management research",
       "new_count": 0,
       "ok": true,
       "url": "pubmed"
     }
   ],
-  "storage_window_hours": 24,
+  "storage_window_hours": null,
+  "store_path": "data/items/202604.jsonl",
   "theme": "talent_mgmt",
-  "total_sources": 17
+  "total_sources": 24
 }
