@@ -381,6 +381,12 @@ def parse_iso_datetime(value: str | None) -> datetime | None:
         return None
 
 
+GOOGLE_NEWS_USER_AGENT = (
+    "Mozilla/5.0 (compatible; AutoResearchBot/1.0; "
+    "+https://github.com/ykato27/auto-research-report)"
+)
+
+
 def collect_source(
     source: dict[str, Any],
     config: dict[str, Any],
@@ -391,7 +397,12 @@ def collect_source(
         return collect_pubmed_source(source, config, fetched_at)
 
     source_url = source["url"]
-    parsed_feed = feedparser.parse(source_url)
+    source_type = source.get("source_type", "rss")
+
+    if source_type == "google_news_rss":
+        parsed_feed = feedparser.parse(source_url, agent=GOOGLE_NEWS_USER_AGENT)
+    else:
+        parsed_feed = feedparser.parse(source_url)
 
     if parsed_feed.bozo and not parsed_feed.entries:
         error = str(getattr(parsed_feed, "bozo_exception", "feed parse error"))
@@ -408,7 +419,12 @@ def collect_source(
     for entry in parsed_feed.entries:
         published_at, date_confidence = parse_entry_datetime(entry)
         if not published_at:
-            continue
+            # Google News RSS sometimes omits parseable dates; fall back to fetched_at
+            if source_type == "google_news_rss":
+                published_at = fetched_at.astimezone(JST)
+                date_confidence = "fetched_at_fallback"
+            else:
+                continue
         if published_at < cutoff:
             continue
 
@@ -486,7 +502,6 @@ def collect_all(
     fetched_at = now or utc_now()
     storage_window_hours = int(
         config.get("storage_window_hours")
-        or config.get("collection_window_hours")
         or int(config.get("retention_days", 180)) * 24
     )
     retained_rows = prune_rows_by_hours(existing_rows, storage_window_hours, fetched_at)

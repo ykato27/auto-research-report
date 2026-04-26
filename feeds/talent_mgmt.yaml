@@ -2,7 +2,6 @@ theme: talent_mgmt
 timezone: Asia/Tokyo
 retention_days: 180
 collection_window_hours: 24
-storage_window_hours: 24
 pubmed:
   tool: auto-research-report
   email: yuki.kato@skillnote.co.jp
@@ -25,13 +24,6 @@ include_keywords:
   - learning and development
   - HR technology
   - human capital
-  - medical education
-  - simulation training
-  - competency-based education
-  - interprofessional education
-  - clinical competency
-  - continuing education
-  - occupational health workforce
   - people analytics
   - workforce analytics
   - AI in HR
@@ -63,7 +55,6 @@ exclude_keywords:
   - 募集要項
   - 採用イベント
   - セミナー申込
-  - PR TIMES
 
 categories:
   skills_management:
@@ -137,17 +128,9 @@ categories:
       - 人的資本開示
       - 労働政策
       - 政策
-  pubmed_research:
-    keywords:
-      - competency-based education
-      - clinical competency
-      - medical education
-      - simulation training
-      - workforce training
-      - continuing education
-      - interprofessional education
 
 sources:
+  # ── Direct RSS: Japan ──────────────────────────────────────────────
   - name: 日本の人事部 最新記事
     url: https://jinjibu.jp/rss/?mode=atcl
     country: JP
@@ -172,6 +155,20 @@ sources:
     language: ja
     source_type: rss
     weight: 3
+  - name: HRプロ ニュース
+    url: https://www.hrpro.co.jp/rss/news.php
+    country: JP
+    language: ja
+    source_type: rss
+    weight: 4
+  - name: HR Note
+    url: https://hrnote.jp/feed/
+    country: JP
+    language: ja
+    source_type: rss
+    weight: 3
+
+  # ── Direct RSS: Global ─────────────────────────────────────────────
   - name: HR Dive
     url: https://www.hrdive.com/feeds/news/
     country: US
@@ -196,58 +193,94 @@ sources:
     language: en
     source_type: rss
     weight: 3
-  - name: Google News - Workday skills talent
-    url: https://news.google.com/rss/search?q=site%3Aworkday.com%20%28skills%20OR%20talent%20OR%20workforce%29&hl=en-US&gl=US&ceid=US:en
+  - name: SHRM News
+    url: https://www.shrm.org/rss
     country: US
     language: en
-    source_type: google_news_rss
+    source_type: rss
+    weight: 5
+  - name: GlobeNewswire Human Resources
+    url: https://www.globenewswire.com/RssFeed/subjectcode/8-Human-Resources
+    country: Global
+    language: en
+    source_type: rss
     weight: 4
-  - name: Google News - Mercer workforce talent
-    url: https://news.google.com/rss/search?q=site%3Amercer.com%20%28skills%20OR%20talent%20OR%20workforce%20OR%20human%20capital%29&hl=en-US&gl=US&ceid=US:en
+  - name: BusinessWire HR & Business
+    url: https://feed.businesswire.com/rss/home/?rss=G22
+    country: Global
+    language: en
+    source_type: rss
+    weight: 4
+
+  # ── Google News RSS: Global topics ────────────────────────────────
+  - name: Google News - talent management skills announcement
+    url: https://news.google.com/rss/search?q=%22talent+management%22+%22skills%22+%28announces+OR+launches+OR+report+OR+survey%29&hl=en-US&gl=US&ceid=US:en
     country: Global
     language: en
     source_type: google_news_rss
     weight: 4
-  - name: Google News - Deloitte human capital
-    url: https://news.google.com/rss/search?q=site%3Adeloitte.com%20%28human%20capital%20OR%20talent%20OR%20workforce%20OR%20skills%29&hl=en-US&gl=US&ceid=US:en
+  - name: Google News - skills-based HR workforce
+    url: https://news.google.com/rss/search?q=%22skills-based%22+%28HR+OR+hiring+OR+workforce%29+%28report+OR+survey+OR+announces%29&hl=en-US&gl=US&ceid=US:en
     country: Global
     language: en
     source_type: google_news_rss
     weight: 4
+  - name: Google News - Mercer McKinsey Deloitte talent
+    url: https://news.google.com/rss/search?q=%28site%3Amercer.com+OR+site%3Amckinsey.com+OR+site%3Adeloitte.com%29+%28talent+OR+workforce+OR+skills%29&hl=en-US&gl=US&ceid=US:en
+    country: Global
+    language: en
+    source_type: google_news_rss
+    weight: 5
   - name: Google News - SHRM talent skills
-    url: https://news.google.com/rss/search?q=site%3Ashrm.org%20%28talent%20OR%20skills%20OR%20workforce%20OR%20HR%20technology%29&hl=en-US&gl=US&ceid=US:en
+    url: https://news.google.com/rss/search?q=site%3Ashrm.org+%28talent+OR+skills+OR+workforce%29&hl=en-US&gl=US&ceid=US:en
     country: US
     language: en
     source_type: google_news_rss
     weight: 4
-  - name: Google News - People Matters talent management
-    url: https://news.google.com/rss/search?q=site%3Apeoplemattersglobal.com%20%28talent%20management%20OR%20skills%20OR%20workforce%20OR%20HR%20technology%29&hl=en-US&gl=US&ceid=US:en
+  - name: Google News - upskilling reskilling workforce report
+    url: https://news.google.com/rss/search?q=%28upskilling+OR+reskilling%29+%22workforce%22+%28report+OR+survey+OR+announces%29&hl=en-US&gl=US&ceid=US:en
     country: Global
     language: en
+    source_type: google_news_rss
+    weight: 3
+
+  # ── Google News RSS: Japan topics ─────────────────────────────────
+  - name: Google News - タレントマネジメント スキル 発表
+    url: https://news.google.com/rss/search?q=%28%E3%82%BF%E3%83%AC%E3%83%B3%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88+OR+%E3%82%B9%E3%82%AD%E3%83%AB%E7%AE%A1%E7%90%86+OR+%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%29+%28%E7%99%BA%E8%A1%A8+OR+%E8%AA%BF%E6%9F%BB+OR+%E4%BA%8B%E4%BE%8B%29&hl=ja&gl=JP&ceid=JP:ja
+    country: JP
+    language: ja
+    source_type: google_news_rss
+    weight: 4
+  - name: Google News - 人的資本 リスキリング 政策
+    url: https://news.google.com/rss/search?q=%28%E4%BA%BA%E7%9A%84%E8%B3%87%E6%9C%AC+OR+%E3%83%AA%E3%82%B9%E3%82%AD%E3%83%AA%E3%83%B3%E3%82%B0%29+%28%E9%96%8B%E7%A4%BA+OR+%E6%94%BF%E7%AD%96+OR+%E7%99%BD%E6%9B%B8+OR+%E7%99%BA%E8%A1%A8%29&hl=ja&gl=JP&ceid=JP:ja
+    country: JP
+    language: ja
     source_type: google_news_rss
     weight: 4
   - name: Google News - リクルートワークス研究所
-    url: https://news.google.com/rss/search?q=site%3Aworks-i.com%20%28%E3%82%BF%E3%83%AC%E3%83%B3%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88%20OR%20%E4%BA%BA%E6%9D%90%20OR%20%E3%82%B9%E3%82%AD%E3%83%AB%20OR%20%E7%B5%84%E7%B9%94%29&hl=ja&gl=JP&ceid=JP:ja
+    url: https://news.google.com/rss/search?q=site%3Aworks-i.com+%28%E3%82%BF%E3%83%AC%E3%83%B3%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88+OR+%E4%BA%BA%E6%9D%90+OR+%E3%82%B9%E3%82%AD%E3%83%AB+OR+%E7%B5%84%E7%B9%94%29&hl=ja&gl=JP&ceid=JP:ja
     country: JP
     language: ja
     source_type: google_news_rss
     weight: 5
   - name: Google News - JILPT 人材育成
-    url: https://news.google.com/rss/search?q=site%3Ajil.go.jp%20%28%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%20OR%20%E8%83%BD%E5%8A%9B%E9%96%8B%E7%99%BA%20OR%20%E3%82%B9%E3%82%AD%E3%83%AB%20OR%20%E5%8A%B4%E5%83%8D%E6%94%BF%E7%AD%96%29&hl=ja&gl=JP&ceid=JP:ja
+    url: https://news.google.com/rss/search?q=site%3Ajil.go.jp+%28%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90+OR+%E8%83%BD%E5%8A%9B%E9%96%8B%E7%99%BA+OR+%E3%82%B9%E3%82%AD%E3%83%AB+OR+%E5%8A%B4%E5%83%8D%E6%94%BF%E7%AD%96%29&hl=ja&gl=JP&ceid=JP:ja
     country: JP
     language: ja
     source_type: google_news_rss
     weight: 4
   - name: Google News - 製造業 スキル管理
-    url: https://news.google.com/rss/search?q=%28%E8%A3%BD%E9%80%A0%E6%A5%AD%20OR%20%E3%82%82%E3%81%AE%E3%81%A5%E3%81%8F%E3%82%8A%29%20%28%E3%82%B9%E3%82%AD%E3%83%AB%E7%AE%A1%E7%90%86%20OR%20%E6%8A%80%E8%83%BD%E7%B6%99%E6%89%BF%20OR%20%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%29&hl=ja&gl=JP&ceid=JP:ja
+    url: https://news.google.com/rss/search?q=%28%E8%A3%BD%E9%80%A0%E6%A5%AD+OR+%E3%82%82%E3%81%AE%E3%81%A5%E3%81%8F%E3%82%8A%29+%28%E3%82%B9%E3%82%AD%E3%83%AB%E7%AE%A1%E7%90%86+OR+%E6%8A%80%E8%83%BD%E7%B6%99%E6%89%BF+OR+%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%29&hl=ja&gl=JP&ceid=JP:ja
     country: JP
     language: ja
     source_type: google_news_rss
     weight: 3
-  - name: PubMed - workforce and competency training
+
+  # ── PubMed: HR/organizational focus ───────────────────────────────
+  - name: PubMed - talent and workforce management research
     source_type: pubmed
     country: Global
     language: en
-    weight: 4
-    retmax: 50
-    query: (workforce training OR competency-based education OR clinical competency OR simulation training OR interprofessional education OR continuing education OR skill acquisition OR occupational health workforce)
+    weight: 3
+    retmax: 30
+    query: (talent management OR skills management OR workforce development OR employee training OR organizational learning OR human capital management OR reskilling OR upskilling) AND (organization OR enterprise OR corporate OR business)
