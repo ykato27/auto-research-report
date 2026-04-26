@@ -27,19 +27,19 @@ jobs:
         run: |
           python src/collect_talent_mgmt_rss.py \
             --config feeds/talent_mgmt.yaml \
-            --store data/talent_mgmt_items.jsonl \
+            --store-dir data/items \
             --status data/talent_mgmt_source_status.json
 
       - name: Commit RSS data
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/talent_mgmt_items.jsonl data/talent_mgmt_source_status.json
+          git add data/items/ data/talent_mgmt_source_status.json
           if git diff --cached --quiet; then
             echo "No RSS data changes to commit."
             exit 0
           fi
           git pull --rebase --autostash origin main
-          git add data/talent_mgmt_items.jsonl data/talent_mgmt_source_status.json
+          git add data/items/ data/talent_mgmt_source_status.json
           git commit -m "Collect talent management RSS $(date +'%Y%m%d')"
           git push
