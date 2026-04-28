@@ -1,11 +1,11 @@
 {
   "collection_window_hours": 24,
   "failed_sources": 2,
-  "fetched_at": "2026-04-28T07:59:15.509091+09:00",
-  "incoming_items": 4,
-  "new_items": 4,
+  "fetched_at": "2026-04-29T08:01:46.556017+09:00",
+  "incoming_items": 5,
+  "new_items": 5,
   "ok_sources": 22,
-  "retained_items": 4,
+  "retained_items": 9,
   "sources": [
     {
       "error": null,
@@ -73,17 +73,17 @@
     },
     {
       "error": null,
-      "item_count": 1,
+      "item_count": 2,
       "name": "AIHR Blog",
-      "new_count": 1,
+      "new_count": 2,
       "ok": true,
       "url": "https://www.aihr.com/blog/feed/"
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "HR Tech Feed",
-      "new_count": 0,
+      "new_count": 1,
       "ok": true,
       "url": "https://hrtechfeed.com/feed/"
     },
@@ -121,9 +121,9 @@
     },
     {
       "error": null,
-      "item_count": 1,
+      "item_count": 0,
       "name": "Google News - skills-based HR workforce",
-      "new_count": 1,
+      "new_count": 0,
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%22skills-based%22+%28HR+OR+hiring+OR+workforce%29+%28report+OR+survey+OR+announces%29&hl=en-US&gl=US&ceid=US:en"
     },
@@ -177,17 +177,17 @@
     },
     {
       "error": null,
-      "item_count": 1,
+      "item_count": 0,
       "name": "Google News - JILPT 人材育成",
-      "new_count": 1,
+      "new_count": 0,
       "ok": true,
       "url": "https://news.google.com/rss/search?q=site%3Ajil.go.jp+%28%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90+OR+%E8%83%BD%E5%8A%9B%E9%96%8B%E7%99%BA+OR+%E3%82%B9%E3%82%AD%E3%83%AB+OR+%E5%8A%B4%E5%83%8D%E6%94%BF%E7%AD%96%29&hl=ja&gl=JP&ceid=JP:ja"
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "Google News - 製造業 スキル管理",
-      "new_count": 0,
+      "new_count": 1,
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%28%E8%A3%BD%E9%80%A0%E6%A5%AD+OR+%E3%82%82%E3%81%AE%E3%81%A5%E3%81%8F%E3%82%8A%29+%28%E3%82%B9%E3%82%AD%E3%83%AB%E7%AE%A1%E7%90%86+OR+%E6%8A%80%E8%83%BD%E7%B6%99%E6%89%BF+OR+%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%29&hl=ja&gl=JP&ceid=JP:ja"
     },
