@@ -1,11 +1,11 @@
 {
   "collection_window_hours": 24,
   "failed_sources": 2,
-  "fetched_at": "2026-04-30T08:02:17.292175+09:00",
+  "fetched_at": "2026-05-01T07:59:24.271214+09:00",
   "incoming_items": 1,
   "new_items": 1,
   "ok_sources": 22,
-  "retained_items": 10,
+  "retained_items": 1,
   "sources": [
     {
       "error": null,
@@ -57,9 +57,9 @@
     },
     {
       "error": null,
-      "item_count": 1,
+      "item_count": 0,
       "name": "HR Dive",
-      "new_count": 1,
+      "new_count": 0,
       "ok": true,
       "url": "https://www.hrdive.com/feeds/news/"
     },
@@ -121,9 +121,9 @@
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "Google News - skills-based HR workforce",
-      "new_count": 0,
+      "new_count": 1,
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%22skills-based%22+%28HR+OR+hiring+OR+workforce%29+%28report+OR+survey+OR+announces%29&hl=en-US&gl=US&ceid=US:en"
     },
@@ -201,7 +201,7 @@
     }
   ],
   "storage_window_hours": null,
-  "store_path": "data/items/202604.jsonl",
+  "store_path": "data/items/202605.jsonl",
   "theme": "talent_mgmt",
   "total_sources": 24
 }
