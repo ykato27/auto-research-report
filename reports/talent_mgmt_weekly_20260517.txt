@@ -1,0 +1,104 @@
+👥 人材・スキル戦略グローバル動向 週次ニュースまとめ（2026/05/10〜2026/05/17）
+
+## 今週のサマリ
+
+Gartner MQ 2026（Talent Acquisition）公表でWorkday・DarwinboxらがLeader選出、AI採用スイート競争が加速。米国では82%の採用担当者がエントリーレベルのスキル要求増を報告し人材パイプライン縮小が鮮明に。AI投資企業の78%がプロジェクト失敗を経験し「スキル基盤なきAI導入」の限界が浮き彫りに。国内では日本の人事部HRカンファレンス2026春が開幕し人材データ活用が主要テーマとなった。
+
+──────────────────────────────
+
+【🏆 スキルフレームワーク・タレント戦略】
+
+週間トレンド: エントリー採用でのスキル要求増と政府主導の「スキル見える化」政策が同時進行。スキルフレームワーク整備の緊急性が増している。
+
+・Express Employment Professionals調査：82%の採用担当者がエントリーレベル採用で以前より多くのスキルを要求、タレントパイプラインの縮小が進行。スキルベース採用へのシフトが加速している。
+（公開日: 2026/05/13）
+（URL: https://www.prnewswire.com/news-releases/new-express-survey-rising-skill-demands-squeeze-entrylevel-hiring-shrinking-talent-pipelines-302768641.html）
+
+・JILPT/厚労省：「第12次職業能力開発基本計画」を策定。エネルギー等の戦略分野で産業界と協働した人材育成を拡充し、職務必要スキルの「見える化」促進を政策化。job tagプラットフォームの機能拡充も検討。
+（公開日: 2026/05/12）
+（URL: https://www.jil.go.jp/kokunai/blt/backnumber/2026/05/kokunai_03.html）
+
+──────────────────────────────
+
+【📊 スキル分析・タレントインテリジェンス】
+
+週間トレンド: Gartner MQ 2026（Talent Acquisition）公表を受け各ベンダーが一斉にLeader/Visionary認定を発表。AIタレントインテリジェンス市場が一段と激化。
+
+・Caliber社、タレントインテリジェンスプラットフォーム「Talent 360」をローンチ。40市場以上で雇用主ブランド認知をリアルタイム継続測定する業界初のプラットフォーム。
+（公開日: 2026/05/11）
+（URL: https://www.prnewswire.com/news-releases/caliber-launches-talent-intelligence-platform-talent-360-302768121.html）
+
+・WorkdayがGartner MQ 2026（Talent Acquisition Suites）でLeaderに選出。AI採用スイートにより採用担当者処理能力54%向上・審査時間35%短縮を実現。
+（公開日: 2026/05/13）
+（URL: https://newsroom.workday.com/2026-05-13-Workday-Named-a-Leader-in-the-2026-Gartner-R-Magic-Quadrant-TM-for-Talent-Acquisition-Recruiting-Suites）
+
+・DarwinboxがGartner MQ 2026でLeaderに選出（Visionary→1年でLeaderへ昇格）。AI・ATS能力で評価ベンダー中1位、全4ユースケースでトップ2入り。
+（公開日: 2026/05/14）
+（URL: https://techrseries.com/hiring/darwinbox-named-a-leader-in-the-2026-gartner-magic-quadrant-for-talent-acquisition-suites/）
+
+──────────────────────────────
+
+【🎓 学習支援・採用・オンボーディング】
+
+週間トレンド: 中小企業でもスキルギャップへの危機感が高まり、採用困難と既存人材育成の二重課題が顕在化。
+
+・Robert Half調査：米国中小企業の47%がスキル人材確保が1年前より困難と回答。優先プロジェクト完了に必要な人材を保有する企業はわずか12%にとどまる。
+（公開日: 2026/05/13）
+（URL: https://www.prnewswire.com/news-releases/robert-half-survey-more-than-three-quarters-of-us-small-businesses-are-confident-about-hiring-but-nearly-half-struggle-to-find-skilled-talent-302770213.html）
+
+──────────────────────────────
+
+【🔬 AI活用・スキル開発】
+
+週間トレンド: AI投資が一巡し「成果が出ない」局面に入った企業が続出。スキル基盤なきAI導入の失敗リスクと政府支援による再起動が同時進行。
+
+・米国商務省、AIを活用した労働力育成に2,500万ドルの助成金を公募。地域経済と重要産業のAIスキル育成を広域支援。
+（公開日: 2026/05/11）
+（URL: https://www.eda.gov/news/press-release/2026/05/11/us-department-commerce-announces-25-million-notice-funding）
+
+・Orgvue調査：AI投資済み企業の92%中、78%がプロジェクト停滞・失敗を経験。原因1位「AIの使い方が不明」(32%)、49%がアップスキリング計画を表明。スキル不足がAI化の最大障壁と判明。
+（公開日: 2026/05/12）
+（URL: https://www.prnewswire.com/news-releases/92-of-organizations-have-invested-in-ai-but-78-say-projects-have-either-stalled-or-failed-302769202.html）
+
+──────────────────────────────
+
+【📈 従業員エンゲージメント・配置・保持】
+
+該当ニュースなし
+
+──────────────────────────────
+
+【💰 報酬・キャリアパス】
+
+該当ニュースなし
+
+──────────────────────────────
+
+【🌍 グローバル・ダイバーシティ・DEI】
+
+該当ニュースなし
+
+──────────────────────────────
+
+【💼 企業導入事例・ベストプラクティス】
+
+週間トレンド: 国内最大級の人事カンファレンスが開幕。人材データ活用と人的資本経営の実践事例が集中公開されている。
+
+・日本の人事部「HRカンファレンス2026-春-」開催（5/13〜15、19〜21）。三菱商事グループによる人材データ活用事例やDX・AI活用を含む約200セッションをライブ配信。人的資本経営とスキル戦略の接続が主要テーマ。
+（公開日: 2026/05/13）
+（URL: https://jinjibu.jp/hr-conference/202605/）
+
+──────────────────────────────
+
+【🔍 Skillnote 注目点・示唆】
+
+・スキル可視化政策×AI失敗率78%が同時進行→製造現場スキル基盤整備の商機：厚労省がスキル「見える化」を国策化する中、Orgvue調査でAIプロジェクト失敗の主因が「スキル人材不足」と判明。現場スキルの体系的可視化が先決であり、SkillnoteのスキルデータベースがAI導入前提基盤として訴求できる好機。
+
+・タレントインテリジェンス市場拡大→採用後の育成データで差別化：Caliber・Workday・Darwinboxが採用前インテリジェンスを高度化する中、採用後のスキル育成・評価・配置データは空白地帯。Skillnoteの現場スキル評価・OJT実績データを「採用後インテリジェンス」として付加価値化しTMスイートとの連携を検討すべき。
+
+・エントリー採用スキル要求上昇→製造現場の初期育成管理ニーズ増大：Express調査で82%が新卒採用スキル要求増を報告。製造現場でも早期戦力化が急務であり、Skillnoteの技能教育履歴・OJT進捗可視化機能が「採用→即戦力化」プロセス短縮の手段として訴求できるか検証を。
+
+──────────────────────────────
+今週のトピック数：9件
+──────────────────────────────
+このレポートはAIによる自動配信です。
