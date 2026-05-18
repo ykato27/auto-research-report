@@ -136,9 +136,19 @@ def _format_section_lines(lines):
 
 
 def build_teams_sections(content):
-    """長いレポートを MessageCard の複数 section に分割する。"""
-    sections = []
+    """長いレポートを MessageCard の複数 section に分割する。
 
+    v6 format: 【カテゴリ名】 sections
+    v7 format: ## N. タイトル sections
+    """
+    if re.search(r"^##\s+\d+\.", content, re.MULTILINE):
+        return _build_teams_sections_v7(content)
+    return _build_teams_sections_v6(content)
+
+
+def _build_teams_sections_v6(content):
+    """v6: 【カテゴリ名】区切りのセクション分割。"""
+    sections = []
     current_title = None
     current_lines = []
     summary_lines = []
@@ -149,13 +159,7 @@ def build_teams_sections(content):
             return
         text = "\n\n".join(_format_section_lines(current_lines))
         if text:
-            sections.append(
-                {
-                    "activityTitle": current_title,
-                    "text": text,
-                    "markdown": True,
-                }
-            )
+            sections.append({"activityTitle": current_title, "text": text, "markdown": True})
 
     for raw_line in content.splitlines():
         line = raw_line.strip()
@@ -170,13 +174,11 @@ def build_teams_sections(content):
         category = re.match(r"^【(.+)】$", line)
         if category:
             if in_summary and summary_lines:
-                sections.append(
-                    {
-                        "activityTitle": "今週のサマリ",
-                        "text": "\n\n".join(_format_section_lines(summary_lines)),
-                        "markdown": True,
-                    }
-                )
+                sections.append({
+                    "activityTitle": "今週のサマリ",
+                    "text": "\n\n".join(_format_section_lines(summary_lines)),
+                    "markdown": True,
+                })
                 summary_lines = []
                 in_summary = False
             flush_current()
@@ -186,13 +188,11 @@ def build_teams_sections(content):
 
         if line.startswith("今週のトピック数"):
             if in_summary and summary_lines:
-                sections.append(
-                    {
-                        "activityTitle": "今週のサマリ",
-                        "text": "\n\n".join(_format_section_lines(summary_lines)),
-                        "markdown": True,
-                    }
-                )
+                sections.append({
+                    "activityTitle": "今週のサマリ",
+                    "text": "\n\n".join(_format_section_lines(summary_lines)),
+                    "markdown": True,
+                })
                 summary_lines = []
                 in_summary = False
             flush_current()
@@ -206,15 +206,64 @@ def build_teams_sections(content):
             current_lines.append(raw_line)
 
     if in_summary and summary_lines:
-        sections.append(
-            {
-                "activityTitle": "今週のサマリ",
-                "text": "\n\n".join(_format_section_lines(summary_lines)),
-                "markdown": True,
-            }
-        )
+        sections.append({
+            "activityTitle": "今週のサマリ",
+            "text": "\n\n".join(_format_section_lines(summary_lines)),
+            "markdown": True,
+        })
     flush_current()
+    return sections
 
+
+def _build_teams_sections_v7(content):
+    """v7: ## N. タイトル と ## 今週のサマリー / ## 編集後記 区切りのセクション分割。"""
+    sections = []
+    current_title = None
+    current_lines = []
+
+    def flush_current():
+        if not current_title:
+            return
+        text = "\n\n".join(_format_section_lines(current_lines))
+        if text:
+            sections.append({"activityTitle": current_title, "text": text, "markdown": True})
+
+    for raw_line in content.splitlines():
+        line = raw_line.strip()
+
+        # ## 今週のサマリー
+        if re.match(r"^##\s+今週のサマリ", line):
+            flush_current()
+            current_title = "今週のサマリー"
+            current_lines = []
+            continue
+
+        # ## 編集後記
+        if re.match(r"^##\s+編集後記", line):
+            flush_current()
+            current_title = "編集後記"
+            current_lines = []
+            continue
+
+        # ## N. 記事タイトル
+        article = re.match(r"^##\s+(\d+\.\s+.+)", line)
+        if article:
+            flush_current()
+            current_title = article.group(1)
+            current_lines = []
+            continue
+
+        # トピック数行はスキップ
+        if line.startswith("今週のトピック数"):
+            flush_current()
+            current_title = None
+            current_lines = []
+            continue
+
+        if current_title:
+            current_lines.append(raw_line)
+
+    flush_current()
     return sections
 
 

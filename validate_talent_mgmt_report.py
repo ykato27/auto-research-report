@@ -23,12 +23,19 @@ BLOCKED_DOMAINS = {
     "wifitalents.com",
 }
 
-MIN_TARGET_TOPICS = 25
+MIN_TARGET_TOPICS = 7
 
+# v6 format patterns
 DATE_LINE_RE = re.compile(r"^（公開日:\s*(\d{4})/(\d{2})/(\d{2})）$")
+URL_LINE_RE = re.compile(r"^（URL:\s*(https?://[^）\s]+)\s*）$")
+
+# v7 format patterns
+ARTICLE_HEADER_V7_RE = re.compile(r"^##\s+\d+\.\s+(.+)")
+DATE_V7_RE = re.compile(r"\*\*日付\*\*[:：]\s*(\d{4})年(\d{1,2})月(\d{1,2})日")
+URL_V7_RE = re.compile(r"^参考[:：]\s*(https?://\S+)\s*$")
+
 FILE_DATE_RE = re.compile(r"talent_mgmt_weekly_(\d{8})\.txt$")
 TOPIC_COUNT_RE = re.compile(r"今週のトピック数：(\d+)件")
-URL_LINE_RE = re.compile(r"^（URL:\s*(https?://[^）\s]+)\s*）$")
 
 
 @dataclass
@@ -89,7 +96,12 @@ def dates_in_url(url: str) -> list[date]:
     return found
 
 
-def parse_news_items(content: str) -> list[NewsItem]:
+def _is_v7_format(content: str) -> bool:
+    return bool(re.search(r"^##\s+\d+\.", content, re.MULTILINE))
+
+
+def _parse_news_items_v6(content: str) -> list[NewsItem]:
+    """v6 format: 【カテゴリ】 sections with ・ bullet items."""
     items: list[NewsItem] = []
     current: NewsItem | None = None
     in_news_section = False
@@ -141,6 +153,49 @@ def parse_news_items(content: str) -> list[NewsItem]:
             current = None
 
     return items
+
+
+def _parse_news_items_v7(content: str) -> list[NewsItem]:
+    """v7 format: ## N. title sections with **日付** and 参考: URL."""
+    items: list[NewsItem] = []
+    current: NewsItem | None = None
+
+    for line_no, raw_line in enumerate(content.splitlines(), 1):
+        line = raw_line.strip()
+
+        header_match = ARTICLE_HEADER_V7_RE.match(line)
+        if header_match:
+            current = NewsItem(line_no=line_no, title=header_match.group(1))
+            items.append(current)
+            continue
+
+        if current is None:
+            continue
+
+        if current.published is None:
+            date_match = DATE_V7_RE.search(line)
+            if date_match:
+                try:
+                    current.published = date(
+                        int(date_match.group(1)),
+                        int(date_match.group(2)),
+                        int(date_match.group(3)),
+                    )
+                except ValueError:
+                    pass
+
+        url_match = URL_V7_RE.match(line)
+        if url_match:
+            current.url = url_match.group(1)
+            current = None
+
+    return items
+
+
+def parse_news_items(content: str) -> list[NewsItem]:
+    if _is_v7_format(content):
+        return _parse_news_items_v7(content)
+    return _parse_news_items_v6(content)
 
 
 def extract_topic_count(content: str) -> int | None:
