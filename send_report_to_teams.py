@@ -109,7 +109,7 @@ def _format_section_lines(lines):
         if not line or _is_rule_line(line):
             continue
 
-        if "このメールはAIによる自動配信" in line:
+        if "このメールはAIによる自動配信" in line or "このレポートはAIによる自動配信" in line:
             result.append("このレポートはAIによる自動生成です。")
             continue
 
@@ -118,6 +118,7 @@ def _format_section_lines(lines):
             result.append(f"**{heading.group(1)}**")
             continue
 
+        # v6 format URL: （URL: https://...）
         url = re.match(r"^（URL:\s*(https?://\S+?)）\s*$", line)
         if url:
             if result and result[-1].startswith("- "):
@@ -126,9 +127,19 @@ def _format_section_lines(lines):
                 result.append(f"[出典]({url.group(1)})")
             continue
 
+        # v7 format URL: 参考: https://...
+        ref_url = re.match(r"^参考[:：]\s*(https?://\S+)\s*$", line)
+        if ref_url:
+            result.append(f"[参考リンク]({ref_url.group(1)})")
+            continue
+
         if line.startswith("・"):
             result.append(f"- {line[1:].strip()}")
             continue
+
+        # 示唆セクションの前に水平線を挿入して視覚的に区切る
+        if re.match(r"^\*\*(Skillnote|顧客).{0,30}示唆\*\*", line):
+            result.append("---")
 
         result.append(line)
 
