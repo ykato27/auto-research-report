@@ -1,17 +1,17 @@
 {
   "collection_window_hours": 24,
   "failed_sources": 2,
-  "fetched_at": "2026-05-26T08:13:25.414049+09:00",
-  "incoming_items": 3,
-  "new_items": 3,
+  "fetched_at": "2026-05-27T08:15:55.748840+09:00",
+  "incoming_items": 5,
+  "new_items": 4,
   "ok_sources": 22,
-  "retained_items": 52,
+  "retained_items": 56,
   "sources": [
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "日本の人事部 最新記事",
-      "new_count": 0,
+      "new_count": 1,
       "ok": true,
       "url": "https://jinjibu.jp/rss/?mode=atcl"
     },
@@ -40,7 +40,7 @@
       "url": "https://service.jinjibu.jp/rss/?mode=news&type=1"
     },
     {
-      "error": "text/html; charset=iso-8859-1 is not an XML media type",
+      "error": "text/html is not an XML media type",
       "item_count": 0,
       "name": "HRプロ ニュース",
       "new_count": 0,
@@ -81,9 +81,9 @@
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "HR Tech Feed",
-      "new_count": 0,
+      "new_count": 1,
       "ok": true,
       "url": "https://hrtechfeed.com/feed/"
     },
@@ -129,15 +129,15 @@
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "Google News - Mercer McKinsey Deloitte talent",
-      "new_count": 0,
+      "new_count": 1,
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%28site%3Amercer.com+OR+site%3Amckinsey.com+OR+site%3Adeloitte.com%29+%28talent+OR+workforce+OR+skills%29&hl=en-US&gl=US&ceid=US:en"
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "Google News - SHRM talent skills",
       "new_count": 0,
       "ok": true,
@@ -153,9 +153,9 @@
     },
     {
       "error": null,
-      "item_count": 2,
+      "item_count": 0,
       "name": "Google News - タレントマネジメント スキル 発表",
-      "new_count": 2,
+      "new_count": 0,
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%28%E3%82%BF%E3%83%AC%E3%83%B3%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88+OR+%E3%82%B9%E3%82%AD%E3%83%AB%E7%AE%A1%E7%90%86+OR+%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%29+%28%E7%99%BA%E8%A1%A8+OR+%E8%AA%BF%E6%9F%BB+OR+%E4%BA%8B%E4%BE%8B%29&hl=ja&gl=JP&ceid=JP:ja"
     },
