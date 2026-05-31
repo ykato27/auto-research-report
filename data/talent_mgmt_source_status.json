@@ -1,11 +1,11 @@
 {
   "collection_window_hours": 24,
   "failed_sources": 2,
-  "fetched_at": "2026-05-31T08:05:49.740441+09:00",
-  "incoming_items": 0,
-  "new_items": 0,
+  "fetched_at": "2026-06-01T08:09:13.040513+09:00",
+  "incoming_items": 2,
+  "new_items": 2,
   "ok_sources": 22,
-  "retained_items": 65,
+  "retained_items": 2,
   "sources": [
     {
       "error": null,
@@ -49,9 +49,9 @@
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "HR Note",
-      "new_count": 0,
+      "new_count": 1,
       "ok": true,
       "url": "https://hrnote.jp/feed/"
     },
@@ -193,15 +193,15 @@
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "PubMed - talent and workforce management research",
-      "new_count": 0,
+      "new_count": 1,
       "ok": true,
       "url": "pubmed"
     }
   ],
   "storage_window_hours": null,
-  "store_path": "data/items/202605.jsonl",
+  "store_path": "data/items/202606.jsonl",
   "theme": "talent_mgmt",
   "total_sources": 24
 }
