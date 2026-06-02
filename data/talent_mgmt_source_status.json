@@ -1,11 +1,11 @@
 {
   "collection_window_hours": 24,
   "failed_sources": 2,
-  "fetched_at": "2026-06-02T08:39:37.101929+09:00",
-  "incoming_items": 3,
-  "new_items": 3,
+  "fetched_at": "2026-06-03T08:53:55.038593+09:00",
+  "incoming_items": 4,
+  "new_items": 4,
   "ok_sources": 22,
-  "retained_items": 5,
+  "retained_items": 9,
   "sources": [
     {
       "error": null,
@@ -73,9 +73,9 @@
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 2,
       "name": "AIHR Blog",
-      "new_count": 0,
+      "new_count": 2,
       "ok": true,
       "url": "https://www.aihr.com/blog/feed/"
     },
@@ -153,9 +153,9 @@
     },
     {
       "error": null,
-      "item_count": 1,
+      "item_count": 0,
       "name": "Google News - タレントマネジメント スキル 発表",
-      "new_count": 1,
+      "new_count": 0,
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%28%E3%82%BF%E3%83%AC%E3%83%B3%E3%83%88%E3%83%9E%E3%83%8D%E3%82%B8%E3%83%A1%E3%83%B3%E3%83%88+OR+%E3%82%B9%E3%82%AD%E3%83%AB%E7%AE%A1%E7%90%86+OR+%E4%BA%BA%E6%9D%90%E8%82%B2%E6%88%90%29+%28%E7%99%BA%E8%A1%A8+OR+%E8%AA%BF%E6%9F%BB+OR+%E4%BA%8B%E4%BE%8B%29&hl=ja&gl=JP&ceid=JP:ja"
     },
