@@ -1,11 +1,11 @@
 {
   "collection_window_hours": 24,
   "failed_sources": 2,
-  "fetched_at": "2026-06-14T08:13:38.751765+09:00",
-  "incoming_items": 0,
-  "new_items": 0,
+  "fetched_at": "2026-06-15T08:16:52.393553+09:00",
+  "incoming_items": 2,
+  "new_items": 2,
   "ok_sources": 22,
-  "retained_items": 40,
+  "retained_items": 42,
   "sources": [
     {
       "error": null,
@@ -25,9 +25,9 @@
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "日本の人事部 人事サービスニュース",
-      "new_count": 0,
+      "new_count": 1,
       "ok": true,
       "url": "https://jinjibu.jp/rss/?mode=news&type=2"
     },
@@ -40,7 +40,7 @@
       "url": "https://service.jinjibu.jp/rss/?mode=news&type=1"
     },
     {
-      "error": "text/html is not an XML media type",
+      "error": "text/html; charset=iso-8859-1 is not an XML media type",
       "item_count": 0,
       "name": "HRプロ ニュース",
       "new_count": 0,
@@ -161,9 +161,9 @@
     },
     {
       "error": null,
-      "item_count": 0,
+      "item_count": 1,
       "name": "Google News - 人的資本 リスキリング 政策",
-      "new_count": 0,
+      "new_count": 1,
       "ok": true,
       "url": "https://news.google.com/rss/search?q=%28%E4%BA%BA%E7%9A%84%E8%B3%87%E6%9C%AC+OR+%E3%83%AA%E3%82%B9%E3%82%AD%E3%83%AA%E3%83%B3%E3%82%B0%29+%28%E9%96%8B%E7%A4%BA+OR+%E6%94%BF%E7%AD%96+OR+%E7%99%BD%E6%9B%B8+OR+%E7%99%BA%E8%A1%A8%29&hl=ja&gl=JP&ceid=JP:ja"
     },
