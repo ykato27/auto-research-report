@@ -1,0 +1,153 @@
+# タレントマネジメント週報 2026/06/07〜2026/06/14
+
+対象期間: 2026-06-07 〜 2026-06-14
+
+---
+
+## 今週のサマリー
+
+今週は、McKinseyの大規模年次調査が「報酬が雇用安定を抜いて定着要因1位」という構造変化を突きつける一方、Josh BersinのIrresistible 2026では初のHR Pacesetterアワードが16社を表彰し、AI活用で人を中心に置くHRチームへの評価が一気に高まった一週間だった。HR Tech 2026・Info-Tech Research Group・Brandon Hall Groupが相次いでスキルと組織成熟度をテーマにした発表を行い、「スキルをどう構造化し継続的に運用するか」が業界共通の問いとして浮上している。WorkdayのAgent Passportに象徴されるようにHR AIのガバナンス整備も本格化しており、技術導入と人的判断の統合が今最重要課題になっていることが鮮明になった一週間だった。
+
+---
+
+## 1. McKinsey HR Monitor 2026 ― 報酬が定着要因1位に浮上、米国でのGenAI研修は前年比14pt急落
+
+**出典**: McKinsey & Company | **日付**: 2026年6月10日
+
+McKinseyは米国・欧州・中国の人事担当者約1,300名と従業員5,500名超を対象に1月実施した年次HR Monitor調査の2026年版を6月に公表した。最大の発見は「報酬」が従業員の定着理由1位（50%超）に浮上し、昨年首位だった「雇用安定」を抜いたこと。一方で57%の従業員が過去12ヶ月で給与未改定と回答しており、認識と現実の乖離が顕在化した。24%の従業員が1年間で研修を一切受けず、米国のGenAI研修実施率は前年比14ポイント減と全調査国中最大の急落を記録。5人に1人が過去1年でキャリア面談・フィードバックを一度も受けていないことも明らかになった。
+
+> "Pay dethrones job security as workers' top reason to stay."
+> — McKinsey HR Monitor 2026（2026年6月）
+
+**Skillnoteへの示唆**
+報酬と並ぶ定着要因として「スキル成長の可視化」が重要性を高めており、Skillnoteの人材サーチAIとスキルマップは従業員が自らの力量の伸びを確認できる仕組みとして「育てる会社」のエンゲージメント訴求に直結する。生成AI研修の急落という課題は、スキル自動判定（PoC中）やAI育成計画Intelligence Copilotが直接解決できる領域であり、製品ロードマップの優先度を高める根拠になる。
+
+**顧客（製造業 経営層・現場管理者）への示唆**
+製造現場でも「報酬だけでなく成長できる職場か」が若手の入社・定着判断に影響しはじめている。スキルマップで評価→育成→昇給のサイクルを可視化することで、技能習得の達成度と処遇の連動を従業員に示すことが離職防止の実践策になる。定期的なキャリア面談がなければ離職リスクが高まるという本調査の知見を踏まえ、育成計画PDCAの仕組み化を訴える絶好のタイミングだ。
+
+参考: https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/hr-monitor
+
+---
+
+## 2. Josh Bersin Company「Irresistible 2026」にて初のHR Pacesetterアワード ― 16社をAI変革・TM・L&D部門で表彰
+
+**出典**: Josh Bersin Company / PR Newswire | **日付**: 2026年6月10日
+
+Josh Bersin Companyは6月8〜10日にロサンゼルスのUSCマーシャルスクール共催で年次カンファレンス「Irresistible 2026」を開催し、今年初創設のHR Pacesetterアワードで16社を表彰した。受賞部門は「AI変革・従業員体験・HR変革・L&D・スーパーマネジャー育成・採用&タレントモビリティ・タレントマネジメント」の7カテゴリ。サイバーセキュリティから不動産・教育まで多様な業種が選出され、授賞式は自然史博物館（LA）で開催された。Pacesetterとは「革新的解決策・新技術・人中心のアプローチで測定可能なビジネス成果を生み出すHRチーム」と定義されており、AI×人材施策の実践力が初めて国際的に体系評価された。
+
+> "A Pacesetter is an HR team that pioneers creative solutions, embraces new technologies, and puts people at the center to drive measurable business impact."
+> — Josh Bersin Company, Irresistible 2026（2026年6月10日）
+
+**Skillnoteへの示唆**
+「測定可能なビジネス成果を出すHR」が評価される時代において、Skillnoteが提供する定量的スキルデータはROI訴求の根拠として直接機能する。280社超のスキルデータ蓄積を活かし「スキルマネジメント投資対効果」の事例を整備することが、顧客をPacesetter水準へ引き上げるCSM戦略の核心となる。TMS連携でタレントマネジメント部門の受賞レベルの変革を支援する提案も差別化につながる。
+
+**顧客（製造業 経営層・現場管理者）への示唆**
+受賞企業の多様な業種構成は、製造業でも「HR×AIの実践で測定可能な成果」が国際的に評価される時代が到来したことを示す。技能伝承・多能工化の進捗をデータで示し経営層へ報告する仕組みを整備することが、製造業版Pacesetterへの具体的な第一歩となる。
+
+参考: https://www.prnewswire.com/news-releases/first-ever-pacesetter-awards-recognize-hr-breakthrough-achievements-on-stage-at-josh-bersin-company-irresistible-2026-302796642.html
+
+---
+
+## 3. WorkdayがGoogleと連携、HR・財務AIエージェントをGemini Enterpriseへ統合
+
+**出典**: Unix Commerce / Workday | **日付**: 2026年6月11日
+
+WorkdayとGoogle Cloudの戦略的パートナーシップが今週さらに注目を集めた。WorkdayのSana Self-Service AgentがGemini Enterpriseに統合され、従業員が日常利用するGoogle Workspaceから直接、休暇申請・給与確認・勤怠承認・業績レビュー・経費ガイダンスなどのHR・財務タスクをAIエージェントに処理させられるようになった。加えてWorkdayは6月2日のDevConでAIエージェントガバナンス基盤「Agent Passport」を発表。Workday製・サードパーティ製を問わず全AIエージェントを本番投入前にOWASP LLM Top 10・NIST AI RMF・MITRE ATLASなど国際規格で検証し、監査トレーサビリティを自動生成する業界初の仕組みだ。
+
+> "Agent Passport tests and verifies every AI agent, Workday-built or third-party, before it goes into production, and continuously monitors it after."
+> — Workday DevCon 2026（2026年6月2日）
+
+**Skillnoteへの示唆**
+HR AIの「ガバナンス・説明責任」ニーズが顕在化したことは、SkillnoteのSDP（スキルデータプラットフォーム）設計において重要な示唆を持つ。特に大企業顧客はAIによるスキル評価・配置提案の根拠の説明責任を求める時代へ移行中であり、将来ロードマップにAgent Passport相当の透明性設計を組み込む価値がある。Gemini統合はマイクロソフト365やGoogle Workspace経由でのSkillnote連携への布石としても注目すべきだ。
+
+**顧客（製造業 経営層・現場管理者）への示唆**
+製造業でAIを活用したスキル判定・配置提案を導入する際、「AIがなぜその判断をしたか」を現場管理者や労働組合に説明できることが必須要件になりつつある。WorkdayのAgent Passportは先進事例として、AI活用のコンプライアンス・品質管理の重要性を経営層との対話に活用できる。
+
+参考: https://www.unixcommerce.com/2026/06/11/workday-integrates-ai-agents-into-google-cloud-for-seamless-hr-and-finance-support/
+
+---
+
+## 4. Brandon Hall Group、HR・TM全6領域に「Progression Model」フレームワークを拡張 ― 2026年は「進化の年」
+
+**出典**: Brandon Hall Group / GlobeNewswire | **日付**: 2026年6月12日
+
+Brandon Hall Groupは6月12日、昨年発表したAI Progression Modelを拡張し、L&D・タレントマネジメント・HR・採用・リーダーシップ開発・報酬＆表彰の6領域に新たなProgression Modelを発表した。同社は今年のHR Outlookで2026年を「Year of Progression（進化の年）」と定義しており、組織は孤立した変革プロジェクトへの依存から脱却し、継続的な改善と実行能力の構築へ移行すべきだという思想が背景にある。各モデルは組織の成熟度を評価しベンチマーキングする実践的ロードマップを提供し、リサーチサマリーは無料公開された。
+
+> "Organizations must develop the ability to adapt, improve, and execute continuously rather than relying on isolated transformation initiatives."
+> — Brandon Hall Group（2026年6月12日）
+
+**Skillnoteへの示唆**
+タレントマネジメント領域のProgression Modelは、Skillnoteが顧客の「成熟度ステージ」を定義するフレームとして活用できる。Skillnote導入前・導入後・フル活用フェーズをBrandon Hall Modelに対応させることで、顧客ごとのロードマップを可視化し、継続的なアップセルおよびCSM活動の指針になる。SDP構想と連動したスキルデータ活用成熟度モデルの自社版開発のヒントになる。
+
+**顧客（製造業 経営層・現場管理者）への示唆**
+製造業の人事が「孤立した変革」から脱却するには、スキルマップ・評価・育成計画を一体運用する基盤が必要だ。Brandon Hallのフレームを活用し「我が社のHR成熟度は今どの段階か」を経営会議で議論するきっかけを作ることが、Skillnote導入・深化の文脈として有効な会話になる。
+
+参考: https://www.globenewswire.com/news-release/2026/06/12/3311058/0/en/Brandon-Hall-Group-Expands-Progression-Model-Research-Framework-Across-HR-Talent-Learning-and-Leadership-Functions.html
+
+---
+
+## 5. Info-Tech Research Group「IT Talent Trends 2026」― 技術スキルは十分条件ではなく、「人間固有の能力」が差別化要因に
+
+**出典**: Info-Tech Research Group / PR Newswire | **日付**: 2026年6月9日
+
+Info-Tech Research Groupはラスベガス開催のInfo-Tech LIVE 2026に合わせ「IT Talent Trends 2026」を発表。AIの急速な普及により技術スキルは「必要条件」から「十分条件ではない要素」に転落し、クリティカルシンキング・ビジネスセンス・感情知性・創造的問題解決という「Uniquely Human Abilities（人間固有の能力）」がIT人材の新たな評価軸として浮上。ハイブリッド人間×AIチームへの転換を提言し、CIOは採用・育成戦略を根本から見直すよう促された。また、AIによるIT部門変革は定期的な再編成と安定化を繰り返す旧来モデルの終焉を意味すると指摘する。
+
+> "Soft skills, like business acumen, emotional intelligence, and creative problem solving, enable IT experts to grasp business requirements, foster innovation, and manage complex transformations in ways that technical knowledge alone can't achieve."
+> — Heather Leier-Murray, Research Director, Info-Tech Research Group（2026年6月9日）
+
+**Skillnoteへの示唆**
+「技術スキル＋人間固有の能力」の両輪評価は、Skillnoteが提供するスキルマップの設計論に直結する。現在の力量マップはOJT・資格などの技術スキルが中心だが、「改善提案力」「問題解決力」などの行動評価をDX人材スキルテンプレートに組み込むことで、製造業顧客のDXスキル管理空白への対応力が高まる。
+
+**顧客（製造業 経営層・現場管理者）への示唆**
+デジタル化が進む製造現場でも「ツールを使える」だけでなく「改善を牽引できる」人材が求められ始めている。DXリーダー像をスキルマップに落とし込む対話を製造部・人事と行う際に、本レポートのエビデンスを活用することで「なぜソフトスキルの評価が必要か」の説得力が増す。
+
+参考: https://www.prnewswire.com/news-releases/it-talent-trends-2026-report-uniquely-human-abilities-will-define-the-new-human-ai-hybrid-it-workforce-says-info-tech-research-group-302795729.html
+
+---
+
+## 6. HR Tech 2026 カンファレンス初期アジェンダ発表 ― AIの実世界実装・スキル・変革を3本柱に
+
+**出典**: HR Technology Conference / GlobeNewswire | **日付**: 2026年6月9日
+
+年次カンファレンス「HR Tech 2026」（10月20〜22日、マンダレイベイ・ラスベガス）の初期アジェンダが発表された。テーマは「From Change to Transformation（変化から変革へ）」で、AIの実世界実装・スキル・ワークフォース変革の3軸を柱に構成。IFFがジョブアーキテクチャーを静的文書から動的スキルインサイトへ移行した実践例、TIAAによる採用・TM・L&D・ワークフォースプランニングを統合した社内タレントモビリティ戦略など、具体的な企業事例セッションを多数収録。Sanofi・Cloudflare・Amsted Industriesも登壇予定であり、製造業や多国籍企業のHR変革事例が注目される。
+
+> "From Change to Transformation."
+> — HR Tech 2026 Conference Theme（2026年6月9日）
+
+**Skillnoteへの示唆**
+HR Tech 2026のアジェンダはグローバルHRの優先事項を体現する。特にIFFによる「静的文書→動的スキルインサイト」の変革事例はSkillnoteのSDP（スキルデータプラットフォーム）構想と方向性が一致しており、同カンファレンスの先進事例を自社ロードマップの参照軸として活用することで、顧客への提案内容の高度化が図れる。
+
+**顧客（製造業 経営層・現場管理者）への示唆**
+国際的なHR Tech最大カンファレンスがスキルと社内モビリティを柱に据えたことは、製造業の人事にとっても「スキルデータ活用が世界標準になりつつある」という強力なシグナルだ。自社のスキルマップをどう「静的管理ツール」から「動的意思決定インフラ」に進化させるかを経営に対して提案する際の外部根拠として活用できる。
+
+参考: https://www.globenewswire.com/news-release/2026/06/09/3308677/0/en/hr-tech-2026-announces-initial-agenda-focuses-on-real-world-ai-implementation-skills-and-workforce-transformations.html
+
+---
+
+## 7. SHRM Foundation、スキルファースト採用の実践ウェビナーを開催 ― FSG・Grads of Life・Indeedが共同登壇
+
+**出典**: SHRM Foundation | **日付**: 2026年6月10日
+
+SHRM Foundationは6月10日、FSG・Grads of Life・Indeedと共催で「スキルファーストを実践へ：雇用主のためのツールとステップ」ウェビナーを開催した。4,000名超を対象とした「Skills-First Movement」調査の最新知見と、採用・育成現場での実践ツールキットを共有。スキルファーストとは学歴・資格ではなく実証可能なスキルを採用・育成の中心に置くアプローチで、職業訓練・ボランティア・個人学習など非学位経路で習得したコンピテンシーを正式評価する。SHRM Foundationが推進する全米最大規模のスキルファースト拠点「Center for a Skills First Future」の活動の一環として開催された。
+
+> "Many critical competencies can be developed through nondegree pathways such as work experience, volunteering, and personal learning."
+> — SHRM Foundation Skills-First Movement Report（2026年）
+
+**Skillnoteへの示唆**
+スキルファーストの浸透は、Skillnoteが提供する「実績ベースのスキルマップ」の価値を直接裏付ける。人材サーチAIが学歴ではなく保有スキルで人材を探索できることは、国際的なスキルファーストトレンドとの整合性を持つ強みとして営業・マーケティング場面で積極的に訴求できる。
+
+**顧客（製造業 経営層・現場管理者）への示唆**
+製造業では現場OJTで培われたスキルが正式な資格に転換されにくいという長年の課題がある。スキルファーストの考え方を製造現場に適用し、「勤続年数や学歴ではなく実際に何ができるか」で人材配置・昇格を決める仕組みを整備する議論を引き出せる。ISO/QMS対応の力量管理との連動でエビデンスベースの現場評価を推進する際のエントリーポイントになる。
+
+参考: https://www.shrm.org/events-education/education/webinars/turning-skills-first-into-action-tools-and-steps-for-employers
+
+---
+
+## 編集後記
+
+今週の動きを製造業人事の立場で読むと、「スキルをどう構造化し、測定可能な事業成果につなげるか」という問いが世界規模で沸騰していることが見えてくる。McKinseyが示した「研修を一切受けていない従業員が4人に1人」という実態は、製造現場の技能伝承課題と重なる普遍的な問題だ。WorkdayのAIガバナンス整備とBrandon Hall・HR Tech 2026の発表は、「AIを単なる効率化ツールではなくHR意思決定の信頼インフラとして整備する」段階に世界が入ったことを示している。CSMが製造業顧客と今週の話題として持ちかけるなら、「御社の現場でも、スキルマップが単なる記録ではなく育成・配置の意思決定を支える動的データに進化していますか？」という問いかけが有効だろう。Josh BersinのPacesetterアワードが示すように、AI×人を中心に置くHRの実践はすでに多様な業種で始まっており、製造業が後れを取る余裕はない。
+
+──────────────────────────────
+今週のトピック数：7件
+──────────────────────────────
+このレポートはAIによる自動配信です。
